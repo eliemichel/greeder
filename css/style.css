@@ -1,4 +1,4 @@
-/* ----------------------------- */
+F/* ----------------------------- */
 /* ==reset */
 /* ----------------------------- */
 /* Reset buttons */
@@ -184,7 +184,6 @@ iframe {
 .w300p {
 	width:300px;
 }
-#wrap,header{min-width: 370px;}
 /* ----------------------------- */
 /* ==header */
 /* ----------------------------- */
@@ -483,6 +482,7 @@ button.grey,
 /* ==mobile */
 /* ----------------------------- */
 @media(max-width:850px) {
+	#wrap,header,aside,.content{min-width: 370px;}
 	aside.left {
 		float:none;
 		margin-bottom:10px;
@@ -517,7 +517,6 @@ button.grey,
 	position: absolute;
 	bottom:0px;
 	}
-
 }
 /* orientation iOS font-size fix */
 @media(orientation:landscape)and(max-device-width:640px) {
