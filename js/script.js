@@ -1,3 +1,4 @@
+//From here, it is working pretty nice
 function toggleFolder(element,folder){
 	feedBloc = $('ul',$(element).parent());
 
@@ -123,9 +124,3 @@ function synchronize(code){
 		alert('Vous devez être connecté pour synchroniser vos flux');
 	}
 }
-//now, gredder-code time !
-//$(document).ready(function(){
-//    $('#text').click(function(){
-//        $(this).addClass('highlighted');
-//    });
-//});

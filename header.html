@@ -12,20 +12,25 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Leed</title>
+	 <title>Leed {if="$myUser"}{if="$numberOfItem>0"} ({$numberOfItem}){/if}{/if}</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./css/style.css">
+	{if="!$myUser"}
+	<style type="text/css">
+		header{min-width: 480px;}
+	</style>
+	{/if}
 </head>
 <body>
 	<!-- <!> Balise ayant double utilié :
 	sert de base a javascript pour connaitre l'action courante
 	permet le retour en haut de page -->
 	<a id="pageTop" class="hidden">{$action}</a>
-		<header class=" toper">
+		<header class="toper">
 			<h1 class="logo left" id="title"><a href="./index.php"><img src="logo.png" alt="logo"></a></h1>
 			<div class="loginBloc">
 				{if="!$myUser"}

@@ -5,9 +5,8 @@
 -->
 {include="header"}
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
-<!---->
+
 <!-- MENU -->
-<!---->
 	<aside class="left w300p">
 		
 		<button class="red allread" onclick="if(confirm('Tout marquer comme lu pour tous les flux?'))window.location='action.php?action=readAll'">Tout marquer comme lu</button>
@@ -44,7 +43,6 @@
 						{if="count($feeds)!=0"}
 							{loop="feeds"}
 								<li> 
-									<!--<img src="http://www.google.com/s2/favicons?domain={$value2['url']}"/> Favicon-->
 									<a href="index.php?action=selectedFeed&feed={$value2['id']}" alt="{$value2['url']}" title="{$value2['url']}">{$value2['name']} </a>
 									{if="isset($unread[$value2['id']])"}  
 									<button class="fade" onclick="if(confirm('Tout marquer comme lu pour ce flux?'))window.location='action.php?action=readAll&feed={$value2['id']}';">
@@ -62,10 +60,9 @@
 			{/loop}
 		</ul>
 	</aside>
-<!---->
+
 <!-- ARTICLES -->
-<!---->
-	<article class="content mod item">
+	<article class="content mod">		
 		{loop="$events"}
 			{$plainDescription=strip_tags($value->getDescription())}	
 			<!-- CORPS ARTICLE -->
@@ -89,7 +86,6 @@
 				<!-- DETAILS + OPTIONS -->
 				<h3 class="articleDetails">
 					{if="$articleDisplayLink"}
-						<!--<img src="http://www.google.com/s2/favicons?domain="/> Favicon-->
 						<a href="{$value->getLink()}" target="_blank">{$allFeeds['idMap'][$value->getFeed()]['name']}</a>
 					{/if}
 					{if="$articleDisplayAuthor"}
@@ -130,8 +126,6 @@
 			{$hightlighted=$hightlighted+1}
 		{/loop}
 
-		<!-- PIED DE PAGE DES ARTICLES -->
-
 		{if="$pages!=0"}
 			<p id="pagination">
 				<a class="grey-h page">Page {$page}/{$pages} : </a>
@@ -155,27 +149,12 @@
 				{/if}
 			</p> 
 		{/if}
-
 	</article>
 
-	<footer>
-		<p>Leed : fabuleux agr&eacute;gateur par <a target="_blank" href="http://blog.idleman.fr">Idleman</a>. 
-		<br>Thème Greeder créé par <a href="http://tomcanac.com">Tom Canac</a>.
-		<br><a href="about.php">A propos</a>.</p>
-	</footer>
-
 {else}
-
-	<article class="content mod item" style="margin-top:15%;text-align:center">
+	<article class="content mod" style="text-align:center">
 				<h3>Vous devez &ecirc;tre connect&eacute; pour consulter vos flux </h3>
 				<p>Si vous &ecirc;tes administrateur, vous pouvez r&eacute;gler les droits de visualisation dans la partie administration.</p>
 	</article>
-
-	<footer id="notLogged">
-		<p>Leed : fabuleux agr&eacute;gateur par <a target="_blank" href="http://blog.idleman.fr">Idleman</a>.
-			Thème Greeder créé par <a href="http://tomcanac.com">Tom Canac</a>.
-			<a href="about.php">A propos</a>.</p>
-	</footer>
 {/if}
-
 {include="footer"}
