@@ -141,7 +141,7 @@
 					<h2>Utiliser le bookmarklet :</h2>
 					<p>Vous pouvez ajout le bookmaklet ci dessus a votre naviguateur pour vous inscrire plus rapidemment au flux :</p>
 					{if="$myUser!=false"}
-					<a class="red" href='javascript:document.location="{$configurationManager->get('root')}action.php?action=login&newUrl="+escape(document.location)+"&usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'>+ Ajouter à Leed</a>
+					<a class="red" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&newUrl='+escape(document.location)+'&usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a>
 					{else}
 					<p>Vous devez &eacute;tre connect&eacute; pour voir le bookmarklet.</p>
 					{/if}
