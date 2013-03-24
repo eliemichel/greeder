@@ -50,7 +50,6 @@ blockquote,
 pre,
 td,
 th,
-label,
 textarea {
 	margin:21px 0;
 	font-size:1em;
@@ -348,12 +347,7 @@ section>h3 {
 	font-size:.9em;
 	color:#666;
 }
-.content #manageFolderBloc,
-.content #synchronizeBloc,
-.content #importBloc,
-.content #exportBloc,
-.content #bookBloc,
-.content #preferenceBloc {
+#exportBloc,#importBloc,#bookBloc,#preferenceBloc,#synchronizeBloc{
 	display:none;
 }
 ul.gestflux {
@@ -381,6 +375,7 @@ footer{
 	border-top:1px solid #e5e5e5;
 	background-color:#F1F1F1;
 	font-size: .8em;
+	clear:both;
 }
 footer ul{
 	list-style: none;
@@ -402,16 +397,14 @@ fieldset {
 }
 input,
 button,
-select,
-label {
+select {
 	padding:2px;
 	border:1px solid #DCDCDC;
 	vertical-align:middle;
 	background:#FFF;
 }
-button.red,
 .red {
-	height:30px!important;
+	height:30px;
 	padding:0 8px;
 	border:1px solid transparent;
 	border:1px solid #C03927;
@@ -428,7 +421,6 @@ button.red,
 .red:active {
 	background-color:#C03927;
 }
-button.grey,
 .grey {
 	height:30px;
 	border:1px solid #DCDCDC;
@@ -436,7 +428,6 @@ button.grey,
 	text-align:center;
 	font-size:11px;
 	font-weight:bold;
-	line-height:30px;
 	list-style:none outside none;
 	color:#444;
 	background-color:#F5F5F5;
@@ -499,6 +490,9 @@ button.grey,
 	}
 	.settingsBloc {
 		margin-top:178px;
+	}
+	.settingsBloc .red{
+		height:24px;
 	}
 	#menuSettings {
 		width:calc(100% - 15px);
