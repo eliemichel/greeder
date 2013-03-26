@@ -81,10 +81,10 @@
 					<button class="red right lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
 					{if="$value->getFavorite()!=1"} <a class="grey favorite right" onclick="addFavorite(this,{$value->getId()});" >Favoriser</a> 
 					{else}
-					<a class="grey right favorite " onclick="removeFavorite(this,{$value->getId()});" >D&eacute;favoriser</a> 
+					<a class="grey right favorite" onclick="removeFavorite(this,{$value->getId()});" >D&eacute;favoriser</a> 
 					{/if}
 					{if="$shareOption!=false"}
-					<a target="_blank" class="grey favorite" alt="partager sur shaarli" title="partager sur shaarli" href="{$shareOption.'/index.php?post='.rawurlencode($value->getLink()).'&title='.$value->getTitle().'&source=bookmarklet' }">Shaare</a> 
+					<a target="_blank" class="grey favorite" alt="partager sur shaarli" title="partager sur shaarli" href="{$shareOption.'/index.php?post='.rawurlencode($value->getLink()).'&title='.$value->getTitle().'&source=bookmarklet' }">Shaarli</a> 
 					{/if}
 					{function="Plugin::callHook("event_pre_title", array(&$value))"}
 					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" alt="{$plainDescription}" title="{$plainDescription}">{$value->getTitle()}</a> 
