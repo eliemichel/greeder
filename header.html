@@ -19,11 +19,7 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./css/style.css">
-	<script type="text/javascript">
-	window.addEventListener('load', function() {
-    	new FastClick(document.body);
-	}, false);
-	</script>
+	{function="Plugin::callCss()"}
 	{if="!$myUser"}
 	<style type="text/css">
 		header{min-width: 480px;}
@@ -34,9 +30,11 @@
 	<!-- <!> Balise ayant double utilié :
 	sert de base a javascript pour connaitre l'action courante
 	permet le retour en haut de page -->
-	<a id="pageTop" class="hidden">{$action}</a>
+	<a name="pageTopAnvil" id="pageTopAnvil"></a>
+	<a name="pageTop" id="pageTop" class="hidden">{$action}</a>
 		<header class="toper">
 			<h1 class="logo left" id="title"><a href="./index.php"><img src="logo.png" alt="logo"></a></h1>
+			{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
 			<div class="loginBloc">
 				{if="!$myUser"}
 				<form class="formulco" action="action.php?action=login" method="POST">
@@ -49,9 +47,10 @@
 				<a href="index.php?action=favorites"><img src="favs.png" class="icon" alt="Favoris"></a>
 				<a href="settings.php"><img src="settings.png" class="icon" alt="Paramètres"></a>
 				<a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="sync.png" class="icon" alt="Actualiser"></a>
+				{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
 			</nav>
 			<button class="grey deco" onclick="window.location='action.php?action=logout'">
-				D&eacute;connexion
+				Déconnexion
 			</button>
 			{/if}
 			<div class="clear"></div>

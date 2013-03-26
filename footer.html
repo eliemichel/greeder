@@ -1,17 +1,18 @@
 <!--
  @nom: footer
- @auteur: Idleman (idleman@idleman.fr)
+ @auteur: Tom Canac (contact@tomcanac.com)
  @description: Page de bas de page commun a toutes les vues
 -->
 <footer>
 	<p>
-		Leed : fabuleux agr&eacute;gateur par <a target="_blank" href="http://blog.idleman.fr">Idleman</a>.
+		Leed : fabuleux agrégateur par <a target="_blank" href="http://blog.idleman.fr">Idleman</a>.
 		Thème Greeder créé par <a href="http://tomcanac.com">Tom Canac</a>.
 		<a href="about.php">A propos</a>.
 	</p>
+	{function="Plugin::callHook("footer_post_copyright", array(&$myUser))"}
 </footer>
 <script src="./js/libs/jqueryAndModernizr.min.js"></script>
 <script src="./js/script.js"></script>
-<script src="./js/fastclick.js"></script>
+{function="Plugin::callJs()"}
 </body>
 </html>

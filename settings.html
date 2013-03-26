@@ -7,7 +7,7 @@
 {include="header"}
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
 	<style type="text/css">
-		.red{height:24px!important;}
+		.red,.grey{height:24px!important;}
 		ul{list-style: none;padding-left: 0px!important;}
 		table > *{margin:0px;}
 		table{margin: 0px;}
@@ -16,12 +16,13 @@
 			<aside class="mod left w300p" style="padding-top:0px;">
 				<ul>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #manageBloc,#main #manageBloc section').fadeToggle(200);">Gestion des flux</li>
-						<li class="pointer" onclick="$('.content section').hide();$('#main #synchronizeBloc').fadeToggle(200);">Mise à jour manuelle des flux</a></li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #preferenceBloc,#main #preferenceBloc section').fadeToggle(200);">Préférences</li>
+						<li class="pointer" onclick="$('.content section').hide();$('#main #pluginBloc,#main #pluginBloc section').fadeToggle(200);">Plugins</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #importBloc').fadeToggle(200);">Import</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #exportBloc').fadeToggle(200);">Export</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #bookBloc').fadeToggle(200);">Bookmarklet</li>
 						<li class="pointer" onclick="if(confirm('Etes vous sûr de vouloir vider tout les évenements?')){window.location='action.php?action=purge';}">Vider les événements</a></li>
+						{function="Plugin::callHook("setting_post_link", array(&$myUser))"}
 				</ul>
 			</aside>
 			
@@ -177,6 +178,36 @@
 					
 				</ul>
 			</section>
+
+			<section class="article" id="pluginBloc">
+				<h2>Plugins :</h2>
+				<p>Voici la liste des plugins installés :</p>
+				{if="$myUser!=false"}
+
+				<ul class="pluginList">
+				{loop="$plugins"}
+				<li>
+					<section class="article eventRead">
+					<ul>
+						<li><b>Nom:</b> {$value->getName()}</li>
+						<li><b>Auteur:</b> <a href="mailto:{$value->getMail()}">{$value->getAuthor()}</a></li>
+						<li><b>Licence:</b> {$value->getLicence()}</li>
+						<li><b>Version:</b> <code>{$value->getVersion()}</code></li>
+						<li><b>Site web:</b> <a href="{$value->getLink()}">{$value->getLink()}</a></li>
+						<li>{$value->getDescription()}</li>
+						<li><a href="action.php?action=changePluginState&plugin={$value->getUid()}&state={$value->getState()}" style="width:70px;" class="{$value->getState()=="0"?"red":"grey"}">{$value->getState()=="0"?"Activer":"Désactiver"}</a></li>
+					</ul>
+					</section>
+				</li>
+
+				{/loop}
+				</ul>
+
+				{else}
+				<p>Vous devez être connecté pour voir les plugins.</p>
+				{/if}
+			</section>
+
 			
 				<section class="article" id="bookBloc">
 					<h2>Utiliser le bookmarklet :</h2>
@@ -192,16 +223,14 @@
 					 <iframe class="importFrame" src="action.php?action=importForm" name="idFrame" id="idFrame" width="100%" height="300" ></iframe>
 				</section>
 
-				<section class="article" id="synchronizeBloc">
-					 <iframe class="importFrame" src="action.php?action=synchronizeForm" name="idFrameSynchro" id="idFrameSynchro" width="100%" height="300" ></iframe>
-				</section>
-
 				<form action="action.php?action=exportFeed" method="POST">
 				<section class="article" id="exportBloc">
 					<h2>Exporter les flux au format opml</h2>
 					<p>Fichier OPML : <button class="red" name="exportButton">Exporter</button></p>
 				</section>
 				</form>
+				
+				{function="Plugin::callHook("setting_post_section", array(&$myUser))"}
 			</article>
 			
 		</div> <!-- #main -->

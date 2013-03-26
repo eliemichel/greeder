@@ -13,7 +13,6 @@ input[type="submit"] {
 	*overflow:visible;
 }
 a,
-a:visited,
 .link,
 .pointer {
 	text-decoration:none;
@@ -347,7 +346,7 @@ section>h3 {
 	font-size:.9em;
 	color:#666;
 }
-#exportBloc,#importBloc,#bookBloc,#preferenceBloc,#synchronizeBloc{
+#exportBloc,#importBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc{
 	display:none;
 }
 ul.gestflux {
@@ -402,6 +401,10 @@ select {
 	border:1px solid #DCDCDC;
 	vertical-align:middle;
 	background:#FFF;
+}
+a.red,a.grey{
+	display: block;
+	text-align: center;
 }
 .red {
 	height:30px;
