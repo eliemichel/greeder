@@ -79,12 +79,10 @@
 				<!-- TITRE -->
 				<h2 class="articleTitle">
 					<button class="red right lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
-					{if="$value->getFavorite()!=1"} <a class="grey favorite right" onclick="addFavorite(this,{$value->getId()});" >Favoriser</a> 
+					{if="$value->getFavorite()!=1"}
+					<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >Favoriser</a> 
 					{else}
-					<a class="grey right favorite" onclick="removeFavorite(this,{$value->getId()});" >D&eacute;favoriser</a> 
-					{/if}
-					{if="$shareOption!=false"}
-					<a target="_blank" class="grey favorite" alt="partager sur shaarli" title="partager sur shaarli" href="{$shareOption.'/index.php?post='.rawurlencode($value->getLink()).'&title='.$value->getTitle().'&source=bookmarklet' }">Shaarli</a> 
+					<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >Défavoriser</a> 
 					{/if}
 					{function="Plugin::callHook("event_pre_title", array(&$value))"}
 					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" alt="{$plainDescription}" title="{$plainDescription}">{$value->getTitle()}</a> 
@@ -126,11 +124,10 @@
 				<h3 class="buttonsbis">
 					{function="Plugin::callHook("event_pre_bottom_options", array(&$value))"}
 					<button class="right red lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
-					{if="$value->getFavorite()!=1"} <a class="grey favorite" onclick="addFavorite(this,{$value->getId()});" >Favoriser</a> 
+					{if="$value->getFavorite()!=1"}
+					<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >Favoriser</a> 
 					{else}
-					<a class="grey favorite" onclick="removeFavorite(this,{$value->getId()});" >D&eacute;favoriser</a> 
-					{/if}
-					{if="$shareOption!=false"} <a target="_blank" class="grey favorite" alt="partager sur shaarli" title="partager sur shaarli" href="{$shareOption.'/index.php?post='.rawurlencode($value->getLink()).'&title='.$value->getTitle().'&source=bookmarklet' }">Shaare</a> 
+					<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >Défavoriser</a> 
 					{/if}
 					<div class="clear"></div>
 					{function="Plugin::callHook("event_post_bottom_options", array(&$value))"}

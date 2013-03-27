@@ -1,4 +1,4 @@
-F/* ----------------------------- */
+/* ----------------------------- */
 /* ==reset */
 /* ----------------------------- */
 /* Reset buttons */
@@ -402,7 +402,7 @@ select {
 	vertical-align:middle;
 	background:#FFF;
 }
-a.red,a.grey{
+a.red,a.grey;a.page:not{
 	display: block;
 	text-align: center;
 }
@@ -445,12 +445,26 @@ a.red,a.grey{
 .grey-h {
 	cursor:default;
 }
-.favorite {
+.buttons-article {
 	float:right;
 	width:83px;
 	margin-left:8px;
 	padding:1px 3px;
 }
+/*
+.favs{
+	font-size: 1.2em;
+	width: 30px;height: 30px;
+	border-radius: 15px;
+	float:right;
+	line-height: 27px!important;
+}
+.favorised{
+	color:white;
+	border-color:#ffd200;
+	background-color:#ffd200;
+}
+*/
 /* ----------------------------- */
 /* ==print */
 /* ----------------------------- */
