@@ -77,14 +77,16 @@
 			<section class="article {if="!$value->getUnread()"} eventRead {/if} {if="$articleDisplayContent==false"}digest{/if} " >
 				<a class="anchor" name="{$value->getId()}"></a>
 				<!-- TITRE -->
-				<h2 class="articleTitle">
+				<div class="buttons-bar">
 					<button class="red right lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
 					{if="$value->getFavorite()!=1"}
-					<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >Favoriser</a> 
+					<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >★</a> 
 					{else}
-					<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >Défavoriser</a> 
+					<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >★</a> 
 					{/if}
 					{function="Plugin::callHook("event_pre_title", array(&$value))"}
+				</div>
+				<h2 class="articleTitle">
 					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" alt="{$plainDescription}" title="{$plainDescription}">{$value->getTitle()}</a> 
 					{function="Plugin::callHook("event_post_title", array(&$value))"}
 				</h2>
@@ -121,16 +123,18 @@
 				
 				{if="$articleView!='partial'"}
 				<!-- RAPPEL DETAILS + OPTIONS POUR LES ARTICLES AFFICHES EN ENTIER -->
-				<h3 class="buttonsbis">
-					{function="Plugin::callHook("event_pre_bottom_options", array(&$value))"}
-					<button class="right red lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
+				<div class="buttons-bar">
+					<button class="red right lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
 					{if="$value->getFavorite()!=1"}
-					<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >Favoriser</a> 
+					<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >★</a> 
 					{else}
-					<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >Défavoriser</a> 
+					<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >★</a> 
 					{/if}
-					<div class="clear"></div>
-					{function="Plugin::callHook("event_post_bottom_options", array(&$value))"}
+					{function="Plugin::callHook("event_pre_title", array(&$value))"}
+				</div>
+				<h3 class="articleTitle">
+					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" alt="{$plainDescription}" title="{$plainDescription}">{$value->getTitle()}</a> 
+					{function="Plugin::callHook("event_post_title", array(&$value))"}
 				</h3>
 				{/if}
 

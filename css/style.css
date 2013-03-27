@@ -451,20 +451,22 @@ a.red,a.grey;a.page:not{
 	margin-left:8px;
 	padding:1px 3px;
 }
-/*
+
 .favs{
-	font-size: 1.2em;
+	font-size: 1em;
 	width: 30px;height: 30px;
-	border-radius: 15px;
 	float:right;
 	line-height: 27px!important;
 }
-.favorised{
+.favs:hover{
+	
+}
+.favorised,.favorised:hover{
 	color:white;
 	border-color:#ffd200;
 	background-color:#ffd200;
 }
-*/
+
 /* ----------------------------- */
 /* ==print */
 /* ----------------------------- */

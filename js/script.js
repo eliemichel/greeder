@@ -13,7 +13,7 @@ function toggleFolder(element,folder){
 }
 
 function addFavorite(element,id){
-	$(element).attr('onclick','removeFavorite(this,'+id+');').html('Défavoriser');
+	$(element).attr('onclick','removeFavorite(this,'+id+');').addClass('favorised');
 	$.ajax({
 				  url: "./action.php?action=addFavorite",
 				  data:{id:id}
@@ -21,7 +21,7 @@ function addFavorite(element,id){
 }
 
 function removeFavorite(element,id){
-	$(element).attr('onclick','addFavorite(this,'+id+');').html('Favoriser');
+	$(element).attr('onclick','addFavorite(this,'+id+');').removeClass('favorised');
 	$.ajax({
 				  url: "./action.php?action=removeFavorite",
 				  data:{id:id}
@@ -30,10 +30,9 @@ function removeFavorite(element,id){
 
 function renameFolder(element,folder){
 	var folderLine = $(element).parent().parent();
-	var folderNameCase = $('td:first',folderLine);
+	var folderNameCase = $('span:first',folderLine);
 	var value = folderNameCase.html();
 	$(element).html('Enregistrer');
-	$(element).attr('style','background-color:#0C87C9;');
 	$(element).attr('onclick','saveRenameFolder(this,'+folder+')');
 	folderNameCase.replaceWith('<td><input type="text" name="folderName" value="'+value+'"/></td>');
 }
@@ -44,12 +43,11 @@ function saveRenameFolder(element,folder){
 	var folderNameCase = $('td:first',folderLine);
 	var value = $('input',folderNameCase).val();
 	$(element).html('Renommer');
-	$(element).attr('style','background-color:#F16529;');
 	$(element).attr('onclick','renameFolder(this,'+folder+')');
-	folderNameCase.replaceWith('<td>'+value+'</td>');
+	folderNameCase.replaceWith('<h1>'+value+'</h1>');
 	$.ajax({
-				  url: "./action.php?action=renameFolder",
-				  data:{id:folder,name:value}
+		url: "./action.php?action=renameFolder",
+		data:{id:folder,name:value}
 	});
 }
 
@@ -59,7 +57,6 @@ function renameFeed(element,feed){
 	var url = feedNameCase.attr('href');
 	var value = feedNameCase.html();
 	$(element).html('Enregistrer');
-	$(element).attr('style','background-color:#0C87C9;');
 	$(element).attr('onclick','saveRenameFeed(this,'+feed+',"'+url+'")');
 	feedNameCase.replaceWith('<input type="text" name="feedName" value="'+value+'"/>');
 }
@@ -69,9 +66,8 @@ function saveRenameFeed(element,feed,url){
 	var feedNameCase = $('td:first',feedLine);
 	var value = $('input',feedNameCase).val();
 	$(element).html('Renommer');
-	$(element).attr('style','background-color:#F16529;');
 	$(element).attr('onclick','renameFeed(this,'+feed+')');
-	feedNameCase.replaceWith('<td><a href="'+url+'">'+value+'</a></td>');
+	feedNameCase.replaceWith('<td style="width:75%;"><a href="'+url+'">'+value+'</a></td>');
 	$.ajax({
 				  url: "./action.php?action=renameFeed",
 				  data:{id:feed,name:value}
