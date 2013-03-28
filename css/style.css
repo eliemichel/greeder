@@ -191,7 +191,7 @@ iframe {
 header>button {
 	float:right;
 }
-header {
+header.toper {
 	z-index:985;
 	position:absolute;
 	top:0;
@@ -358,6 +358,19 @@ h3.buttonsbis {
 #menuSettings {
 	position:fixed;
 	width:291px;
+}
+.articleHead{
+	text-align: center;
+	color:#6A6A6A!important;
+	font-size: .9em;
+	font-weight: bold!important;
+}
+.articleHead h1,.articleHead h1 a{
+	color:#6A6A6A!important;
+	font-weight: bold!important;
+}
+.articleHead > *{
+	margin: 0px;
 }
 #pagination{margin:10px 0px 3px -2px;}
 /* ----------------------------- */
