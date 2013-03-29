@@ -240,8 +240,7 @@ aside ul.flux,
 aside>ul>li.flux,
 .pointer {
 	width:100%;
-	margin:1px;
-	border:1px solid #E5E5E5;
+	margin-top:2px;
 	border-radius:2px;
 	overflow:hidden;
 	background-color:#F1F1F1;
@@ -255,22 +254,24 @@ li.flux>ul {
 	padding-bottom:2px;
 	text-indent:none;
 	font-size:.9em;
-	background-color:#FFF;
+	background-color:#E5E5E5;
 }
 li.flux>ul a {
+	margin-left: 21px;
 	max-width:200px;
 	white-space:nowrap;
 }
 button.allread {
-	width:291px;
-	margin:0 10px 10px 10px;
+	width:290px;
+	margin:5px 10px 8px 10px;
 }
-.fade,
-button.fade {
+.fade{
 	margin-right:2px;
+	font-size: .9em;
 	border:none;
 	color:#666;
 	cursor:pointer;
+	float:right;
 }
 .marquerlu {
 	margin-top:33px;
@@ -360,14 +361,17 @@ h3.buttonsbis {
 	width:291px;
 }
 .articleHead{
+	color: #6A6A6A!important;
+	border: none!important;
+	font-weight: bold!important;
+	padding: 1px;
 	text-align: center;
-	color:#6A6A6A!important;
 	font-size: .9em;
-	font-weight: bold!important;
+	margin-left: 9px;
+
 }
-.articleHead h1,.articleHead h1 a{
+.articleHead a:first-child{
 	color:#6A6A6A!important;
-	font-weight: bold!important;
 }
 .articleHead > *{
 	margin: 0px;
@@ -413,9 +417,8 @@ select {
 	padding:2px;
 	border:1px solid #DCDCDC;
 	vertical-align:middle;
-	background:#FFF;
 }
-a.red,a.grey;a.page:not{
+a.red,a.grey,a.page:not{
 	display: block;
 	text-align: center;
 }
