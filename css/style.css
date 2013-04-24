@@ -14,7 +14,7 @@ input[type="submit"] {
 }
 a,
 .link,
-.pointer {
+.asidesettingsbloc li {
 	text-decoration:none;
 	color:#15C;
 	cursor:pointer;
@@ -240,11 +240,11 @@ aside ul {
 	list-style:none;
 }
 aside ul.flux,
-.pointer {
+.asidesettingsbloc li {
 	padding-left:9px;
 }
 aside>ul>li.flux,
-.pointer {
+.asidesettingsbloc li {
 	width:100%;
 	margin-top:2px;
 	border-radius:2px;
