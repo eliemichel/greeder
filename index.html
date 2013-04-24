@@ -44,7 +44,7 @@
 		
 		<button class="red allread" onclick="if(confirm('Tout marquer comme lu pour tous les flux?'))window.location='action.php?action=readAll'">Tout marquer comme lu</button>
 		{function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
-		<ul class="flux">
+		<ul class="dossier">
 			<!--Pour chaque dossier-->
 				{loop="folders"}
 					{$feeds=""}

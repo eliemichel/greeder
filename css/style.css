@@ -239,15 +239,21 @@ aside ul {
 	margin-top:0;
 	list-style:none;
 }
-aside ul.flux,
+
+.dossier,
 .asidesettingsbloc li {
 	padding-left:9px;
 }
-aside>ul>li.flux,
+/*
+.flux{
+	margin-bottom: 2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+}
+*/
+.flux,
 .asidesettingsbloc li {
 	width:100%;
-	margin-top:2px;
-	border-radius:2px;
 	overflow:hidden;
 	background-color:#F1F1F1;
 	-o-text-overflow:ellipsis;
@@ -299,6 +305,11 @@ button.allread {
 .readFolder:active {
 	color:#666;
 	background:#E5E5E5;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
 }
 #memo{
 	margin-left: 32px;
@@ -320,6 +331,9 @@ button.lunonlu {
 .content {
 	padding-top:51px;
 }
+section.article h1{
+	margin: 1em 0em 0em 0em;
+}
 section.article,
 .table-section-style {
 	margin-bottom:5px;
@@ -340,7 +354,7 @@ section.article.digest h2 {
 	font-size:1.3em;
 }
 .eventRead {
-	background-color:#F1F1F1;
+	background-color:#E5E5E5;
 }
 section>h2 {
 	margin:0;
@@ -382,7 +396,11 @@ h3.buttonsbis {
 .articleHead > *{
 	margin: 0px;
 }
-#pagination{margin:10px 0px 3px -2px;}
+#pagination{
+	margin:10px 0px 3px -2px;
+	position: absolute;
+	bottom: 31px;
+}
 /* ----------------------------- */
 /* ==footer */
 /* ----------------------------- */
@@ -431,8 +449,7 @@ a.red,a.grey,a.page:not{
 .red {
 	height:30px;
 	padding:0 8px;
-	border:1px solid transparent;
-	border:1px solid #C03927;
+	border: none;
 	-webkit-border-radius: 2px;
 	border-radius: 2px; 
 	font-size:11px;
@@ -446,10 +463,15 @@ a.red,a.grey,a.page:not{
 .red:hover,
 .red:active {
 	background-color:#C03927;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
 }
 .grey {
 	height:30px;
-	border:1px solid #DCDCDC;
+	border:none;
 	-webkit-border-radius: 2px;
 	border-radius: 2px; 
 	text-align:center;
@@ -457,13 +479,18 @@ a.red,a.grey,a.page:not{
 	font-weight:bold;
 	list-style:none outside none;
 	color:#444;
-	background-color:#F5F5F5;
+	background-color:#DCDCDC;
 	cursor:pointer;
 }
 .grey:hover,
 .grey:active,
 .grey-h {
-	background-color:#DCDCDC;
+	background-color:#bcbcbc;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
 }
 /*pour les boutons non cliquables*/
 .grey-h {
@@ -481,9 +508,8 @@ a.red,a.grey,a.page:not{
 	width: 30px;height: 30px;
 	float:right;
 	line-height: 27px!important;
-}
-.favs:hover{
-	
+	-webkit-border-radius: 15px;
+	border-radius: 15px; 
 }
 .favorised,.favorised:hover{
 	color:white;
@@ -539,6 +565,11 @@ a.red,a.grey,a.page:not{
 	}
 	#menuSettings {
 		width:calc(100% - 15px);
+	}
+	#pagination{
+	margin:10px 0px 3px -2px;
+	position: relative;
+	bottom: 0px;
 	}
 	footer{
 	text-align: center;
