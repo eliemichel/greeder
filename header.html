@@ -12,12 +12,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	 <title>Leed</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Leed</title>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/apple-touch-icon-57x57-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-precomposed.png">
 	<link rel="stylesheet" href="./css/style.css">
 	{function="Plugin::callCss()"}
 	{if="!$myUser"}
@@ -33,7 +35,7 @@
 	<a name="pageTopAnvil" id="pageTopAnvil"></a>
 	<a name="pageTop" id="pageTop" class="hidden">{$action}</a>
 		<header class="toper">
-			<h1 class="logo left" id="title"><a href="./index.php"><img src="logo.png" alt="logo"></a></h1>
+			<h1 class="logo left" id="title"><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
 			{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
 			<div class="loginBloc">
 				{if="!$myUser"}
@@ -43,10 +45,10 @@
 				{else}
 			</div>
 			<nav id="icons">
-				<a href="index.php"><img src="home.png" class="icon" alt="Accueil"></a>
-				<a href="index.php?action=favorites"><img src="favs.png" class="icon" alt="Favoris"></a>
-				<a href="settings.php"><img src="settings.png" class="icon" alt="Paramètres"></a>
-				<a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="sync.png" class="icon" alt="Actualiser"></a>
+				<a href="index.php"><img src="img/home.png" class="icon" alt="Accueil"></a>
+				<a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="Favoris"></a>
+				<a href="settings.php"><img src="img/settings.png" class="icon" alt="Paramètres"></a>
+				<a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="Actualiser"></a>
 				{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
 			</nav>
 			<button class="grey deco" onclick="window.location='action.php?action=logout'">
