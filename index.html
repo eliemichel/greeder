@@ -12,38 +12,44 @@
 	{function="Plugin::callHook("menu_pre_folder_menu", array(&$myUser))"}
 	<aside class="left w300p">
 		<!-- ENTETE ARTICLE -->
-		<section class="article grey-h articleHead">
-			{if="$action=='selectedFeed'"}
-			<!-- AFFICHAGE DES EVENEMENTS D'UN FLUX EN PARTICULIER -->
-				<a target="_blank" href="{$currentFeed->getWebSite()}">{$currentFeed->getName()}</a>
+		<div id="entete_article">
+			<section class="article grey-h articleHead">
+				{if="$action=='selectedFeed'"}
+				<!-- AFFICHAGE DES EVENEMENTS D'UN FLUX EN PARTICULIER -->
+					<a target="_blank" href="{$currentFeed->getWebSite()}">{$currentFeed->getName()}</a>
+					<div class="clear"></div>
+					Voir les 
+					<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=unread">Non lu</a> / 
+					<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=older">Plus vieux</a>
+					en premier
+				{/if}
+				
+				{if="$action=='selectedFolder'"}
+				<!-- AFFICHAGE DES EVENEMENTS D'UN DOSSIER EN PARTICULIER -->		
+					{$currentFolder->getName()}
+				{/if}
+				
+				{if="$action=='favorites'"}
+				<!-- AFFICHAGE DES EVENEMENTS FAVORIS -->		
+					{$numberOfItem} articles favoris
+				{/if}
+
+				
+				{if="($action=='unreadEvents') || ($action=='')"}
+				<!-- AFFICHAGE DES EVENEMENTS NON LU (COMPORTEMENT PAR DEFAUT) -->		
+					{if="($numberOfItem > 1)"}
+						{$numberOfItem} éléments non lus
+					{else}
+						{$numberOfItem} élément non lu
+					{/if}
+				{/if}
+
 				<div class="clear"></div>
-				Voir les 
-				<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=unread">Non lu</a> / 
-				<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=older">Plus vieux</a>
-				 en premier
-			{/if}
+			</section>
 			
-			{if="$action=='selectedFolder'"}
-			<!-- AFFICHAGE DES EVENEMENTS D'UN DOSSIER EN PARTICULIER -->		
-				{$currentFolder->getName()}
-			{/if}
-			
-			{if="$action=='favorites'"}
-			<!-- AFFICHAGE DES EVENEMENTS FAVORIS -->		
-				{$numberOfItem} articles favoris
-			{/if}
-
-			
-			{if="($action=='unreadEvents') || ($action=='')"}
-			<!-- AFFICHAGE DES EVENEMENTS NON LU (COMPORTEMENT PAR DEFAUT) -->		
-				{$numberOfItem} éléments non lus
-			{/if}
-
-		 	<div class="clear"></div>
-		</section>
-		
-		<button class="red allread" onclick="if(confirm('Tout marquer comme lu pour tous les flux?'))window.location='action.php?action=readAll'">Tout marquer comme lu</button>
-		{function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
+			<button class="red allread" onclick="if(confirm('Tout marquer comme lu pour tous les flux?'))window.location='action.php?action=readAll'">Tout marquer comme lu</button>
+			{function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
+		</div>
 		<ul class="dossier">
 			<!--Pour chaque dossier-->
 				{loop="folders"}
@@ -172,33 +178,32 @@
 			</section>
 			{$hightlighted=$hightlighted+1}
 		{/loop}
-
-		<!-- PIED DE PAGE DES ARTICLES -->
-
-		{if="$pages!=0"}
-			<p id="pagination">
-				<a class="grey-h page">Page {$page}/{$pages} : </a>
-
-				{if="$previousPages>0"}
-				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$previousPages}"><<</a>
-				{/if}
-				
-				{loop="pagesArray"}
-
-					{if="$page!=$value"}
-					<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$value}">{$value}</a> 
-					{else}
-					<a class="grey-h page">{$value}</a>
-					{/if}
-
-				{/loop}
-
-				{if="$nextPages>0"}
-				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$nextPages}">>></a>
-				{/if}
-			</p> 
-		{/if}
 	</article>
+	<!-- PIED DE PAGE DES ARTICLES -->
+
+	{if="$pages!=0"}
+		<p id="pagination">
+			<a class="grey-h page">Page {$page}/{$pages} : </a>
+
+			{if="$previousPages>0"}
+				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$previousPages}"><<</a>
+			{/if}
+				
+			{loop="pagesArray"}
+
+				{if="$page!=$value"}
+					<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$value}">{$value}</a> 
+				{else}
+					<a class="grey-h page">{$value}</a>
+				{/if}
+
+			{/loop}
+
+			{if="$nextPages>0"}
+				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$nextPages}">>></a>
+			{/if}
+		</p> 
+	{/if}
 
 {else}
 	<article class="content mod" style="text-align:center">
