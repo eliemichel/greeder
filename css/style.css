@@ -284,6 +284,7 @@ button.allread {
 	color:#666;
 	cursor:pointer;
 	float:right;
+	padding: 0px;
 }
 .marquerlu {
 	margin-top:33px;
@@ -398,8 +399,7 @@ h3.buttonsbis {
 }
 #pagination{
 	margin:10px 0px 3px -2px;
-	position: absolute;
-	bottom: 31px;
+	text-align: center;
 }
 /* ----------------------------- */
 /* ==footer */
@@ -585,11 +585,87 @@ a.red,a.grey,a.page:not{
 	position: absolute;
 	bottom:0px;
 	}
+
+	aside.left {
+		display: table;
+		padding-right: 0;
+	}
+
+	div#entete_article {
+		display: table-footer-group;
+	}
+	
+	div#entete_article section:first-child {
+		margin-top: 10px;
+		margin-right: 10px;
+	}
+
+	div#entete_article button {
+		width: calc(100% - 20px);
+	}
+
+	ul.dossier {
+		display: table-header-group;
+	}
+
+	body {
+		overflow-x: hidden;
+	}
 }
+
+@media(max-width:500px) {
+	div.loginBloc {
+		float: none;
+		margin: auto;
+		text-align: center;
+	}
+
+	div.loginBloc input.left {
+		float: none;
+	}
+
+	h1.logo {
+		float: none;
+		text-align: center;
+		margin-top: 5px;
+	}
+
+	header.toper {
+		height: auto;
+	}
+
+	aside.w300p {
+		margin-top: 100px;
+	}
+}
+
 /* orientation iOS font-size fix */
 @media(orientation:landscape)and(max-device-width:640px) {
 	html,
 	body {
 		-webkit-text-size-adjust:100%;
 	}
+}
+
+/*Synchronisation */
+.errorSync{
+	background-color:#D14836;
+	color:#ffffff;
+	padding:5px;
+	border-radius:5px;
+	margin:10px 0px 10px 0px;
+	box-shadow: 0 0 3px 0 #810000;
+}
+
+.sync{
+	padding-left:10px;
+}
+
+/*Settings - underlink span */
+.underlink{
+	font-size:9px;
+	color:#222222;
+	display:block;
+	line-height: 9px;
+	margin-bottom: 10px;
 }
