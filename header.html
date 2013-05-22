@@ -24,7 +24,16 @@
 	{function="Plugin::callCss()"}
 	{if="!$myUser"}
 	<style type="text/css">
-		header{min-width: 382px;}
+		@media(max-width:850px) {
+			.content{
+				padding-top: 51px;
+			}
+		}
+		@media(max-width:500px) {
+			.content {
+				padding-top:190px;
+			}
+		}
 	</style>
 	{/if}
 </head>

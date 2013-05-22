@@ -13,7 +13,7 @@
 	<aside class="left w300p">
 		<!-- ENTETE ARTICLE -->
 		<div id="entete_article">
-			<section class="article grey-h articleHead">
+			<header class="article articleHead topaside">
 				{if="$action=='selectedFeed'"}
 				<!-- AFFICHAGE DES EVENEMENTS D'UN FLUX EN PARTICULIER -->
 					<a target="_blank" href="{$currentFeed->getWebSite()}">{$currentFeed->getName()}</a>
@@ -45,7 +45,7 @@
 				{/if}
 
 				<div class="clear"></div>
-			</section>
+			</header>
 			
 			<button class="red allread" onclick="if(confirm('Tout marquer comme lu pour tous les flux?'))window.location='action.php?action=readAll'">Tout marquer comme lu</button>
 			{function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
