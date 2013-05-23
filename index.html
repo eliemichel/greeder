@@ -105,7 +105,7 @@
 	</aside>
 	
 <!-- ARTICLES -->
-	<article class="content mod">
+	<article class="content">
 		<!-- CORPS ARTICLE -->
 
 		{loop="$events"}
@@ -178,35 +178,38 @@
 			</section>
 			{$hightlighted=$hightlighted+1}
 		{/loop}
+            
+        {if="$pages!=0"}
+            <p id="pagination">
+                <a class="grey-h page">Page {$page}/{$pages} : </a>
+        
+                {if="$previousPages>0"}
+                    <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$previousPages}"><<</a>
+                {/if}
+                        
+                {loop="pagesArray"}
+        
+                    {if="$page!=$value"}
+                        <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$value}">{$value}</a> 
+                    {else}
+                        <a class="grey-h page">{$value}</a>
+                    {/if}
+        
+                {/loop}
+        
+                {if="$nextPages>0"}
+                    <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$nextPages}">>></a>
+                {/if}
+            </p> 
+        {/if}
+        
 	</article>
 	<!-- PIED DE PAGE DES ARTICLES -->
 
-	{if="$pages!=0"}
-		<p id="pagination">
-			<a class="grey-h page">Page {$page}/{$pages} : </a>
 
-			{if="$previousPages>0"}
-				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$previousPages}"><<</a>
-			{/if}
-				
-			{loop="pagesArray"}
-
-				{if="$page!=$value"}
-					<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$value}">{$value}</a> 
-				{else}
-					<a class="grey-h page">{$value}</a>
-				{/if}
-
-			{/loop}
-
-			{if="$nextPages>0"}
-				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$nextPages}">>></a>
-			{/if}
-		</p> 
-	{/if}
 
 {else}
-	<article class="content mod" style="text-align:center">
+	<article class="content" style="text-align:center">
 				<h3>Vous devez &ecirc;tre connect&eacute; pour consulter vos flux </h3>
 				<p>Si vous &ecirc;tes administrateur, vous pouvez r&eacute;gler les droits de visualisation dans la partie administration.</p>
 	</article>

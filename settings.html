@@ -8,7 +8,7 @@
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
 	
 	<style type="text/css">
-		.red,.grey{height:24px!important;}
+		
 		ul{list-style: none;padding-left: 0px!important;}
 		table > *{margin:0px;}
 		table{margin: 0px;}
@@ -23,7 +23,7 @@
 						<li class="pointer" onclick="$('.content section').hide();$('#main #importBloc').fadeToggle(200);">Import</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #exportBloc').fadeToggle(200);">Export</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #bookBloc').fadeToggle(200);">Bookmarklet</li>
-						<li class="pointer" onclick="if(confirm('Etes vous sûr de vouloir vider tout les évenements?')){window.location='action.php?action=purge';}">Vider les événements</a></li>
+						<li class="pointer" onclick="if(confirm('Etes vous sûr de vouloir vider tout les évenements?')){window.location='action.php?action=purge';}">Vider les événements</li>
 						{function="Plugin::callHook("setting_post_link", array(&$myUser))"}
 				</ul>
 			</aside>

@@ -32,15 +32,12 @@ html, body {
 	padding: 0;
 	height: 100%;
 }
-.content{
-	min-height: calc(100% - 25px);
-	min-height: -webkit-calc(100% - 25px);
-}
 body {
 	font-size:1.5em;
 	line-height:1.3;
 	color:#222;
-	background-color:#FFF;
+	/*background-color:#FFF;*/
+    background-color:#dcdcdc;
 }
 p,
 ul,
@@ -160,10 +157,6 @@ iframe {
 	-moz-box-sizing:border-box;
 	box-sizing:border-box;
 }
-.mod {
-	padding:7px 7px 7px 3px;
-	overflow:hidden;
-}
 .left {
 	float:left;
 	margin-right:4px;
@@ -186,13 +179,9 @@ header.toper {
 	position:absolute;
 	top:0;
 	width:100%;
-	height:45px;
+	height:43px;
 	padding:4px;
 	background-color:#F1F1F1;
-}
-ul.dossier:first-child li.flux{
-	border-radius: 2px;
-	-webkit-border-radius: 2px;
 }
 .loginBloc {
 	float:right;
@@ -224,7 +213,7 @@ header img.icon {
 /* ==sidebar */
 /* ----------------------------- */
 aside.left {
-	margin-top:47px;
+	margin-top:43px;
 	margin-right: 0px;
 }
 aside ul {
@@ -232,18 +221,17 @@ aside ul {
 	list-style:none;
 }
 header.topaside {
-	margin: 5px;
-	border-radius: 2px;
-	-webkit-border-radius: 2px;
+	margin: 0px;
 	color: #6A6A6A;
-	background-color: #F1F1F1;
+	background-color: #DCDCDC;
 	height: 35px;
 	line-height: 35px;
 }
 button.allread {
-	width:calc(100% - 10px);
-	width:-webkit-calc(100% - 10px);
-	margin: 0px 5px 5px 5px;
+	width:100%;
+	margin: 0px;
+    border-radius:0px;
+    -webkit-border-radius:0px;
 }
 .asidesettingsbloc li {
 	padding-right:5px;
@@ -252,7 +240,8 @@ button.allread {
 .asidesettingsbloc li {
 	width:100%;
 	overflow:hidden;
-	background-color:#F1F1F1;
+	background-color:#dcdcdc;
+    border-bottom: 1px dotted #bcbcbc;
 	-o-text-overflow:ellipsis;
 	text-overflow:ellipsis;
 }
@@ -263,7 +252,7 @@ li.flux>ul {
 	padding-bottom:2px;
 	text-indent:none;
 	font-size:.9em;
-	background-color:#E5E5E5;
+	background-color:#bcbcbc;
 }
 li.flux>ul a {
 	margin-left: 24px;
@@ -271,7 +260,6 @@ li.flux>ul a {
 	white-space:nowrap;
 }
 ul.dossier {
-		margin: 0px 5px 5px 5px;
 		padding: 0px;
 	}
 .fade{
@@ -309,13 +297,6 @@ ul.dossier {
 	-o-transition: all .3s ease;
 	transition: all .3s ease;
 }
-#memo{
-	margin-left: 32px;
-	color:#666;
-	font-size: .8em;
-	position: fixed;
-	bottom:80px;
-}
 /* ----------------------------- */
 /* ==main */
 /* ----------------------------- */
@@ -325,10 +306,16 @@ a.goTopButton {
 button.lunonlu {
 	width: 110px;
 	float:right;
-	margin-bottom:2px;
+	margin:-6px;
+    border-radius: 0px 2px 0px 0px;
+    -webkit-border-radius: 0px 2px 0px 0px;
 }
-.content {
-	padding-top:51px;
+.content{
+	padding:51px 7px 7px 7px;
+	overflow:hidden;
+    min-height: calc(100% - 25px);
+	min-height: -webkit-calc(100% - 25px);
+    background-color:#FFF;
 }
 section.article h1{
 	margin: 1em 0em 0em 0em;
@@ -411,8 +398,7 @@ footer{
 	width: 100%;
 	padding:3px;
 	padding-right: 0px;
-	border-top:1px solid #e5e5e5;
-	background-color:#F1F1F1;
+	background-color:#DCDCDC;
 	font-size: .8em;
 	clear:both;
 }
@@ -502,13 +488,13 @@ a.red,a.grey,a.page:not{
 
 .favs{
 	font-size: 1.5em;
-	width: 35px;
 	height: 35px;
-	margin-right: 5px;
+    width:35px;
+	margin: -6px 6px 0px 0px;
 	float:right;
 	line-height: 33px!important;
-	border-radius: 18px; 
-	-webkit-border-radius: 18px;
+	border-radius: 0px 0px 0px 2px; 
+	-webkit-border-radius: 0px 0px 0px 2px;
 }
 .favorised,.favorised:hover{
 	color:white;
@@ -549,7 +535,7 @@ a.red,a.grey,a.page:not{
 		padding-right:10px;
 	}
 	.content{
-		padding-top: 0px;
+        padding: 5px 0px;
 	}
 	.settingsBloc {
 		margin-top:178px;
@@ -586,9 +572,6 @@ a.red,a.grey,a.page:not{
 	div#entete_article section:first-child {
 		margin-top: 10px;
 		margin-right: 10px;
-	}
-	.mod{
-		padding: 0px 5px;
 	}
 	body {
 		overflow-x: hidden;
