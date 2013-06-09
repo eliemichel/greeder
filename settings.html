@@ -18,14 +18,16 @@
 				<header>
 					<h1 id="logo"><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
 					{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
-					<nav id="icons">
-						<a href="index.php"><img src="img/home.png" class="icon" alt="Accueil"></a>
-						<a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="Favoris"></a>
-						<a href="settings.php"><img src="img/settings.png" class="icon" alt="Paramètres"></a>
-						<a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="Actualiser"></a>
-						<a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.png" class="icon" alt="Deconnexion"></a>
+					<table id="icons">
+						<tr>
+							<th><a href="index.php"><img src="img/home.png" class="icon" alt="Accueil"></a></th>
+							<th><a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="Favoris"></a></th>
+							<th><a href="settings.php"><img src="img/settings.png" class="icon" alt="Paramètres"></a></th>
+							<th><a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="Actualiser"></a></th>
+							<th><a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.png" class="icon" alt="Deconnexion"></a></th>
+						</tr>
+					</table>
 					{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
-					</nav>
 				</header>
 				<div class="clear"></div>
 				<ul>
