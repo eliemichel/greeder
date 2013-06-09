@@ -21,21 +21,6 @@
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144x144-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-precomposed.png">
 	<link rel="stylesheet" href="./css/style.css">
-	{function="Plugin::callCss()"}
-	{if="!$myUser"}
-	<style type="text/css">
-		@media(max-width:850px) {
-			.content{
-				padding-top: 51px;
-			}
-		}
-		@media(max-width:500px) {
-			.content {
-				padding-top:190px;
-			}
-		}
-	</style>
-	{/if}
 </head>
 <body>
 	<!-- <!> Balise ayant double utilié :
@@ -43,26 +28,3 @@
 	permet le retour en haut de page -->
 	<a name="pageTopAnvil" id="pageTopAnvil"></a>
 	<a name="pageTop" id="pageTop" class="hidden">{$action}</a>
-		<header class="toper">
-			<h1 class="logo left" id="title"><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
-			{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
-			<div class="loginBloc">
-				{if="!$myUser"}
-				<form class="formulco" action="action.php?action=login" method="POST">
-					<input type="text" class="miniInput left" name="login" placeholder="Identifiant"/> <input type="password" class="miniInput left" name="password" placeholder="Mot de passe"/> <button class="red connexion">GO!</button>
-				</form>
-				{else}
-			</div>
-			<nav id="icons">
-				<a href="index.php"><img src="img/home.png" class="icon" alt="Accueil"></a>
-				<a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="Favoris"></a>
-				<a href="settings.php"><img src="img/settings.png" class="icon" alt="Paramètres"></a>
-				<a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="Actualiser"></a>
-				{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
-			</nav>
-			<button class="grey deco" onclick="window.location='action.php?action=logout'">
-				Déconnexion
-			</button>
-			{/if}
-			<div class="clear"></div>
-		</header>

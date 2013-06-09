@@ -6,16 +6,28 @@
 
 {include="header"}
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
-	
 	<style type="text/css">
-		
 		ul{list-style: none;padding-left: 0px!important;}
 		table > *{margin:0px;}
 		table{margin: 0px;}
 	</style>
 
 		<div id="main" class="wrapper clearfix">
-			<aside class="mod left w300p asidesettingsbloc" style="padding-top:0px;">
+			<aside class="left asidesettingsbloc" id="sidebar">
+				<!-- ENTETE ARTICLE -->
+				<header>
+					<h1 id="logo"><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
+					{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
+					<nav id="icons">
+						<a href="index.php"><img src="img/home.png" class="icon" alt="Accueil"></a>
+						<a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="Favoris"></a>
+						<a href="settings.php"><img src="img/settings.png" class="icon" alt="Paramètres"></a>
+						<a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="Actualiser"></a>
+						<a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.png" class="icon" alt="Deconnexion"></a>
+					{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
+					</nav>
+				</header>
+				<div class="clear"></div>
 				<ul>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #manageBloc,#main #manageBloc section').fadeToggle(200);">Gestion des flux</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #preferenceBloc,#main #preferenceBloc section').fadeToggle(200);">Préférences</li>
@@ -117,14 +129,14 @@
 								<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
 							{/loop}
 						</select>
-						<button class="red">Ajouter</button></p>
+						<button class="red buttonsettings">Ajouter</button></p>
 						</form>
 					</section>
 
 					<section id="addBloc">
 						<form method="POST" action="action.php?action=addFolder">
 						<h2>Ajout d'un dossier</h2>
-							Nouveau dossier : <input type="text" name="newFolder"> <button class="red">Ajouter</button>
+							Nouveau dossier : <input type="text" name="newFolder"> <button class="red buttonsettings">Ajouter</button>
 						</form>
 					</section>
 
@@ -144,7 +156,7 @@
 								<td style="text-align:right;">
 									<button class="red" onclick="renameFolder(this,{$value->getId()})">Renommer</button>
 									{if="$value->getId()!='1'"}
-									<button class="red" onclick="if(confirm('Etes vous sur de vouloir supprimer ce dossier? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
+									<button class="red" onclick="if(confirm('Etes vous sur de vouloir supprimer ce dossier ? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
 									{/if}
 								</td>
 							</tr>
@@ -164,8 +176,8 @@
 											{/loop}
 										</select>
 									</td>
-									<td><button class="grey" style="width:83px;" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
-									<td><button class="grey" style="width:83px;" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&id={$value2->getId()}';}">Supprimer</button></td></tr>
+									<td><button class="grey buttonsettings" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
+									<td><button class="grey buttonsettings" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&id={$value2->getId()}';}">Supprimer</button></td></tr>
 							{/loop}
 							{/if}
 						</table>
@@ -226,9 +238,16 @@
 		</div> <!-- #main -->
 		
 	{else}
-			<article class="content mod">
-					<h3>Vous devez être connecté pour consulter vos flux </h3>
-					<p>Si vous êtes administrateur, vous pouvez régler les droits de visualisation dans la partie administration.</p>
-			</article>
+	<article class="content" id="notlogged">
+				<h1>Vous devez être connecté pour consulter vos flux </h1>
+					<form id="formulco" action="action.php?action=login" method="POST">
+						<input type="text" class="miniInput left" name="login" placeholder="Identifiant"/>
+						<br>
+						<input type="password" class="miniInput left" name="password" placeholder="Mot de passe"/>
+						<br>
+						<button class="red connexion">Connexion</button>
+					</form>
+				<p>Si vous &ecirc;tes administrateur, vous pouvez r&eacute;gler les droits de visualisation dans la partie administration.</p>
+	</article>
 	{/if}
 	{include="footer"}
