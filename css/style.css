@@ -10,7 +10,7 @@ input[type="submit"] {
 	background:none;
 	cursor:pointer;
 	-webkit-appearance:button;
-	*overflow:visible;
+	overflow:visible;
 }
 a, .asidesettingsbloc li {
 	text-decoration:none;
@@ -249,7 +249,7 @@ li.flux>ul {
 	width:100%;
 	padding-top:2px;
 	padding-bottom:2px;
-	text-indent:none;
+	text-indent:0;
 	font-size:.9em;
 	background-color:#dcdcdc;
 }

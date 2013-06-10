@@ -82,16 +82,16 @@
 				  	{/if}
 			<!-- DOSSIER -->
 			<li class="flux">
-				<a class="readFolder" title="Plier/Deplier le dossier" alt="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
+				<a class="readFolder" title="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
 					{if="!$value->getIsopen()"}+{else}-{/if}
 				</a>
 				{function="Plugin::callHook("menu_pre_folder_link", array(&$value))"}
-				<a alt="Lire les evenements de ce dossier" title="Lire les évenements de ce dossier" href="index.php?action=selectedFolder&folder={$value->getId()}">
+				<a title="Lire les évenements de ce dossier" href="index.php?action=selectedFolder&amp;folder={$value->getId()}">
 					{$value->getName()}
 				</a>
 				{function="Plugin::callHook("menu_post_folder_link", array(&$value))"}
 				{if="$unreadEventsForFolder!=0"}
-				<a class="fade" alt="marquer comme lu le(s) {$unreadEventsForFolder} evenement(s) non lu(s) de ce dossier" title="marquer comme lu le(s) {$unreadEventsForFolder} evenement(s) non lu(s) de ce dossier" onclick="if(confirm('Tout marquer comme lu pour ce dossier?'))window.location='action.php?action=readFolder&folder={$value->getId()}';">
+				<a class="fade" title="marquer comme lu le(s) {$unreadEventsForFolder} evenement(s) non lu(s) de ce dossier" onclick="if(confirm('Tout marquer comme lu pour ce dossier?'))window.location='action.php?action=readFolder&amp;folder={$value->getId()}';">
 					({$unreadEventsForFolder})
 				</a>
 				{/if}
@@ -103,10 +103,10 @@
 							{loop="feeds"}
 								<li>
 									{function="Plugin::callHook("menu_pre_feed_link", array(&$value))"}
-									<a href="index.php?action=selectedFeed&feed={$value2['id']}" alt="{$value2['url']}" title="{$value2['url']}">{$value2['name']} </a>
+									<a href="index.php?action=selectedFeed&amp;feed={$value2['id']}" title="{$value2['url']}">{$value2['name']} </a>
 									{if="isset($unread[$value2['id']])"}  
-									<button class="fade" onclick="if(confirm('Tout marquer comme lu pour ce flux?'))window.location='action.php?action=readAll&feed={$value2['id']}';">
-										<span class="fade" alt="marquer comme lu" title="marquer comme lu">({$unread[$value2['id']]})</span>
+									<button class="fade" onclick="if(confirm('Tout marquer comme lu pour ce flux?'))window.location='action.php?action=readAll&amp;feed={$value2['id']}';">
+										<span class="fade" title="marquer comme lu">({$unread[$value2['id']]})</span>
 									</button>
 									{/if}
 									{function="Plugin::callHook("menu_post_feed_link", array(&$value))"}
@@ -131,7 +131,7 @@
 			{$plainDescription=strip_tags($value->getDescription())}	
 			
 			<section class="article {if="!$value->getUnread()"} eventRead {/if} {if="$articleDisplayContent==false"}digest{/if} " >
-				<a class="anchor" name="{$value->getId()}"></a>
+				<a class="anchor" id="{$value->getId()}"></a>
 				<!-- TITRE -->
 				<div class="buttons-bar">
 					<button class="red right lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
@@ -143,7 +143,7 @@
 					{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				</div>
 				<h2 class="articleTitle">
-					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" alt="{$plainDescription}" title="{$plainDescription}">{$value->getTitle()}</a> 
+					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" title="{$plainDescription}">{$value->getTitle()}</a> 
 					{function="Plugin::callHook("event_post_title", array(&$value))"}
 				</h2>
 				<!-- DETAILS + OPTIONS -->
@@ -189,7 +189,7 @@
 					{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				</div>
 				<h3 class="articleTitle">
-					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" alt="{$plainDescription}" title="{$plainDescription}">{$value->getTitle()}</a> 
+					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" title="{$plainDescription}">{$value->getTitle()}</a> 
 					{function="Plugin::callHook("event_post_title", array(&$value))"}
 				</h3>
 				{/if}
@@ -203,13 +203,13 @@
                 <a class="grey-h page">Page {$page}/{$pages} : </a>
         
                 {if="$previousPages>0"}
-                    <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$previousPages}"><<</a>
+                    <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$previousPages}">&lt;&lt;</a>
                 {/if}
                         
                 {loop="pagesArray"}
         
                     {if="$page!=$value"}
-                        <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$value}">{$value}</a> 
+                        <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$value}">{$value}</a> 
                     {else}
                         <a class="grey-h page">{$value}</a>
                     {/if}
@@ -217,7 +217,7 @@
                 {/loop}
         
                 {if="$nextPages>0"}
-                    <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&folder={$currentFolder->getId()}{/if}&page={$nextPages}">>></a>
+                    <a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$nextPages}">&gt;&gt;</a>
                 {/if}
             </p> 
         {/if}
