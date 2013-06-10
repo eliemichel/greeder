@@ -334,7 +334,8 @@ section.article.digest h2 {
 	font-size:1.3em;
 }
 .eventRead {
-	background-color:#E5E5E5;
+	background-color:#F1F1F1;
+	border: 1px solid #F1F1F1;
 }
 section>h2 {
 	margin:0;
