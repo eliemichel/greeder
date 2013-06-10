@@ -518,6 +518,7 @@ a.red,a.grey,a.page:not{
 	}
 	.settingsBloc .red{
 		height:24px;
+		line-height:24px;
 	}
 	#menuSettings {
 		width:calc(100% - 15px);
