@@ -181,7 +181,7 @@ iframe {
 #notlogged{
 	text-align: center;
 }
-#formulco{
+.formulco{
 	background-color: #F1F1F1;
 	padding: 5px 10px 10px 10px;
 	max-width: 250px;
@@ -190,13 +190,18 @@ iframe {
 	-webkit-border-radius: 2px;
 	margin: 10px auto;
 }
-#formulco input, #formulco button{
+.formulco input, .formulco button{
 	width: 100%;
 	height: 30px;
 	line-height: 30px;
 	margin-top: 5px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px; 
+}
+#connectpublic{
+	border: 0px;
+	max-width: 100%;
+	margin: 10px;
 }
 #icons{
 	width: 100%;
@@ -550,7 +555,7 @@ a.red,a.grey,a.page:not{
 }
 
 @media(max-width:500px) {
-	#formulco {
+	.formulco {
 		max-width: 100%;
 		margin: 10px;
 	}
