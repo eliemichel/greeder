@@ -82,7 +82,7 @@ function saveRenameFeed(element,feed,url){
 
 function changeFeedFolder(element,id){
 	var value = $(element).val();
-	window.location = "./action.php?action=changeFeedFolder&feed="+id+"&folder="+value;
+	window.location = "./action.php?action=changeFeedFolder&amp;feed="+id+"&amp;folder="+value;
 }
 
 function readThis(element,id,from){
@@ -120,7 +120,7 @@ function readThis(element,id,from){
 function synchronize(code){
 	if(code!=''){
 	$('article').html('<section>'+
-	'<iframe class="importFrame" src="action.php?action=synchronize&format=html&code='+code+'" name="idFrameSynchro" id="idFrameSynchro" width="100%" height="400" ></iframe>'+
+	'<iframe class="importFrame" src="action.php?action=synchronize&amp;format=html&amp;code='+code+'" name="idFrameSynchro" id="idFrameSynchro" width="100%" height="400" ></iframe>'+
 	'</section>');
 	}else{
 		alert('Vous devez être connecté pour synchroniser vos flux');
