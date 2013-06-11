@@ -406,7 +406,7 @@ select {
 	border:1px solid #DCDCDC;
 	vertical-align:middle;
 }
-a.red,a.grey,a.page:not{
+a.red,a.grey,:not(a.page){
 	display: block;
 	text-align: center;
 }
