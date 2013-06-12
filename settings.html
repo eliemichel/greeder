@@ -170,7 +170,7 @@
 							{if="count($feeds)!=0"}
 							{loop="$feedsForFolder"}
 								<tr>
-									<td style="width:75%;"><a href="index.php?action=selectedFeed&feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink">{$value2->getUrl()}</span></td>
+									<td style="width:75%;"><a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink">{$value2->getUrl()}</span></td>
 									<td>
 										<select onchange="changeFeedFolder(this,{$value2->getId()});">
 											{loop="$folders"}
@@ -179,7 +179,7 @@
 										</select>
 									</td>
 									<td><button class="grey buttonsettings" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
-									<td><button class="grey buttonsettings" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&id={$value2->getId()}';}">Supprimer</button></td></tr>
+									<td><button class="grey buttonsettings" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button></td></tr>
 							{/loop}
 							{/if}
 						</table>
@@ -202,7 +202,7 @@
 						<li><b>Version:</b> <code>{$value->getVersion()}</code></li>
 						<li><b>Site web:</b> <a href="{$value->getLink()}">{$value->getLink()}</a></li>
 						<li>{$value->getDescription()}</li>
-						<li><a href="action.php?action=changePluginState&plugin={$value->getUid()}&state={$value->getState()}" style="display:block;text-align:center;width:10em;margin-top:.5em;" class="{$value->getState()=="0"?"grey":"red"}">{$value->getState()=="0"?"Activer":"Désactiver"}</a></li>
+						<li><a href="action.php?action=changePluginState&amp;plugin={$value->getUid()}&amp;state={$value->getState()}" style="display:block;text-align:center;width:10em;margin-top:.5em;" class="{$value->getState()=="0"?"grey":"red"}">{$value->getState()=="0"?"Activer":"Désactiver"}</a></li>
 					</ul>
 					</section>
 				{/loop}
@@ -217,7 +217,7 @@
 					<h2>Utiliser le bookmarklet :</h2>
 					<p>Vous pouvez ajouter le bookmaklet ci dessus à votre navigateur pour vous inscrire plus rapidement au flux :</p>
 					{if="$myUser!=false"}
-					<a class="red" style="display:block;width:110px;" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&newUrl='+escape(document.location)+'&usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a>
+					<a class="red" style="display:block;width:110px;" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&amp;newUrl='+escape(document.location)+'&amp;usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a>
 					{else}
 					<p>Vous devez être connecté pour voir le bookmarklet.</p>
 					{/if}
