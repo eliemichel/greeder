@@ -82,7 +82,7 @@ function saveRenameFeed(element,feed,url){
 
 function changeFeedFolder(element,id){
 	var value = $(element).val();
-	window.location = "./action.php?action=changeFeedFolder&amp;feed="+id+"&amp;folder="+value;
+	window.location = "./action.php?action=changeFeedFolder&feed="+id+"&folder="+value;
 }
 
 function readThis(element,id,from){
