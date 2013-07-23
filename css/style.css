@@ -34,7 +34,7 @@ body {
 	font-size:1.5em;
 	line-height:1.3;
 	color:#222;
-    background-color:#F1F1F1;
+    background-color:white;
 }
 p,
 ul,
@@ -167,6 +167,7 @@ iframe {
 /* ----------------------------- */
 #sidebar {
 	width:300px;
+	background-color: rgb(241, 241, 241);
 }
 #sidebar ul {
 	margin:0;
