@@ -303,6 +303,13 @@ button.lunonlu {
     border-radius: 0px 2px 0px 0px;
     -webkit-border-radius: 0px 2px 0px 0px;
 }
+.eventRead button.lunonlu {
+	background-color: rgb(100, 100, 100);
+}
+.eventRead button.lunonlu:hover, .eventRead button.lunonlu:active {
+	background-color: rgb(192, 57, 39);
+	transition: all 0.3s ease 0s;
+}
 .content{
 	padding:7px;
 	overflow:hidden;
