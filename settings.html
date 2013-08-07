@@ -14,7 +14,6 @@
 
 		<div id="main" class="wrapper clearfix">
 			<aside class="left asidesettingsbloc" id="sidebar">
-				<!-- ENTETE ARTICLE -->
 				<header>
 					<h1 id="logo"><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
 					{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
@@ -34,33 +33,32 @@
 						<li class="pointer" onclick="$('.content section').hide();$('#main #manageBloc,#main #manageBloc section').fadeToggle(200);">Gestion des flux</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #preferenceBloc,#main #preferenceBloc section').fadeToggle(200);">Préférences</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #pluginBloc,#main #pluginBloc section').fadeToggle(200);">Plugins</li>
-						<li class="pointer" onclick="$('.content section').hide();$('#main #importBloc').fadeToggle(200);">Import</li>
-						<li class="pointer" onclick="$('.content section').hide();$('#main #exportBloc').fadeToggle(200);">Export</li>
+						<li class="pointer" onclick="$('.content section').hide();$('#main #importexportBloc').fadeToggle(200);">Import / Export</li>
 						<li class="pointer" onclick="$('.content section').hide();$('#main #bookBloc').fadeToggle(200);">Bookmarklet</li>
-						<li class="pointer" onclick="if(confirm('Etes vous sûr de vouloir vider tout les évenements?')){window.location='action.php?action=purge';}">Vider les événements</li>
+						<li class="pointer" onclick="if(confirm('Etes vous sûr de vouloir vider tout les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">Vider les événements</li>
 						{function="Plugin::callHook("setting_post_link", array(&$myUser))"}
 				</ul>
 			</aside>
 			
 			<article class="content mod item settingsBloc">
 				{if="(isset($myUser)) && ($myUser!=false)"}
-				<section class="article" id="preferenceBloc">
+		<!-- --><section id="preferenceBloc">
 					<form method="POST" action="action.php?action=updateConfiguration">				
 					
-					<section class="article eventRead">
+					<section class="article">
 						<h2>Général</h2>
 						<p><label for="root">Racine du projet :</label> <input type="text" id="root" name="root" value="{$configurationManager->get('root')}"></p>
 						Laissez bien un "/" en fin de chaine ex : http://monsite.com/leed/
 					</section>
 
-					<section class="article eventRead">
+					<section class="article">
 						<h2>Utilisateur</h2>
 						<p><label for="login">Identifiant :</label> <input type="text" id="login" name="login" value="{$myUser->getLogin()}"></p>
 						<p><label for="password">Mot de passe :</label> <input type="password" id="password" name="password" value=""></p>
 						Laissez le champ vide si vous ne souhaitez pas changer le mot de passe						
 					</section>
 
-					<section class="article eventRead">
+					<section class="article">
 						<h2>Synchronisation</h2>
 						<p><input type="radio"  {if="$synchronisationType=='auto'"} checked="checked" {/if} value="auto" id="synchronisationTypeComplete" name="synchronisationType"> <label for="synchronisationTypeComplete"><strong>Automatique (complet) :</strong></label> Le script mettra à jour automatiquement tous vos flux en une seule fois, ceci permet la mise à jour en une fois de tous vos flux mais peux faire ramer votre serveur, les appels cron ne doivent pas être trop rapprochés</p>
 						<p><input type="radio" {if=" $synchronisationType=='graduate'"} checked="checked" {/if}  value="graduate" id="synchronisationTypeGraduated" name="synchronisationType"> <label for="synchronisationTypeGraduated"><strong>Automatique (gradué) :</strong></label> Le script mettra à jour automatiquement les 10 flux les plus vieux en terme de mise à jour, ceci permet d'alléger la charge serveur et d'éviter les timeouts intempestifs mais nécessite un appel de cron plus fréquent afin de mettre à jour le plus de flux possible</p>
@@ -68,7 +66,7 @@
 						<strong>Code de synchronisation:</strong> {$synchronisationCode}
 					</section>
 
-					<section class="article eventRead">
+					<section class="article">
 						{if="$myUser!=false"}
 						<h2>Préferences</h2>
 						<fieldset>
@@ -120,100 +118,99 @@
 				</section>
 			{/if}
 
-			<section class="article" id="manageBloc">
+		<!-- --><section id="manageBloc">
 				
-					<section id="addBloc">
+					<section id="addBloc" class="article">
 						<form action="action.php?action=addFeed" method="POST">
-						<h2>Ajout d'un flux</h2>
-						<p>Lien du flux RSS : <input type="text" name="newUrl" placeholder="http://monflux.com/rss"/>&nbsp;
-						 <select name="newUrlCategory">
-							{loop="$folders"}
-								<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
-							{/loop}
-						</select>
+						<h2>Nouveau flux</h2>
+						Adresse du flux RSS : <input type="text" name="newUrl" placeholder="http://monflux.com/rss"/>&nbsp;
+							<select name="newUrlCategory">
+								{loop="$folders"}
+									<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
+								{/loop}
+							</select>
 						<button class="red buttonsettings">Ajouter</button></p>
 						</form>
-					</section>
 
-					<section id="addBloc">
 						<form method="POST" action="action.php?action=addFolder">
 						<h2>Ajout d'un dossier</h2>
-							Nouveau dossier : <input type="text" name="newFolder"> <button class="red buttonsettings">Ajouter</button>
+							Nom du dossier : <input type="text" name="newFolder"> <button class="red buttonsettings">Ajouter</button>
 						</form>
 					</section>
 
-				<ul class="clear nochip">
-				    {$feedsForFolder=""}
-					
-					{loop="$folders"}  
-					{$feedsForFolder=$value->getFeeds()}
+					<ul class="clear tableflux">
+					    {$feedsForFolder=""}
 						
-					<li>{if="$value->getId()==1"}<a name="defaultFolder"></a>{/if}
-						<section class="article eventRead">
-						<table  style="width:100%;margin:0px;">
-							<tr>
-								<td style="width:75%;">
-									<h1><span>{$value->getName()} </span>({function="count($feedsForFolder)"})
-								</td>
-								<td style="text-align:right;">
-									<button class="red" onclick="renameFolder(this,{$value->getId()})">Renommer</button>
-									{if="$value->getId()!='1'"}
-									<button class="red" onclick="if(confirm('Etes vous sur de vouloir supprimer ce dossier ? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
-									{/if}
-								</td>
-							</tr>
-						</table>
-					<div class="clear"></div>
-						</h1>
-					<div class="clear"></div>
-						<table  style="width:100%;">
-							{if="count($feeds)!=0"}
-							{loop="$feedsForFolder"}
+						{loop="$folders"}  
+						{$feedsForFolder=$value->getFeeds()}
+							
+						<li>{if="$value->getId()==1"}<a name="defaultFolder"></a>{/if}
+							<section class="article">
+							<table>
 								<tr>
-									<td style="width:75%;"><a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink">{$value2->getUrl()}</span></td>
-									<td>
-										<select onchange="changeFeedFolder(this,{$value2->getId()});">
-											{loop="$folders"}
-												<option {if="$value2->getFolder()==$value3->getId()"}selected="selected"{/if} value="{$value3->getId()}">{$value3->getName()}</option>
-											{/loop}
-										</select>
+									<td >
+										<h1>{$value->getName()} ({function="count($feedsForFolder)"})
 									</td>
-									<td><button class="grey buttonsettings" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
-									<td><button class="grey buttonsettings" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button></td></tr>
-							{/loop}
-							{/if}
-						</table>
-					</section>
-					</li>
-					{/loop}
-					
-				</ul>
-			</section>
+									<td style="text-align:right;">
+										<button class="red" onclick="renameFolder(this,{$value->getId()})">Renommer</button>
+										{if="$value->getId()!='1'"}
+										<button class="red" onclick="if(confirm('Etes vous sur de vouloir supprimer ce dossier ? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
+										{/if}
+									</td>
+								</tr>
+							</table>
+						<div class="clear"></div>
 
-			<section class="article" id="pluginBloc">
-				{if="$myUser!=false"}
-				{loop="$plugins"}
-					<section class="article eventRead">
-						<h2>{$value->getName()}</h2>
-						<br>
-					<ul>
-						<li><b>Auteur:</b> <a href="mailto:{$value->getMail()}">{$value->getAuthor()}</a></li>
-						<li><b>Licence:</b> {$value->getLicence()}</li>
-						<li><b>Version:</b> <code>{$value->getVersion()}</code></li>
-						<li><b>Site web:</b> <a href="{$value->getLink()}">{$value->getLink()}</a></li>
-						<li>{$value->getDescription()}</li>
-						<li><a href="action.php?action=changePluginState&amp;plugin={$value->getUid()}&amp;state={$value->getState()}" style="display:block;text-align:center;width:10em;margin-top:.5em;" class="{$value->getState()=="0"?"grey":"red"}">{$value->getState()=="0"?"Activer":"Désactiver"}</a></li>
+						<div class="clear"></div>
+							<table>
+								{if="count($feeds)!=0"}
+								{loop="$feedsForFolder"}
+									<tr>
+										<td class="tabledescflux">
+											<a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink">{$value2->getUrl()}</span>
+										</td>
+										<td>
+											<select onchange="changeFeedFolder(this,{$value2->getId()});">
+												{loop="$folders"}
+													<option {if="$value2->getFolder()==$value3->getId()"}selected="selected"{/if} value="{$value3->getId()}">{$value3->getName()}</option>
+												{/loop}
+											</select>
+										</td>
+										<td ><button class="grey buttonsettings" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
+										<td><button class="grey buttonsettings" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button></td></tr>
+								{/loop}
+								{/if}
+							</table>
+						</section>
+						</li>
+						{/loop}
+						
 					</ul>
-					</section>
-				{/loop}
+				</section>
 
-				{else}
-				<p>Vous devez être connecté pour voir les plugins.</p>
-				{/if}
-			</section>
+		<!-- --><section id="pluginBloc">
+					{if="$myUser!=false"}
+					{loop="$plugins"}
+						<section class="article">
+							<h2>{$value->getName()}</h2>
+						<ul>
+							<li><b>Auteur:</b> <a href="mailto:{$value->getMail()}">{$value->getAuthor()}</a></li>
+							<li><b>Licence:</b> {$value->getLicence()}</li>
+							<li><b>Version:</b> <code>{$value->getVersion()}</code></li>
+							<li><b>Site web:</b> <a href="{$value->getLink()}">{$value->getLink()}</a></li>
+							<li>{$value->getDescription()}</li>
+							<li><a href="action.php?action=changePluginState&amp;plugin={$value->getUid()}&amp;state={$value->getState()}" style="display:block;text-align:center;width:10em;margin-top:.5em;" class="{$value->getState()=="0"?"grey":"red"}">{$value->getState()=="0"?"Activer":"Désactiver"}</a></li>
+						</ul>
+						</section>
+					{/loop}
+
+					{else}
+					<p>Vous devez être connecté pour voir les plugins.</p>
+					{/if}
+				</section>
 
 			
-				<section class="article" id="bookBloc">
+		<!-- --><section class="article" id="bookBloc">
 					<h2>Utiliser le bookmarklet :</h2>
 					<p>Vous pouvez ajouter le bookmaklet ci dessus à votre navigateur pour vous inscrire plus rapidement au flux :</p>
 					{if="$myUser!=false"}
@@ -223,16 +220,16 @@
 					{/if}
 				</section>
 				
-				<section class="article" id="importBloc">
-					 <iframe class="importFrame" src="action.php?action=importForm" name="idFrame" id="idFrame" width="100%" height="300" ></iframe>
-				</section>
+		<!-- --><section class="article" id="importexportBloc">
+					<h2>Import</h2>
+					<iframe class="importFrame" src="action.php?action=importForm" name="idFrame" id="idFrame" width="100%" height="auto" ></iframe>
+					
+					<h2>Export</h2>
+					<form action="action.php?action=exportFeed" method="POST">
+						<p>Fichier OPML : <button class="red" name="exportButton">Télécharger</button></p>
+					</form>
 
-				<form action="action.php?action=exportFeed" method="POST">
-				<section class="article" id="exportBloc">
-					<h2>Exporter les flux au format opml</h2>
-					<p>Fichier OPML : <button class="red" name="exportButton">Exporter</button></p>
 				</section>
-				</form>
 				
 				{function="Plugin::callHook("setting_post_section", array(&$myUser))"}
 			</article>

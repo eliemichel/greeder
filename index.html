@@ -1,4 +1,4 @@
-<!--
+ 	<!--
  @nom: index
  @auteur: Tom Canac (http://tomcanac.com)
  @description: Page d'accueil et de lecture des flux
@@ -136,9 +136,9 @@
 				<div class="buttons-bar">
 					<button class="red right lunonlu" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">(lu/non lu)</button>
 					{if="$value->getFavorite()!=1"}
-					<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >★</a> 
-					{else}
-					<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >★</a> 
+						<a class="grey buttons-article favs" onclick="addFavorite(this,{$value->getId()});" >★</a> 
+						{else}
+						<a class="grey buttons-article favs favorised" onclick="removeFavorite(this,{$value->getId()});" >★</a> 
 					{/if}
 					{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				</div>
