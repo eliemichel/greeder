@@ -169,9 +169,9 @@
 		background-color: #F1F1F1;
 		padding: 5px 10px 10px 10px;
 		max-width: 250px;
+		-webkit-border-radius: 2px;
 		border-radius: 2px;
 		border: 1px solid #DCDCDC;
-		-webkit-border-radius: 2px;
 		margin: 10px auto;
 	}
 	.formulco input, .formulco button{
@@ -228,8 +228,8 @@
 		#allread {
 			width:100%;
 			margin: 0px;
-			border-radius:0px;
 			-webkit-border-radius:0px;
+			border-radius:0px;
 		}
 
 	/*flux*/
@@ -302,8 +302,8 @@
 			width: 110px;
 			float:right;
 			margin:-6px;
-			border-radius: 0px 2px 0px 0px;
 			-webkit-border-radius: 0px 2px 0px 0px;
+			border-radius: 0px 2px 0px 0px;
 		}
 		.eventRead button.lunonlu {
 			background-color: rgb(100, 100, 100);
@@ -334,8 +334,8 @@
 			margin-bottom:5px;
 			padding:5px;
 			border:1px solid #E5E5E5;
-			border-radius:2px;
 			-webkit-border-radius:2px;
+			border-radius:2px;
 		}
 		section.article ul, section.article ol{
 			padding-left: 20px;
@@ -368,8 +368,8 @@
 			background-color:#D14836;
 			color:#fff;
 			padding:5px;
-			border-radius:2px;
 			-webkit-border-radius:2px;
+			border-radius:2px;
 			margin:10px 5px 10px 0px;
 		}
 		.sync{
@@ -377,10 +377,30 @@
 		}
 		.underlink{
 			font-size:9px;
-			color:#222222;
+			color:#222;
 			display:block;
 			line-height: 9px;
 			margin-bottom: 10px;
+		}
+	/*back to top*/
+		#backtop{
+			cursor: pointer;
+			position: fixed;
+			bottom: 50px;
+			left: 120px;
+			height: 60px;
+			width: 60px;
+			padding: 5px;
+			font-size: 6em;
+			color: #F1F1F1;
+			text-align: center;
+			-webkit-border-radius: 30px;
+			border-radius: 30px;
+			background-color: #D14836;
+		}
+		#backtop > a{
+			color: white;
+			display: block;
 		}
 
 /* ----------------------------- */
@@ -395,6 +415,7 @@
 			margin-right:2px;
 			margin-left:2px;
 			padding:8px 12px 7px;
+			-webkit-border-radius: 2px;
 			border-radius:2px;
 			font-size:13px;
 			font-weight:bold;
@@ -497,8 +518,8 @@
 			margin: -6px 6px 0px 0px;
 			float:right;
 			line-height: 33px!important;
-			border-radius: 0px 0px 0px 2px; 
 			-webkit-border-radius: 0px 0px 0px 2px;
+			border-radius: 0px 0px 0px 2px; 
 		}
 		.favorised,.favorised:hover{
 			color:white;
@@ -517,14 +538,34 @@
 		@media(max-width:850px) {
 			body{
 				background-image:none;
+				overflow-x: hidden;
+
 			}
 			#sidebar {
 				float:none;
 				width:100%;
 				padding-right:10px;
 			}
+			#sidebar {
+				display: table;
+				padding-right: 0;
+			}
 			.content{
 				padding: 5px 0px;
+			}
+			section.article,
+			.table-section-style {
+				border-left: none;
+				border-right: none;
+				-webkit-border-radius:0px;
+				border-radius:0px;
+			}
+			button.lunonlu {
+				width: 110px;
+				float:right;
+				margin:-6px;
+				-webkit-border-radius: 0px;
+				border-radius: 0px;
 			}
 			#menuSettings {
 				width:calc(100% - 15px);
@@ -540,26 +581,31 @@
 				border: none;
 				border-top:1px solid #e5e5e5;
 				width:100%;
-				position: relative;
 				margin:0px;
 			}
 			footer#notLogged{
 				position: absolute;
 				bottom:0px;
 			}
-			#sidebar {
-				display: table;
-				padding-right: 0;
-			}
+			
 			div#entete_article section:first-child {
 				margin-top: 10px;
 				margin-right: 10px;
 			}
-			body {
-				overflow-x: hidden;
-			}
 			table .tabledescflux{
 				width: 75%;
+			}
+		/*back to top*/
+			#backtop{
+				left:auto;
+				bottom: -60px;
+				right: -60px;
+				height: 120px;
+				width: 120px;
+				padding: 10px 0px 10px 15px;
+				text-align: left;
+				-webkit-border-radius: 60px;
+				border-radius: 60px;
 			}
 		}
 	/*adaptive conexion forms*/
