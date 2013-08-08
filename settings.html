@@ -129,12 +129,12 @@
 									<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
 								{/loop}
 							</select>
-						<button class="red buttonsettings">Ajouter</button></p>
+						<button class="red buttonw93">Ajouter</button></p>
 						</form>
 
 						<form method="POST" action="action.php?action=addFolder">
 						<h2>Ajout d'un dossier</h2>
-							Nom du dossier : <input type="text" name="newFolder"> <button class="red buttonsettings">Ajouter</button>
+							Nom du dossier : <input type="text" name="newFolder"> <button class="red buttonw93">Ajouter</button>
 						</form>
 					</section>
 
@@ -176,8 +176,8 @@
 												{/loop}
 											</select>
 										</td>
-										<td ><button class="grey buttonsettings" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
-										<td><button class="grey buttonsettings" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button></td></tr>
+										<td ><button class="grey buttonw93" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
+										<td><button class="grey buttonw93" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button></td></tr>
 								{/loop}
 								{/if}
 							</table>

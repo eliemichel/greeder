@@ -24,7 +24,7 @@
 	{function="Plugin::callLink()"}
 	{function="Plugin::callCss()"}
 </head>
-<body>
+<body {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"} {else}id="notlogged"{/if}>
 	<!-- <!> Balise ayant double utilié :
 	sert de base a javascript pour connaitre l'action courante
 	permet le retour en haut de page -->
