@@ -323,13 +323,13 @@
 			min-height: calc(100% - 25px);
 			min-height: -webkit-calc(100% - 25px);
 		}
-		section.article h1{
+		article.article h1{
 			margin: 1em 0em 0em 0em;
 		}
-		.settingsBloc section.article h1{
+		.settingsBloc article.article h1{
 			margin: 0em;
 		}
-		section.article,
+		article.article,
 		.table-section-style {
 			margin-bottom:5px;
 			padding:5px;
@@ -337,24 +337,24 @@
 			-webkit-border-radius:2px;
 			border-radius:2px;
 		}
-		section.article ul, section.article ol{
+		article.article ul, article.article ol{
 			padding-left: 20px;
 		}
-		section.article.digest {
+		article.article.digest {
 			margin-bottom:-1px;
 			padding:5px 5px 0 5px;
 			border:1px solid #E5E5E5;
 			line-height:1.4em;
 		}
-		section.article.digest h2 {
+		article.article.digest h2 {
 			font-size:1.3em;
 		}
-		section>h2 {
+		article>h2 {
 			margin:0;
 			padding:0;
 			color:#15C;
 		}
-		section>h3 {
+		article>h3 {
 			margin:0 0 20px;
 			padding:0;
 			font-size:.9em;
@@ -553,7 +553,7 @@
 			.content{
 				padding: 5px 0px;
 			}
-			section.article,
+			article.article,
 			.table-section-style {
 				border-left: none;
 				border-right: none;

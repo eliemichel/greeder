@@ -1,4 +1,3 @@
-//From here, it is working pretty nice
 function toggleFolder(element,folder){
 	feedBloc = $('ul',$(element).parent());
 
