@@ -124,13 +124,13 @@
 	</aside>
 	
 <!-- ARTICLES -->
-	<article class="content">
+	<section class="content">
 		<!-- CORPS ARTICLE -->
 
 		{loop="$events"}
 			{$plainDescription=strip_tags($value->getDescription())}	
 			
-			<section class="article {if="!$value->getUnread()"} eventRead {/if} {if="$articleDisplayContent==false"}digest{/if} " >
+			<article class="article {if="!$value->getUnread()"} eventRead {/if} {if="$articleDisplayContent==false"}digest{/if} " >
 				<a class="anchor" id="{$value->getId()}"></a>
 				<!-- TITRE -->
 				<div class="buttons-bar">
@@ -194,7 +194,7 @@
 				</h3>
 				{/if}
 
-			</section>
+			</article>
 			{$hightlighted=$hightlighted+1}
 		{/loop}
             
@@ -222,11 +222,11 @@
             </p> 
         {/if}
         
-	</article>
+	</section>
 	<!-- PIED DE PAGE DES ARTICLES -->
-
+	<div id="backtop"><a href="#logo">ꜛ</a></div>
 {else}
-	<article class="content" id="notlogged">
+	<section class="content" id="notlogged">
 		<h1>Vous devez être connecté pour consulter vos flux </h1>
 		<p>Si vous &ecirc;tes administrateur, vous pouvez r&eacute;gler les droits de visualisation dans la partie administration.</p>
 			<form class="formulco" action="action.php?action=login" method="POST">
@@ -236,6 +236,6 @@
 				<br>
 				<button class="red connexion">Connexion</button>
 			</form>
-	</article>
+	</section>
 {/if}
 {include="footer"}
