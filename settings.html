@@ -28,7 +28,7 @@
 					<li class="pointer" onclick="$('.content article').hide();$('#main #pluginBloc,#main #pluginBloc article').fadeToggle(200);">Plugins</li>
 					<li class="pointer" onclick="$('.content article').hide();$('#main #importexportBloc').fadeToggle(200);">Import / Export</li>
 					<li class="poiner" onclick="$('.content article').hide();$('#main #bookBloc').fadeToggle(200);">Bookmarklet</li>
-                <li class="pointer" onclick="if(confirm('Etes vous sûr de vouloir vider tout les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">Vider les événements</li>
+                <li class="pointer" onclick="if(confirm('Êtes-vous sûr de vouloir vider tout les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">Vider les événements</li>
                 {function="Plugin::callHook("setting_post_link", array(&$myUser))"}
             </ul>
         </aside>
@@ -41,7 +41,7 @@
                 <article class="article">
                     <h2>Général</h2>
                     <p><label for="root">Racine du projet :</label> <input type="text" id="root" name="root" value="{$configurationManager->get('root')}"></p>
-                    Laissez bien un "/" en fin de chaine ex : http://monsite.com/leed/
+                    Laissez bien un "/" en fin de chaine. Par exemple : http://monsite.com/leed/
                 </article>
 
                 <article class="article">
@@ -56,7 +56,7 @@
                     <p><input type="radio"  {if="$synchronisationType=='auto'"} checked="checked" {/if} value="auto" id="synchronisationTypeComplete" name="synchronisationType"> <label for="synchronisationTypeComplete"><strong>Automatique (complet) :</strong></label> Le script mettra à jour automatiquement tous vos flux en une seule fois, ceci permet la mise à jour en une fois de tous vos flux mais peux faire ramer votre serveur, les appels cron ne doivent pas être trop rapprochés</p>
                     <p><input type="radio" {if=" $synchronisationType=='graduate'"} checked="checked" {/if}  value="graduate" id="synchronisationTypeGraduated" name="synchronisationType"> <label for="synchronisationTypeGraduated"><strong>Automatique (gradué) :</strong></label> Le script mettra à jour automatiquement les 10 flux les plus vieux en terme de mise à jour, ceci permet d'alléger la charge serveur et d'éviter les timeouts intempestifs mais nécessite un appel de cron plus fréquent afin de mettre à jour le plus de flux possible</p>
                     <p><input type="radio" {if="$synchronisationType=='manual'"} checked="checked" {/if}  value="manual" id="synchronisationTypeManual" name="synchronisationType"> <label for="synchronisationTypeManual"><strong>Manuel (complet) :</strong></label> Le script ne fait aucune mise à jour automatique, vous devez faire vous même les mises à jour depuis l'espace administration.</p>
-                    <strong>Code de synchronisation:</strong> {$synchronisationCode}
+                    <strong>Code de synchronisation :</strong> {$synchronisationCode}
                 </article>
 
                 <article class="article">
@@ -66,7 +66,7 @@
                         <legend>Autoriser la lecture anonyme</legend>
                         <input type="radio" {if="$articleDisplayAnonymous=='1'"} checked="checked" {/if} value="1" id="articleDisplayAnonymousYes" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousYes">Oui</label>
                         <input type="radio" {if="$articleDisplayAnonymous=='0'"} checked="checked" {/if} value="0" id="articleDisplayAnonymousNo" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousNo">Non</label>
-                        Nb: si vous choisissez cette option, les utilisateurs non authentifiés pourront consulter vos flux (sans pouvoir les marquer comme lu/non lu)
+                        NB : si vous choisissez cette option, les utilisateurs non authentifiés pourront consulter vos flux (sans pouvoir les marquer comme lu/non lu)
                     </fieldset>
                     <fieldset>
                         <legend><label for="articlePerPages">Nombre d'articles par pages</label></legend>
@@ -95,11 +95,11 @@
                             <input type="radio" {if="$articleView=='partial'"} checked="checked" {/if} value="partial" id="articleViewPartial" name="articleView"{if="$articleDisplayContent=='0'"} disabled="disabled"{/if} /><label for="articleViewPartial">Partiel</label>
                             <input type="radio" {if="$articleView=='complete'"} checked="checked" {/if} value="complete" id="articleViewComplete" name="articleView"{if="$articleDisplayContent=='0'"} disabled="disabled"{/if} /><label for="articleViewComplete">Complet</label>
                         </div>
-                        Nb: si vous choissisez un affichage partiel des articles, un click sur ces derniers menera à l'article sur le blog de l'auteur.
+                        NB : si vous choissisez un affichage partiel des articles, un clic sur ces derniers menera à l'article sur le blog de l'auteur.
                     </fieldset>
                     <fieldset>
                         <legend>Conserver les <input type="text" value="{$configurationManager->get('feedMaxEvents')}" name="feedMaxEvents" size="4" /> derniers événements d'un flux</legend>
-                        Nb: Plus il y aura d'événements à conserver, plus votre base de données sera importante. Nous vous conseillons de garder les 50 derniers événements au maximum pour conserver une performance correcte.<br />Notez que vos événements marqués comme favoris ne seront jamais supprimés.
+                        NB : Plus il y aura d'événements à conserver, plus votre base de données sera importante. Nous vous conseillons de garder les 50 derniers événements au maximum pour conserver une performance correcte.<br />Notez que vos événements marqués comme favoris ne seront jamais supprimés.
                     </fieldset>
                 </article>
                 
@@ -146,7 +146,7 @@
 									<td style="text-align:right;">
 										<button class="red" onclick="renameFolder(this,{$value->getId()})">Renommer</button>
 										{if="$value->getId()!='1'"}
-										<button class="red" onclick="if(confirm('Etes vous sur de vouloir supprimer ce dossier ? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
+										<button class="red" onclick="if(confirm('Êtes-vous sur de vouloir supprimer ce dossier ? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
 										{/if}
 									</td>
 								</tr>
@@ -201,7 +201,7 @@
 			
 		<!-- --><article id="bookBloc">
 					<h2>Utiliser le bookmarklet :</h2>
-					<p>Vous pouvez ajouter le bookmaklet ci dessus à votre navigateur pour vous inscrire plus rapidement au flux :</p>
+					<p>Vous pouvez ajouter le bookmaklet ci-dessous à votre navigateur pour vous inscrire plus rapidement au flux :</p>
 					{if="$myUser!=false"}
 					<a class="red" style="display:block;width:110px;" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&amp;newUrl='+escape(document.location)+'&amp;usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a>
 					{else}
@@ -215,7 +215,7 @@
 					
 					<h2>Export</h2>
 					<form action="action.php?action=exportFeed" method="POST">
-						<p>Fichier OPML : <button class="red" name="exportButton">Télécharger</button></p>
+                        <p>Fichier <abbr title="Outline Processor Markup Language">OPML</abbr> : <button class="red" name="exportButton">Télécharger</button></p>
 					</form>
 
 				</article>
