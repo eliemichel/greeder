@@ -130,6 +130,9 @@
 		iframe {
 			margin:0;
 			border:0;
+        }
+        .importFrame {
+            width: 100%;
 		}
 		.idFrameSynchro {
 			height:100%;
@@ -382,6 +385,17 @@
 			line-height: 9px;
 			margin-bottom: 10px;
 		}
+		.asidesettingsbloc ul, .settingsBloc ul {
+			list-style-type: none;
+			padding-left: 0px !important;
+		}
+        .note {
+            color: #666;
+            font-size: 10px;
+        }
+        .articleView {
+            margin-top: 5px;
+        }
 	/*back to top*/
 		#backtop{
 			cursor: pointer;
@@ -462,6 +476,12 @@
 			border:1px solid #DCDCDC;
 			vertical-align:middle;
 		}
+        #preferenceBloc fieldset {
+            border:1px solid rgb(204, 204, 204);
+        }
+        #preferenceBloc legend {
+            padding: 5px;
+        }
 	/*buttons*/
 		a.red,a.grey,:not(a.page){
 			display: block;
