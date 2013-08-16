@@ -326,6 +326,12 @@
 			min-height: calc(100% - 25px);
 			min-height: -webkit-calc(100% - 25px);
 		}
+        .settingsBloc {
+            padding: 0;
+        }
+        .settingsBloc>section {
+            padding: 7px;
+        }
 		article.article h1{
 			margin: 1em 0em 0em 0em;
 		}
