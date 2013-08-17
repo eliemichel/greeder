@@ -152,9 +152,9 @@ function readThis(element, id, from, callback = false) {
 // Synchronisation manuelle lancée depuis le bouton du menu
 function synchronize(code) {
 	if(code != '') {
-		$('article').html('<section>'+
+		$('.content').html('<article class="article">'+
 				'<iframe class="importFrame" src="action.php?action=synchronize&amp;format=html&amp;code='+code+'" name="idFrameSynchro" id="idFrameSynchro" height="400"></iframe>'+
-				'</section>');
+				'</article>');
 	}
 	else {
 		alert('Vous devez être connecté pour synchroniser vos flux');
