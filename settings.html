@@ -42,21 +42,21 @@
                     <article class="article">
                         <h2>Général</h2>
                         <p><label for="root">Racine du projet :</label> <input type="text" id="root" name="root" value="{$configurationManager->get('root')}"></p>
-                        Laissez bien un "/" en fin de chaine. Par exemple : http://monsite.com/leed/
+                        Laissez bien un "/" en fin de chaîne. Par exemple : http://monsite.com/leed/
                     </article>
 
                     <article class="article">
                         <h2>Utilisateur</h2>
                         <p><label for="login">Identifiant :</label> <input type="text" id="login" name="login" value="{$myUser->getLogin()}"></p>
                         <p><label for="password">Mot de passe :</label> <input type="password" id="password" name="password" value=""></p>
-                        Laissez le champ vide si vous ne souhaitez pas changer le mot de passe						
+                        Laissez le champ vide si vous ne souhaitez pas changer le mot de passe.
                     </article>
 
                     <article class="article">
                         <h2>Synchronisation</h2>
-                        <p><input type="radio"  {if="$synchronisationType=='auto'"} checked="checked" {/if} value="auto" id="synchronisationTypeComplete" name="synchronisationType"> <label for="synchronisationTypeComplete"><strong>Automatique (complet) :</strong></label> Le script mettra à jour automatiquement tous vos flux en une seule fois, ceci permet la mise à jour en une fois de tous vos flux mais peux faire ramer votre serveur, les appels cron ne doivent pas être trop rapprochés</p>
-                        <p><input type="radio" {if=" $synchronisationType=='graduate'"} checked="checked" {/if}  value="graduate" id="synchronisationTypeGraduated" name="synchronisationType"> <label for="synchronisationTypeGraduated"><strong>Automatique (gradué) :</strong></label> Le script mettra à jour automatiquement les 10 flux les plus vieux en terme de mise à jour, ceci permet d'alléger la charge serveur et d'éviter les timeouts intempestifs mais nécessite un appel de cron plus fréquent afin de mettre à jour le plus de flux possible</p>
-                        <p><input type="radio" {if="$synchronisationType=='manual'"} checked="checked" {/if}  value="manual" id="synchronisationTypeManual" name="synchronisationType"> <label for="synchronisationTypeManual"><strong>Manuel (complet) :</strong></label> Le script ne fait aucune mise à jour automatique, vous devez faire vous même les mises à jour depuis l'espace administration.</p>
+                        <p><input type="radio"  {if="$synchronisationType=='auto'"} checked="checked" {/if} value="auto" id="synchronisationTypeComplete" name="synchronisationType"> <label for="synchronisationTypeComplete"><strong>Automatique (complet) :</strong></label> Le script mettra à jour automatiquement tous vos flux en une seule fois, ceci permet la mise à jour en une fois de tous vos flux mais peux faire ramer votre serveur, les appels cron ne doivent pas être trop rapprochés.</p>
+                        <p><input type="radio" {if=" $synchronisationType=='graduate'"} checked="checked" {/if}  value="graduate" id="synchronisationTypeGraduated" name="synchronisationType"> <label for="synchronisationTypeGraduated"><strong>Automatique (gradué) :</strong></label> Le script mettra à jour automatiquement les 10 flux les plus vieux en terme de mise à jour, ceci permet d'alléger la charge serveur et d'éviter les timeouts intempestifs mais nécessite un appel de cron plus fréquent afin de mettre à jour le plus de flux possible.</p>
+                        <p><input type="radio" {if="$synchronisationType=='manual'"} checked="checked" {/if}  value="manual" id="synchronisationTypeManual" name="synchronisationType"> <label for="synchronisationTypeManual"><strong>Manuel (complet) :</strong></label> Le script ne fait aucune mise à jour automatique, vous devez faire vous-même les mises à jour depuis l'espace administration.</p>
                         <strong>Code de synchronisation :</strong> {$synchronisationCode}
                         <h3>Options de synchronisation :</h3>
                         <fieldset>
@@ -80,7 +80,7 @@
                             <legend>Autoriser la lecture anonyme</legend>
                             <input type="radio" {if="$articleDisplayAnonymous=='1'"} checked="checked" {/if} value="1" id="articleDisplayAnonymousYes" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousYes">Oui</label>
                             <input type="radio" {if="$articleDisplayAnonymous=='0'"} checked="checked" {/if} value="0" id="articleDisplayAnonymousNo" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousNo">Non</label><br/>
-                            <span class="note">NB : si vous choisissez cette option, les utilisateurs non authentifiés pourront consulter vos flux (sans pouvoir les marquer comme lu/non lu)</span>
+                            <span class="note">NB : si vous choisissez cette option, les utilisateurs non authentifiés pourront consulter vos flux (sans pouvoir les marquer comme lu/non lu).</span>
                         </fieldset>
                         <fieldset>
                             <legend><label for="articlePerPages">Nombre d'articles par page</label></legend>
@@ -207,7 +207,7 @@
                     <article>
                         {if="$myUser!=false"}
                         {loop="$plugins"}
-                            <section class="article">
+                            <article class="article">
                                 <h2>{$value->getName()}</h2>
                             <ul>
                                 <li><b>Auteur:</b> <a href="mailto:{$value->getMail()}">{$value->getAuthor()}</a></li>
@@ -217,7 +217,7 @@
                                 <li>{$value->getDescription()}</li>
                                 <li><a href="action.php?action=changePluginState&amp;plugin={$value->getUid()}&amp;state={$value->getState()}" style="display:block;text-align:center;width:10em;margin-top:.5em;" class="{$value->getState()=="0"?"grey":"red"}">{$value->getState()=="0"?"Activer":"Désactiver"}</a></li>
                             </ul>
-                            </section>
+                            </article>
                         {/loop}
 
                         {else}
