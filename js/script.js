@@ -26,7 +26,7 @@ function toggleFolder(element, folder) {
 }
 
 function addFavorite(element, id) {
-	$(element).attr('onclick','removeFavorite(this,'+id+');').addClass('favorised');
+	$('.favs', $(element).parent().parent()).attr('onclick','removeFavorite(this,'+id+');').addClass('favorised');
 	$.ajax({
 		url: "./action.php?action=addFavorite",
 		data:{id:id}
@@ -34,7 +34,7 @@ function addFavorite(element, id) {
 }
 
 function removeFavorite(element, id) {
-	$(element).attr('onclick','addFavorite(this,'+id+');').removeClass('favorised');
+	$('.favs', $(element).parent().parent()).attr('onclick','addFavorite(this,'+id+');').removeClass('favorised');
 	$.ajax({
 		url: "./action.php?action=removeFavorite",
 		data:{id:id}
