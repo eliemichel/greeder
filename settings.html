@@ -61,14 +61,14 @@
                         <h3>Options de synchronisation :</h3>
                         <fieldset>
                             <legend>Activer le cache</legend>
-                            <input type="radio" id="synchronisationEnableCacheYes" name="synchronisationEnableCache" value="1"/><label for="synchronisationEnableCacheYes">Oui</label>
-                            <input type="radio" id="synchronisationEnableCacheNo" name="synchronisationEnableCache" value="0"/><label for="synchronisationEnableCacheNo">Non</label><br/>
+                            <input type="radio" {if="$synchronisationEnableCache"} checked="checked" {/if} id="synchronisationEnableCacheYes" name="synchronisationEnableCache" value="1"/><label for="synchronisationEnableCacheYes">Oui</label>
+                            <input type="radio" {if="!$synchronisationEnableCache"} checked="checked" {/if} id="synchronisationEnableCacheNo" name="synchronisationEnableCache" value="0"/><label for="synchronisationEnableCacheNo">Non</label><br/>
                             <p>Cette option vous permet de désactiver la mise en cache. Cependant, la désactivation du cache peut entraîner des temps de chargement plus longs.</p>
                         </fieldset>
                         <fieldset>
                             <legend>Forcer l'intégration</legend>
-                            <input value="1" id="synchronisationForceFeedYes" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedYes">Oui</label>
-                            <input checked="checked" value="0" id="synchronisationForceFeedNo" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedNo">Non</label>
+                            <input value="1" {if="$synchronisationForceFeed"} checked="checked" {/if} id="synchronisationForceFeedYes" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedYes">Oui</label>
+                            <input {if="!$synchronisationForceFeed"} checked="checked" {/if} value="0" id="synchronisationForceFeedNo" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedNo">Non</label>
                             <p>Les flux RSS et Atom sont censés avoir des types MIME associés spécifiques afin que le logiciel sache quel type de données il s'agit. Certains flux ne suivent pas ces règles (par exemple text/plain). SimplePie suit les meilleures pratiques par défaut, mais vous pouvez forcer l'intégration avec ce paramètre.</p>
                         </fieldset>
                     </article>
