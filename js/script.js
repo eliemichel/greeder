@@ -1,3 +1,10 @@
+// Cacher le bouton de retour en haut de page si JS est activé 
+// (et le réafficher ultérieurement si besoin) 
+// => évite de le faire apparaître / disparaître rapidement
+if($('#backtop').length) {
+	$('#backtop').hide();
+}
+
 $(document).ready(function() {
 	// Page settings
 	if($('.settingsBloc').length) {
@@ -6,7 +13,12 @@ $(document).ready(function() {
 			toggleBlocks(hash);
 		}
 	}
+
+    // Bouton de retour en haut de page
+	toggleBacktop();
 });
+
+$(document).scroll(toggleBacktop);
 
 // Fonctions liées aux boutons de navigation (lire / favori / etc.)
 function toggleFolder(element, folder) {
@@ -171,5 +183,17 @@ function toggleBlocks(target) {
 	}
 	else {
 		window.location.hash = "";
+	}
+}
+
+//Gestion de l'affichage du bouton de retour en haut de page
+function toggleBacktop() {
+	var screen_height = parseInt($(window).height());
+
+	if($(document).scrollTop() >= screen_height / 3) {
+		$('#backtop').show();
+	}
+	else {
+		$('#backtop').hide();
 	}
 }
