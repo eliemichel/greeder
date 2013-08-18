@@ -133,6 +133,10 @@ function readThis(element, id, from, callback = false) {
 		}
 		else { 
 			parent.addClass('eventRead');
+            
+            if(callback) {
+                callback();
+            }
 		}
 
 		$.ajax({
@@ -146,7 +150,7 @@ function readThis(element, id, from, callback = false) {
 		});
 	}
 	else {
-		if(from != 'title'){
+		if(from != 'title') {
 			parent.removeClass('eventRead');
 			$.ajax({
 				url: "./action.php?action=unreadContent",
@@ -157,6 +161,10 @@ function readThis(element, id, from, callback = false) {
 					}
 				}
 			});
+
+            if(callback) {
+                callback();
+            }
 		}
 	}
 }
