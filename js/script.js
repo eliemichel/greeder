@@ -116,7 +116,9 @@ function changeFeedFolder(element, id) {
 	window.location = "./action.php?action=changeFeedFolder&feed="+id+"&folder="+value;
 }
 
-function readThis(element, id, from, callback = false) {
+function readThis(element, id, from, callback) {
+    if(typeof(callback) === 'undefined') callback = false;
+
 	var hide = ($('#pageTop').html() == '' ? true : false);
 	var parent = $(element).parent().parent();
 	var nextEvent = $('#'+id).next();
