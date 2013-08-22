@@ -19,7 +19,7 @@
 			font-size:1.5em;
 			line-height:1.3;
 			color:#222;
-		    background: url('../img/bg.png') repeat-y;
+			background: url('../img/bg.png') repeat-y;
 		}
 		body#notlogged{
 			background-image: none;
@@ -130,6 +130,9 @@
 		iframe {
 			margin:0;
 			border:0;
+        }
+        .importFrame {
+            width: 100%;
 		}
 		.idFrameSynchro {
 			height:100%;
@@ -323,13 +326,21 @@
 			min-height: calc(100% - 25px);
 			min-height: -webkit-calc(100% - 25px);
 		}
-		article.article h1{
+        .settingsBloc {
+            padding: 0;
+        }
+        .settingsBloc>section {
+            padding: 7px;
+        }
+		article.article h1,
+		.about .article h1{
 			margin: 1em 0em 0em 0em;
 		}
 		.settingsBloc article.article h1{
 			margin: 0em;
 		}
 		article.article,
+		.about .article,
 		.table-section-style {
 			margin-bottom:5px;
 			padding:5px;
@@ -337,24 +348,45 @@
 			-webkit-border-radius:2px;
 			border-radius:2px;
 		}
-		article.article ul, article.article ol{
+		article.article ul, article.article ol,
+		.about .article ul, .about .article ol
+		{
+            padding: auto;
 			padding-left: 20px;
 		}
-		article.article.digest {
+		article.article.digest,
+		.about .article.digest {
 			margin-bottom:-1px;
 			padding:5px 5px 0 5px;
 			border:1px solid #E5E5E5;
 			line-height:1.4em;
 		}
-		article.article.digest h2 {
+		article.article.digest h2,
+		.about .article.digest h2 {
 			font-size:1.3em;
 		}
-		article>h2 {
+        aside.about {
+            padding: 5px;
+        }
+        aside.about ul {
+            padding-left: 5px !important;
+        }
+        aside.about li {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        aside.about h3 {
+            font-size: 1.4em !important;
+        }
+		article>h2,
+		.about .article>h2 {
 			margin:0;
 			padding:0;
 			color:#15C;
 		}
-		article>h3 {
+		article>h3,
+		.about .article>h3 {
 			margin:0 0 20px;
 			padding:0;
 			font-size:.9em;
@@ -382,6 +414,23 @@
 			line-height: 9px;
 			margin-bottom: 10px;
 		}
+		.asidesettingsbloc ul, .settingsBloc ul {
+			list-style-type: none;
+			padding-left: 0px !important;
+		}
+		#preferenceBloc h3 {
+            font-size: 1.3em;
+            margin: auto;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .note {
+            color: #666;
+            font-size: 10px;
+        }
+        .articleView {
+            margin-top: 5px;
+        }
 	/*back to top*/
 		#backtop{
 			cursor: pointer;
@@ -390,7 +439,6 @@
 			left: 120px;
 			height: 60px;
 			width: 60px;
-			padding: 5px;
 			font-size: 6em;
 			color: #F1F1F1;
 			text-align: center;
@@ -462,6 +510,12 @@
 			border:1px solid #DCDCDC;
 			vertical-align:middle;
 		}
+        #preferenceBloc fieldset {
+            border:1px solid rgb(204, 204, 204);
+        }
+        #preferenceBloc legend {
+            padding: 5px;
+        }
 	/*buttons*/
 		a.red,a.grey,:not(a.page){
 			display: block;
