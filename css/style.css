@@ -19,7 +19,7 @@
 			font-size:1.5em;
 			line-height:1.3;
 			color:#222;
-			background: url('../img/bg.png') repeat-y;
+			background: #F1F1F1;
 		}
 		body#notlogged{
 			background-image: none;
@@ -229,10 +229,8 @@
 		}
 		/*mark all as read */
 		#allread {
-			width:100%;
-			margin: 0px;
-			-webkit-border-radius:0px;
-			border-radius:0px;
+			width:96%;
+			margin: 2%;
 		}
 
 	/*flux*/
@@ -304,7 +302,7 @@
 		button.lunonlu {
 			width: 110px;
 			float:right;
-			margin:-6px;
+			margin:-5px -5px -6px -6px;
 			-webkit-border-radius: 0px 2px 0px 0px;
 			border-radius: 0px 2px 0px 0px;
 		}
@@ -321,7 +319,7 @@
 		}
 	/*text*/
 		.content{
-			padding:7px;
+			padding:7px 7px 7px 2px;
 			overflow:hidden;
 			min-height: calc(100% - 25px);
 			min-height: -webkit-calc(100% - 25px);
@@ -347,6 +345,7 @@
 			border:1px solid #E5E5E5;
 			-webkit-border-radius:2px;
 			border-radius:2px;
+      background:white;
 		}
 		article.article ul, article.article ol,
 		.about .article ul, .about .article ol
@@ -569,7 +568,7 @@
 			font-size: 1.5em;
 			height: 35px;
 			width:35px;
-			margin: -6px 6px 0px 0px;
+			margin: -5px 5px 0px 0px;
 			float:right;
 			line-height: 33px!important;
 			-webkit-border-radius: 0px 0px 0px 2px;
@@ -606,13 +605,6 @@
 			}
 			.content{
 				padding: 5px 0px;
-			}
-			article.article,
-			.table-section-style {
-				border-left: none;
-				border-right: none;
-				-webkit-border-radius:0px;
-				border-radius:0px;
 			}
 			button.lunonlu {
 				width: 110px;
