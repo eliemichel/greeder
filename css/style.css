@@ -319,7 +319,7 @@
 		}
 	/*text*/
 		.content{
-			padding:7px;
+			padding:7px 7px 7px 2px;
 			overflow:hidden;
 			min-height: calc(100% - 25px);
 			min-height: -webkit-calc(100% - 25px);
