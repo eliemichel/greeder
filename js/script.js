@@ -172,11 +172,19 @@ function readThis(element, id, from, callback) {
 }
 
 // Synchronisation manuelle lancée depuis le bouton du menu
-function synchronize(code) {
+function synchronize(code, callback) {
 	if(code != '') {
 		$('.content').html('<article class="article">'+
 				'<iframe class="importFrame" src="action.php?action=synchronize&amp;format=html&amp;code='+code+'" name="idFrameSynchro" id="idFrameSynchro" height="400"></iframe>'+
 				'</article>');
+
+        if(typeof(callback) === 'undefined') callback = false;
+
+        if(callback) {
+            $('iframe#idFrameSynchro').load(function () {
+                callback();
+            });
+        }
 	}
 	else {
 		alert('Vous devez être connecté pour synchroniser vos flux');
