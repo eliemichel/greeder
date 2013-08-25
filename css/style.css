@@ -21,9 +21,6 @@
 			color:#222;
 			background: #F1F1F1;
 		}
-		body#notlogged{
-			background-image: none;
-		}
 		a, .asidesettingsbloc li {
 			text-decoration:none;
 			color:#15C;
@@ -590,9 +587,7 @@
 	/*mobile + small screens*/
 		@media(max-width:850px) {
 			body{
-				background-image:none;
 				overflow-x: hidden;
-
 			}
 			#sidebar {
 				float:none;
