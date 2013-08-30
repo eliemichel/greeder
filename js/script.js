@@ -38,7 +38,8 @@ function toggleFolder(element, folder) {
 }
 
 function addFavorite(element, id) {
-	$('.favs', $(element).parent().parent()).attr('onclick','removeFavorite(this,'+id+');').addClass('favorised');
+	$('.favs', $(element).parent().parent()).attr('onclick','removeFavorite(this,'+id+');');
+	$(element).parent().parent().addClass('favorised');
 	$.ajax({
 		url: "./action.php?action=addFavorite",
 		data:{id:id}
@@ -46,7 +47,8 @@ function addFavorite(element, id) {
 }
 
 function removeFavorite(element, id) {
-	$('.favs', $(element).parent().parent()).attr('onclick','addFavorite(this,'+id+');').removeClass('favorised');
+	$('.favs', $(element).parent().parent()).attr('onclick','addFavorite(this,'+id+');');
+	$(element).parent().parent().removeClass('favorised');
 	$.ajax({
 		url: "./action.php?action=removeFavorite",
 		data:{id:id}
@@ -215,3 +217,12 @@ function toggleBacktop() {
 		$('#backtop').hide();
 	}
 }
+
+
+    $('#backtoplink').click(function(){  
+        var the_id = $(this).attr("href");  
+        $('html, body').animate({  
+            scrollTop:$(the_id).offset().top  
+        }, 'fast');  
+        return false;  
+    });  

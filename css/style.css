@@ -345,10 +345,12 @@
 			border:1px solid #E5E5E5;
 			-webkit-border-radius:2px;
 			border-radius:2px;
-      background:white;
+     		background:white;
 		}
-		article.article ul, article.article ol,
-		.about .article ul, .about .article ol
+		article.article ul,
+		article.article ol,
+		.about .article ul,
+		.about .article ol
 		{
             padding: auto;
 			padding-left: 20px;
@@ -413,7 +415,8 @@
 			line-height: 9px;
 			margin-bottom: 10px;
 		}
-		.asidesettingsbloc ul, .settingsBloc ul {
+		.asidesettingsbloc ul,
+		.settingsBloc ul {
 			list-style-type: none;
 			padding-left: 0px !important;
 		}
@@ -573,12 +576,22 @@
 			line-height: 33px!important;
 			-webkit-border-radius: 0px 0px 0px 2px;
 			border-radius: 0px 0px 0px 2px; 
+			color:#6A6A6A;
+			background-color:#F1F1F1;
 		}
-		.favorised,.favorised:hover{
+		.favorised .favs{
 			color:white;
 			border-color:#ffd200;
 			background-color:#ffd200;
 		}
+		.star{
+			color: #6A6A6A;
+		}
+		.favorised .star{
+			color: #ffd200;
+			
+		}
+
 		/*non actives*/
 			.grey-h {
 				cursor:default;

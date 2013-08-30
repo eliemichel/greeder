@@ -130,7 +130,7 @@
 		{loop="$events"}
 			{$plainDescription=strip_tags($value->getDescription())}	
 			
-			<article class="article {if="!$value->getUnread()"} eventRead {/if} {if="$articleDisplayContent==false"}digest{/if} " >
+			<article class="article {if="!$value->getUnread()"} eventRead {/if} {if="$articleDisplayContent==false"}digest{/if} {if="$value->getFavorite()!=1"}{else} favorised {/if} "	>
 				<a class="anchor" id="{$value->getId()}"></a>
 				<!-- TITRE -->
 				<div class="buttons-bar">
@@ -138,11 +138,12 @@
 					{if="$value->getFavorite()!=1"}
 						<a class="grey favs" onclick="addFavorite(this,{$value->getId()});" >★</a> 
 						{else}
-						<a class="grey favs favorised" onclick="removeFavorite(this,{$value->getId()});" >★</a> 
+						<a class="grey favs" onclick="removeFavorite(this,{$value->getId()});" >★</a> 
 					{/if}
 					{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				</div>
 				<h2 class="articleTitle">
+					<span class="star" >★</a></span>
 					<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" title="{$plainDescription}">{$value->getTitle()}</a> 
 					{function="Plugin::callHook("event_post_title", array(&$value))"}
 				</h2>
@@ -224,7 +225,7 @@
         
 	</section>
 	<!-- PIED DE PAGE DES ARTICLES -->
-	<div id="backtop"><a href="#logo">ꜛ</a></div>
+	<div id="backtop"><a id="backtoplink" href="#logo">ꜛ</a></div>
 {else}
 	<section class="content" id="notlogged">
 		<h1>Vous devez être connecté pour consulter vos flux </h1>
