@@ -53,16 +53,24 @@
 				
 				{if="$action=='favorites'"}
 				<!-- AFFICHAGE DES EVENEMENTS FAVORIS -->		
-					{$numberOfItem} articles favoris
+                    {if="$numberOfItem==0"}
+                        Aucun article favori
+                    {elseif="$numberOfItem==1"}
+                        1 article favori
+                    {else}
+                        {$numberOfItem} articles favoris
+                    {/if}
 				{/if}
 
 				
 				{if="($action=='unreadEvents') || ($action=='')"}
 				<!-- AFFICHAGE DES EVENEMENTS NON LU (COMPORTEMENT PAR DEFAUT) -->		
-					{if="($numberOfItem > 1)"}
-						{$numberOfItem} éléments non lus
+					{if="$numberOfItem==1"}
+                        Aucun élément non lu
+                    {elseif="$numberOfItem==1"}
+                        1 élément non lu
 					{else}
-						{$numberOfItem} élément non lu
+						{$numberOfItem} éléments non lus
 					{/if}
 				{/if}
 			</div>
