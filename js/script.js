@@ -1,3 +1,6 @@
+// Activer/Désactiver les animations : true = activées, false = désactivées
+var useAnimations = true;
+
 // Cacher le bouton de retour en haut de page si JS est activé 
 // (et le réafficher ultérieurement si besoin) 
 // => évite de le faire apparaître / disparaître rapidement
@@ -16,6 +19,11 @@ $(document).ready(function() {
 
     // Bouton de retour en haut de page
 	toggleBacktop();
+
+    // Désactiver les animations au besoin
+    if(!useAnimations) {
+        $('body').addClass('no-animations');
+    }
 });
 
 $(document).scroll(toggleBacktop);
