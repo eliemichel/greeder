@@ -159,7 +159,7 @@
 	table .tabledescflux{
 		width: 75%;
 	}
-	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc{
+	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc,#greederprefBloc{
 		display:none;
 	}
 /* ----------------------------- */
