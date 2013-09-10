@@ -162,6 +162,37 @@
 	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc,#greederprefBloc{
 		display:none;
 	}
+    .switch {
+        border: 1px solid grey;
+        border-radius: 10%;
+        -webkit-border-radius: 10%;
+        padding: 5px;
+        min-width: 2em;
+        display: inline-block;
+        height: 2em;
+        vertical-align: middle;
+        font-weight: bold;
+    }
+    .switch-off {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        -webkit-border-top-left-radius: 0;
+        -webkit-border-bottom-left-radius: 0;
+    }
+    .switch-on {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        -webkit-border-top-right-radius: 0;
+        -webkit-border-bottom-right-radius: 0;
+    }
+    span.disabled {
+        background-color: #666;
+        cursor: not-allowed;
+    }
+    .switch-selected {
+        background-color: rgb(192, 57, 39);
+        color: white;
+    }
 /* ----------------------------- */
 /* ==connection */
 /* ----------------------------- */
@@ -269,6 +300,9 @@
 			float:right;
 			padding: 0px;
 		}
+        .pointer {
+            cursor: pointer;
+        }
 		.readFolder {
 			display:block;
 			float:left;

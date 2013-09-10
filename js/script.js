@@ -17,6 +17,23 @@ $(document).ready(function() {
 		}
 	}
 
+    if($.cookie('greederprefAnimations') == 0) { // Animations désactivées
+        useAnimations = false;
+    }
+
+    // Page préférences de greeder
+    if($('#greederprefBloc').length) {
+        $('#greederprefBloc .switch').removeClass('disabled');
+        $('#greederprefBloc .js-needed').remove();
+
+        if(!useAnimations) { // Animations désactivées
+            $('#greederprefBloc .switch-off').addClass('switch-selected');
+        }
+        else {
+            $('#greederprefBloc .switch-on').addClass('switch-selected');
+        }
+    }
+
     // Bouton de retour en haut de page
 	toggleBacktop();
 
@@ -226,11 +243,20 @@ function toggleBacktop() {
 	}
 }
 
+// Fonction pour le switch des animations
+function toggleSwitch(element) {
+    $(element).parent().find('.switch').removeClass('switch-selected');
 
-    $('#backtoplink').click(function(){  
-        var the_id = $(this).attr("href");  
-        $('html, body').animate({  
-            scrollTop:$(the_id).offset().top  
-        }, 'fast');  
-        return false;  
-    });  
+    var state = 0;
+    
+    if($(element).attr('class').search('switch-on') != -1) {
+        state = 1;
+    }
+
+    // Stocke la config dans un cookie
+    $.cookie('greederprefAnimations', state, {
+        expire : 31536000, // expire dans un an
+    });
+
+    $(element).addClass('switch-selected');
+}
