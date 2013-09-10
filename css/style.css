@@ -162,38 +162,6 @@
 	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc,#greederprefBloc{
 		display:none;
 	}
-    .switch {
-        border: 1px solid grey;
-        border-radius: 10%;
-        -webkit-border-radius: 10%;
-        padding: 5px;
-        min-width: 2em;
-        display: inline-block;
-        height: 2em;
-        vertical-align: middle;
-        font-weight: bold;
-        background-color: rgb(241, 241, 241);
-    }
-    .switch-off {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        -webkit-border-top-left-radius: 0;
-        -webkit-border-bottom-left-radius: 0;
-    }
-    .switch-on {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        -webkit-border-top-right-radius: 0;
-        -webkit-border-bottom-right-radius: 0;
-    }
-    span.disabled {
-        background-color: #666;
-        cursor: not-allowed;
-    }
-    .switch-selected {
-        background-color: rgb(209, 72, 54);
-        color: white;
-    }
 /* ----------------------------- */
 /* ==connection */
 /* ----------------------------- */
@@ -469,6 +437,9 @@
         .articleView {
             margin-top: 5px;
         }
+        #greederprefBloc button {
+            width: 5em;
+        }
 	/*back to top*/
 		#backtop{
 			cursor: pointer;
@@ -627,7 +598,10 @@
 			color: #ffd200;
 			
 		}
-
+        .disabled_button, .disabled_button:hover, .disabled_button:active {
+            background-color: grey;
+            cursor: not-allowed;
+        }
 		/*non actives*/
 			.grey-h {
 				cursor:default;

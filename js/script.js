@@ -23,14 +23,14 @@ $(document).ready(function() {
 
     // Page préférences de greeder
     if($('#greederprefBloc').length) {
-        $('#greederprefBloc .switch').removeClass('disabled');
+        $('#greederprefBloc button').removeClass('disabled_button');
         $('#greederprefBloc .js-needed').remove();
 
         if(!useAnimations) { // Animations désactivées
-            $('#greederprefBloc .switch-off').addClass('switch-selected');
+            $('#greederprefBloc button').text('Off').removeClass('red').addClass('grey');
         }
         else {
-            $('#greederprefBloc .switch-on').addClass('switch-selected');
+            $('#greederprefBloc button').text('On').removeClass('grey').addClass('red');
         }
     }
 
@@ -243,13 +243,11 @@ function toggleBacktop() {
 	}
 }
 
-// Fonction pour le switch des animations
-function toggleSwitch(element) {
-    $(element).parent().find('.switch').removeClass('switch-selected');
-
+// Fonction pour le bouton de gestion des animations
+function toggleAnimations(element) {
     var state = 0;
     
-    if($(element).attr('class').search('switch-on') != -1) {
+    if($(element).text() == 'Off') { // Si off, on passe à on
         state = 1;
     }
 
@@ -258,5 +256,10 @@ function toggleSwitch(element) {
         expire : 31536000, // expire dans un an
     });
 
-    $(element).addClass('switch-selected');
+    if(state == 1) {
+        $(element).addClass('red').removeClass('grey').text('On');
+    }
+    else {
+        $(element).addClass('grey').removeClass('red').text('Off');
+    }
 }
