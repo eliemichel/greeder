@@ -172,6 +172,7 @@
         height: 2em;
         vertical-align: middle;
         font-weight: bold;
+        background-color: rgb(241, 241, 241);
     }
     .switch-off {
         border-top-left-radius: 0;
