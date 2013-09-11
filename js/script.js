@@ -1,3 +1,6 @@
+// Activer/Désactiver les animations : true = activées, false = désactivées
+var useAnimations = true;
+
 // Cacher le bouton de retour en haut de page si JS est activé 
 // (et le réafficher ultérieurement si besoin) 
 // => évite de le faire apparaître / disparaître rapidement
@@ -14,8 +17,30 @@ $(document).ready(function() {
 		}
 	}
 
+    if($.cookie('greederprefAnimations') == 0) { // Animations désactivées
+        useAnimations = false;
+    }
+
+    // Page préférences de greeder
+    if($('#greederprefBloc').length) {
+        $('#greederprefBloc button').removeClass('disabled_button');
+        $('#greederprefBloc .js-needed').remove();
+
+        if(!useAnimations) { // Animations désactivées
+            $('#greederprefBloc button').text('Off').removeClass('red').addClass('grey');
+        }
+        else {
+            $('#greederprefBloc button').text('On').removeClass('grey').addClass('red');
+        }
+    }
+
     // Bouton de retour en haut de page
 	toggleBacktop();
+
+    // Désactiver les animations au besoin
+    if(!useAnimations) {
+        $('body').addClass('no-animations');
+    }
 });
 
 $(document).scroll(toggleBacktop);
@@ -218,11 +243,23 @@ function toggleBacktop() {
 	}
 }
 
+// Fonction pour le bouton de gestion des animations
+function toggleAnimations(element) {
+    var state = 0;
+    
+    if($(element).text() == 'Off') { // Si off, on passe à on
+        state = 1;
+    }
 
-    $('#backtoplink').click(function(){  
-        var the_id = $(this).attr("href");  
-        $('html, body').animate({  
-            scrollTop:$(the_id).offset().top  
-        }, 'fast');  
-        return false;  
-    });  
+    // Stocke la config dans un cookie
+    $.cookie('greederprefAnimations', state, {
+        expire : 31536000, // expire dans un an
+    });
+
+    if(state == 1) {
+        $(element).addClass('red').removeClass('grey').text('On');
+    }
+    else {
+        $(element).addClass('grey').removeClass('red').text('Off');
+    }
+}

@@ -27,7 +27,8 @@
 					<li class="pointer" onclick="toggleBlocks('#preferenceBloc');">Préférences</li>
 					<li class="pointer" onclick="toggleBlocks('#pluginBloc');">Plugins</li>
 					<li class="pointer" onclick="toggleBlocks('#importexportBloc');">Import / Export</li>
-                    <li class="poiner" onclick="toggleBlocks('#bookBloc');">Bookmarklet</li>
+                    <li class="pointer" onclick="toggleBlocks('#bookBloc');">Bookmarklet</li>
+                    <li class="pointer" onclick="toggleBlocks('#greederprefBloc');">Préférences de Greeder</li>
                 <li class="pointer" onclick="if(confirm('Êtes-vous sûr de vouloir vider tout les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">Vider les événements</li>
                 {function="Plugin::callHook("setting_post_link", array(&$myUser))"}
             </ul>
@@ -228,19 +229,27 @@
 
 			
 		<!-- --><section id="bookBloc">
-                    <article>
+                    <article class="article">
                         <h2>Utiliser le bookmarklet :</h2>
                         <p>Vous pouvez ajouter le bookmaklet ci-dessous à votre navigateur pour vous inscrire plus rapidement au flux :</p>
                         {if="$myUser!=false"}
-                        <a class="red" style="display:block;width:110px;" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&amp;newUrl='+escape(document.location)+'&amp;usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a>
+                        <p><a class="red" style="display:block;width:110px;" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&amp;newUrl='+escape(document.location)+'&amp;usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a></p>
                         {else}
                         <p>Vous devez être connecté pour voir le bookmarklet.</p>
                         {/if}
                     </article>
                 </section>
+    
+        <!-- --><section id="greederprefBloc">
+                    <article class="article">
+                        <h2>Paramètres des animations</h2>
+                            <p>Vous pouvez activer ou désactiver les animations en javascript (pour alléger le thème) dans greeder et les plugins sur ce périphérique (paramètre stocké dans un cookie) :</p>
+                            <p>État des animations : <button class="red disabled_button" onclick="toggleAnimations(this);">On</button><span class="js-needed"> - You need javascript enabled to use this feature.</span></p>
+                    </article>
+                </section>
 				
-		<!-- --><section class="article" id="importexportBloc">
-                    <article>
+		<!-- --><section id="importexportBloc">
+                    <article class="article">
                         <h2>Import</h2>
                         <iframe class="importFrame" src="action.php?action=importForm" name="idFrame" id="idFrame"></iframe>
                         

@@ -159,7 +159,7 @@
 	table .tabledescflux{
 		width: 75%;
 	}
-	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc{
+	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc,#greederprefBloc{
 		display:none;
 	}
 /* ----------------------------- */
@@ -269,6 +269,9 @@
 			float:right;
 			padding: 0px;
 		}
+        .pointer {
+            cursor: pointer;
+        }
 		.readFolder {
 			display:block;
 			float:left;
@@ -434,6 +437,9 @@
         .articleView {
             margin-top: 5px;
         }
+        #greederprefBloc button {
+            width: 5em;
+        }
 	/*back to top*/
 		#backtop{
 			cursor: pointer;
@@ -592,7 +598,10 @@
 			color: #ffd200;
 			
 		}
-
+        .disabled_button, .disabled_button:hover, .disabled_button:active {
+            background-color: grey;
+            cursor: not-allowed;
+        }
 		/*non actives*/
 			.grey-h {
 				cursor:default;
