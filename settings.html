@@ -29,7 +29,7 @@
 					<li class="pointer" onclick="toggleBlocks('#importexportBloc');">Import / Export</li>
                     <li class="pointer" onclick="toggleBlocks('#bookBloc');">Bookmarklet</li>
                     <li class="pointer" onclick="toggleBlocks('#greederprefBloc');">Préférences de Greeder</li>
-                <li class="pointer" onclick="if(confirm('Êtes-vous sûr de vouloir vider tout les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">Vider les événements</li>
+                <li class="pointer" onclick="if(confirm('Êtes-vous sûr de vouloir vider tous les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">Vider les événements</li>
                 {function="Plugin::callHook("setting_post_link", array(&$myUser))"}
             </ul>
         </aside>
@@ -172,7 +172,7 @@
                                         <td style="text-align:right;">
                                             <button class="red" onclick="renameFolder(this,{$value->getId()})">Renommer</button>
                                             {if="$value->getId()!='1'"}
-                                            <button class="red" onclick="if(confirm('Êtes-vous sur de vouloir supprimer ce dossier ? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
+                                            <button class="red" onclick="if(confirm('Êtes-vous sur de vouloir supprimer le dossier &quot;{$value->getName()}&quot; ? Cela supprimera tous les flux qu\'il contient.'))window.location='action.php?action=removeFolder&amp;id={$value->getId()}'">Supprimer</button>
                                             {/if}
                                         </td>
                                     </tr>
@@ -193,7 +193,7 @@
                                                 </select>
                                             </td>
                                             <td ><button class="grey buttonw93" onclick="renameFeed(this,{$value2->getId()})">Renommer</button></td>
-                                            <td><button class="grey buttonw93" onclick="if(confirm('Etes vous sûr de vouloir supprimer ce flux?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button></td></tr>
+                                            <td><button class="grey buttonw93" onclick="if(confirm('Etes vous sûr de vouloir supprimer le flux &quot;{$value2->getName()}&quot; ?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button></td></tr>
                                     {/loop}
                                     {/if}
                                 </table>
