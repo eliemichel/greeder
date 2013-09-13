@@ -183,7 +183,7 @@
                                     {loop="$feedsForFolder"}
                                         <tr>
                                             <td class="tabledescflux">
-                                                <a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink">{$value2->getUrl()}</span>
+                                                <a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink"><a href="{$value2->getUrl()}">{$value2->getUrl()}</a></span>
                                             </td>
                                             <td>
                                                 <select onchange="changeFeedFolder(this,{$value2->getId()});">
