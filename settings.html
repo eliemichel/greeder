@@ -10,6 +10,7 @@
 				<header>
 					<h1 id="logo"><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
 					{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
+				
 					<table id="icons">
 						<tr>
 							<th><a href="index.php"><img src="img/home.png" class="icon" alt="Accueil"></a></th>
@@ -21,16 +22,18 @@
 					</table>
 					{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
 				</header>
-				<div class="clear"></div>
-				<ul>
-					<li class="pointer" onclick="toggleBlocks('#manageBloc');">Gestion des flux</li>
-					<li class="pointer" onclick="toggleBlocks('#preferenceBloc');">Préférences</li>
-					<li class="pointer" onclick="toggleBlocks('#pluginBloc');">Plugins</li>
-					<li class="pointer" onclick="toggleBlocks('#importexportBloc');">Import / Export</li>
-                    <li class="pointer" onclick="toggleBlocks('#bookBloc');">Bookmarklet</li>
-                    <li class="pointer" onclick="toggleBlocks('#greederprefBloc');">Préférences de Greeder</li>
-                <li class="pointer" onclick="if(confirm('Êtes-vous sûr de vouloir vider tous les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">Vider les événements</li>
-                {function="Plugin::callHook("setting_post_link", array(&$myUser))"}
+				<div id="numelem">
+					{function="_t('MANAGE')"}
+				</div>
+				<button class="red" id="allread" onclick="if(confirm('Êtes-vous sûr de vouloir vider tous les évenements ? Ceci effacera tous vos articles favoris et réinitialisera vos flux à non lu.')){window.location='action.php?action=purge';}">{function="_t('TRASH_EVENTS')"}</button>
+				<ul id="menuSettings">
+					<li onclick="toggleBlocks('#manageBloc');">{function="_t('FEED_MANAGING')"}</li>
+					<li onclick="toggleBlocks('#preferenceBloc');">{function="_t('PREFERENCES')"} Leed</li>
+					<li onclick="toggleBlocks('#greederprefBloc');">Préférences de Greeder</li>
+					<li onclick="toggleBlocks('#importexportBloc');">{function="_t('IMPORT')"} / {function="_t('EXPORT')"}</li>
+                    <li onclick="toggleBlocks('#bookBloc');">{function="_t('BOOKMARKLET')"}</li>
+					<li onclick="toggleBlocks('#pluginBloc');">{function="_t('AVAILABLES_PLUGINS')"}</li>
+               		{function="Plugin::callHook("setting_post_link", array(&$myUser))"}
             </ul>
         </aside>
         
@@ -242,9 +245,9 @@
     
         <!-- --><section id="greederprefBloc">
                     <article class="article">
-                        <h2>Paramètres des animations</h2>
-                            <p>Vous pouvez activer ou désactiver les animations en javascript (pour alléger le thème) dans greeder et les plugins sur ce périphérique (paramètre stocké dans un cookie) :</p>
-                            <p>État des animations : <button class="red disabled_button" onclick="toggleAnimations(this);">On</button><span class="js-needed"> - You need javascript enabled to use this feature.</span></p>
+                        <h2>Animations</h2>
+                            <p>Vous pouvez activer ou désactiver les animations de greeder sur ce périphérique (paramètre stocké dans un cookie).</p>
+                            <p>Animations : <button class="red disabled_button" onclick="toggleAnimations(this);">On</button><span class="js-needed"> - You need javascript enabled to use this feature.</span></p>
                     </article>
                 </section>
 				
