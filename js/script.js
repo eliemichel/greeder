@@ -149,7 +149,7 @@ function addEventsButtonLuNonLus(){
 
 //====
 
-// Internationalisation
+// Internationalization
 function _t(key,args){
     value = i18n[key];
     if(args!=null){

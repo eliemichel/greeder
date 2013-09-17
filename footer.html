@@ -6,15 +6,18 @@
 <div class="clear"></div>
 <footer>
 	<p>
-		Leed : fabuleux agrégateur par <a target="_blank" href="http://blog.idleman.fr">Idleman</a>.
-		Thème Greeder créé par <a href="http://tomcanac.com">Tom Canac</a>.
-		<a href="about.php">A propos</a>.
+		Leed "Light Feed" {function="_t('FABULOUS AGREGATOR LAUNCHED IN',array($executionTime,'<a target="_blank" href="http://blog.idleman.fr">Idleman</a>'))"} | <a href="about.php">{function="_t('ABOUT',array())"}</a> | Thème Greeder créé par <a href="http://tomcanac.com/greeder">Tom Canac</a>
+		{function="Plugin::callHook("footer_post_copyright", array(&$myUser))"}
 	</p>
 	{function="Plugin::callHook("footer_post_copyright", array(&$myUser))"}
 </footer>
-<script src="js/libs/jquery-2.0.3.min.js"></script>
-<script src="js/libs/jquery.cookie.js"></script>
-<script src="js/script.js"></script>
+
+<script type="text/javascript" src="js/libs/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.cookie.js"></script>
+<script type="text/javascript">
+    var i18n = {$i18n_js};
+</script>
+<script type="text/javascript" src="js/script.js"></script>
 {function="Plugin::callJs()"}
 </body>
 </html>
