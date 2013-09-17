@@ -51,7 +51,7 @@ Leed est développé par Idleman (@Idleman, http://idleman.fr/)
 Merci aux contributeurs suivants :
 
 * Simon (http://progmatique.fr)
-* Phyks (@Phyks, http://phyks.me)
+* Phyks (Phyks, http://phyks.me)
 
 # Informations pour les développeurs de plugins
 
