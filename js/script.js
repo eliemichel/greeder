@@ -47,8 +47,8 @@ $(document).ready(function() {
         scrollInfini();
 
     // Disable animations if needed
-    if(!useAnimations) {
-        $('body').addClass('no-animations');
+    if(useAnimations) {
+        $('body').removeClass('no-animations');
     }
 });
 
