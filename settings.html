@@ -236,7 +236,7 @@
                         <h2>Utiliser le bookmarklet :</h2>
                         <p>Vous pouvez ajouter le bookmaklet ci-dessous à votre navigateur pour vous inscrire plus rapidement au flux :</p>
                         {if="$myUser!=false"}
-                        <p><a class="red" style="display:block;width:110px;" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&amp;newUrl='+escape(document.location)+'&amp;usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a></p>
+                        <p><a class="red" style="display:block; width:140px;" href="javascript:document.location='{$configurationManager->get('root')}action.php?action=login&amp;newUrl='+escape(document.location)+'&amp;usr={function="sha1($myUser->getPassword().$myUser->getLogin())"}'">+ Ajouter à Leed</a></p>
                         {else}
                         <p>Vous devez être connecté pour voir le bookmarklet.</p>
                         {/if}
