@@ -57,7 +57,6 @@ $(document).scroll(function() {
     scrollInfini();
 });
 
-// ==== TODO : Infinite scroll
 function scrollInfini() {
     var deviceAgent = navigator.userAgent.toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
@@ -134,7 +133,7 @@ function _t(key,args){
     return value;
 }
 
-// Functions to handle browsing buttons (read / favorite / ...)
+// Functions to handle browsing in menu (display / mask feeds in folder)
 function toggleFolder(element, folder) {
 	feedBloc = $('ul', $(element).parent());
 
@@ -153,8 +152,6 @@ function toggleFolder(element, folder) {
 
 function addFavorite(element, id) {
     var activeScreen = $('#pageTop').html();
-	$('.favs', $(element).parent().parent()).attr('onclick','removeFavorite(this,'+id+');');
-	$(element).parent().parent().addClass('favorised');
     $.ajax({
         url: "./action.php?action=addFavorite",
         data:{id:id},
@@ -163,6 +160,7 @@ function addFavorite(element, id) {
                 alert(msg.texte)
             } else {
                 $('.favs', $(element).parent().parent()).attr('onclick','removeFavorite(this,'+id+');');
+	            $(element).parent().parent().addClass('favorised');
                 // We count how many articles have been set to favorites on the favorite page (infinite scroll)
                 if (activeScreen == 'favorites') {
                     $(window).data('nblus', $(window).data('nblus') - 1);
@@ -183,6 +181,7 @@ function removeFavorite(element, id) {
                 alert(msg.texte)
             } else {
                 $('.favs', $(element).parent().parent()).attr('onclick','addFavorite(this,'+id+');');
+                $(element).parent().parent().removeClass('favorised');
                 // We count how many articles have been set to favorites on the favorite page (infinite scroll)
                 if (activeScreen == 'favorites') {
                     $(window).data('nblus', $(window).data('nblus') + 1);
