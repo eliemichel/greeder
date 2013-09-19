@@ -37,16 +37,14 @@ $(document).ready(function() {
     // Back to top button handling
 	toggleBacktop();
     
-    // Bind events to onclick on articles
-    addEventsButtonLuNonLus();
-        
     // Initialize ajaxready at first function load
     $(window).data('ajaxready', true);
-    $('article').append('<div id="loader">'+_t('LOADING')+'</div>');
+    $('.content').append('<div id="loader">'+_t('LOADING')+'</div>');
     $(window).data('page', 1);
     $(window).data('nblus', 0);
 
-    if ($(window).scrollTop()==0) scrollInfini();
+    if($(window).scrollTop() == 0)
+        scrollInfini();
 
     // Disable animations if needed
     if(!useAnimations) {
@@ -54,38 +52,31 @@ $(document).ready(function() {
     }
 });
 
-$(document).scroll(toggleBacktop);
-
-// ==== TODO : Infinite scroll
-$(window).scroll(function(){
+$(document).scroll(function() {
+    toggleBacktop();
     scrollInfini();
 });
 
+// ==== TODO : Infinite scroll
 function scrollInfini() {
     var deviceAgent = navigator.userAgent.toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
 
     if($('.index').length) {
-        // On teste si ajaxready vaut false, auquel cas on stoppe la fonction
-        if ($(window).data('ajaxready') == false) return;
+        // Test if ajaxready is false, and exit in this case (block multiple calls)
+        if ($(window).data('ajaxready') == false)
+            return;
 
         if(($(window).scrollTop() + $(window).height()) + 1 >= $(document).height()
            || agentID && ($(window).scrollTop() + $(window).height()) + 150 > $(document).height())
         {
-            // lorsqu'on commence un traitement, on met ajaxready à false
+            // Set ajaxready to false before request sending
             $(window).data('ajaxready', false);
             
-            //j'affiche mon loader pour indiquer le chargement
-            $('article #loader').show();
+            // Display the loader to indicate the loading
+            $('.content #loader').show();
             
-            //utilisé pour l'alternance des couleurs d'un article à l'autre
-            if ($('article section:last').hasClass('eventHightLighted')) {
-                hightlighted = 1;
-            } else {
-                hightlighted = 2;
-            }
-            
-            // récupération des variables passées en Get
+            // Get vars sent as GET
             var action = getUrlVars()['action'];
             var folder = getUrlVars()['folder'];
             var feed = getUrlVars()['feed'];
@@ -96,58 +87,41 @@ function scrollInfini() {
                 order = ''
             }
             
+            // Make the ajax request
             $.ajax({
                 url: './article.php',
                 type: 'post',
-                data: 'scroll='+$(window).data('page')+'&nblus='+$(window).data('nblus')+'&hightlighted='+hightlighted+'&action='+action+'&folder='+folder+'&feed='+feed+order,
+                data: 'scroll='+$(window).data('page')+'&nblus='+$(window).data('nblus')+'&hightlighted=1&action='+action+'&folder='+folder+'&feed='+feed+order,
  
-                //Succès de la requête
                 success: function(data) {
                     if (data.replace(/^\s+/g,'').replace(/\s+$/g,'') != '')
-                    {   // on les insère juste avant le loader
-                        $('article #loader').before(data);
-                        //on supprime de la page le script pour ne pas intéragir avec les next & prev
-                        $('article .scriptaddbutton').remove();
-                        //si l'élement courant est caché, selectionner le premier élément du scroll
-                        if ($('article section.eventSelected').attr('style')=='display: none;') {
+                    {
+                        // Insert new articles right before the loader
+                        $('.content #loader').before(data);
+                        // Delete script from page to prevent interaction with next and prev
+                        $('.content .scriptaddbutton').remove();
+                        //si l'élement courant est caché, selectionner le premier élément du scroll -- TODO
+                        if ($('.content section.eventSelected').attr('style')=='display: none;') {
                             targetThisEvent($('article section.scroll:first'), true);
                         }
-                        // on les affiche avec un fadeIn
-                        $('article section.scroll').fadeIn(600);
-                        // on supprime le tag de classe pour le prochain scroll
-                        $('article section.scroll').removeClass('scroll');
+                        // Display events with a fadeIn
+                        $('.content section.scroll').fadeIn(600);
+                        // Delete scroll tag for next scroll
+                        $('.content section.scroll').removeClass('scroll');
                         $(window).data('ajaxready', true);
                         $(window).data('page', $(window).data('page')+1);
                         $(window).data('enCoursScroll',0);
-                        // appel récursif tant qu'un scroll n'est pas detecté.
-                        if ($(window).scrollTop()==0) scrollInfini();
+                        // Recursive call until a scroll is detected
+                        if($(window).scrollTop() == 0)
+                            scrollInfini();
                     }
                 }
             });
-            // le chargement est terminé, on fait disparaitre notre loader
-            $('article #loader').fadeOut(400);          
+            // When loading is finished, remove the loader
+            $('.content #loader').fadeOut(400);          
         }
     }
 };
-
-/* Cette fonction sera utilisé pour le scrool infinie, afin d'ajouter les évènements necessaires */
-function addEventsButtonLuNonLus(){
-    var handler = function(event){
-            var target = event.target;
-            var id = this.id;
-            if($(target).hasClass('readUnreadButton')){
-                buttonAction(target,id);
-            }else{
-                targetThisEvent(this);
-            }
-    }
-    // on vire tous les évènements afin de ne pas avoir des doublons d'évènements
-    $('article section').unbind('click');
-    // on bind proprement les click sur chaque section
-    $('article section').bind('click', handler);
-}
-
-//====
 
 // Internationalization
 function _t(key,args){

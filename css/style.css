@@ -352,6 +352,9 @@
 			min-height: calc(100% - 25px);
 			min-height: -webkit-calc(100% - 25px);
 		}
+        section.content #loader {
+            display: none;
+        }
         .settingsBloc {
             padding: 0;
         }

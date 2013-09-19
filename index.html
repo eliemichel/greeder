@@ -7,7 +7,6 @@
 {include="header"}
 
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
-
 	{function="Plugin::callHook("menu_pre_folder_menu", array(&$myUser))"}
 	<aside class="left" id="sidebar">
 		<!-- sidebar's header -->
@@ -121,7 +120,9 @@
 	</aside>
 	
 	<!-- articles -->
-	{include="article"}
+    <section class="content index">
+    	{include="article"}
+    </section>
 	
 	<!-- back to top -->
 	<div id="backtop"><a id="backtoplink" href="#logo">ꜛ</a></div>
