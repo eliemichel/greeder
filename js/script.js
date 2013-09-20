@@ -49,6 +49,7 @@ $(document).ready(function() {
     // Disable animations if needed
     if(useAnimations) {
         $('body').removeClass('no-animations');
+        $('#load_more').remove();
     }
 });
 
@@ -57,7 +58,7 @@ $(document).scroll(function() {
     scrollInfini();
 });
 
-function scrollInfini() {
+function scrollInfini(no_scroll_test = false) {
     var deviceAgent = navigator.userAgent.toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
 
@@ -67,7 +68,7 @@ function scrollInfini() {
             return;
 
         if(($(window).scrollTop() + $(window).height()) + 1 >= $(document).height()
-           || agentID && ($(window).scrollTop() + $(window).height()) + 150 > $(document).height())
+           || agentID && ($(window).scrollTop() + $(window).height()) + 150 > $(document).height() || no_scroll_test)
         {
             // Set ajaxready to false before request sending
             $(window).data('ajaxready', false);
@@ -255,7 +256,7 @@ function changeFeedFolder(element, id) {
 	window.location = "./action.php?action=changeFeedFolder&feed="+id+"&folder="+value;
 }
 
-function readThis(element, id, from, callback) {
+function readThis(element, id, from, callback) { // TODO
     if(typeof(callback) === 'undefined') callback = false;
 
     var activeScreen = $('#pageTop').html();

@@ -486,6 +486,11 @@
 			color: white;
 			display: block;
 		}
+    /*load more button*/
+        #load_more {
+            text-align: center;
+            overflow: hidden;
+        }
 
 /* ----------------------------- */
 /* ==footer */

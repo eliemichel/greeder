@@ -40,6 +40,8 @@
 
 				<!-- display one feed -->
 				{if="$action=='selectedFeed'"}
+					<a target="_blank" href="{$currentFeed->getWebSite()}">{$currentFeed->getName()}</a>
+					<div class="clear"></div>
 					{function="_t('SEE_THE')"} 
 					<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=unread">{function="ucfirst(_t('UNREAD'))"}</a> / 
 					<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=older">{function="_t('OLDER')"}</a> {function="_t('IN_FIRST')"}
@@ -123,6 +125,10 @@
     <section class="content index">
     	{include="article"}
     </section>
+
+    <div id="load_more">
+        <button class="red" onclick="scrollInfini(true);">Charger plus d'événements</button>
+    </div>
 	
 	<!-- back to top -->
 	<div id="backtop"><a id="backtoplink" href="#logo">ꜛ</a></div>
