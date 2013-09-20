@@ -130,12 +130,9 @@
 			margin:0;
 			border:0;
         }
-        #idFrameSynchro {
+        #idFrameSynchro, #idFrame {
             width: 100%;
 		}
-        .importFrame {
-            width: 100%;
-        }
 /* ----------------------------- */
 /* ==layout and modules */
 /* ----------------------------- */
