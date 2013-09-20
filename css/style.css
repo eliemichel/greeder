@@ -397,6 +397,9 @@
 		.about .article.digest h2 {
 			font-size:1.3em;
 		}
+        article.scroll {
+            display: none;
+        }
         aside.about {
             padding: 5px;
         }

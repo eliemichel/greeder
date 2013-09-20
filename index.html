@@ -126,9 +126,11 @@
     	{include="article"}
     </section>
 
-    <div id="load_more">
-        <button class="red" onclick="scrollInfini(true);">Charger plus d'événements</button>
-    </div>
+    {if="$numberOfItem != 0"}
+        <div id="load_more">
+            <button class="red" onclick="scrollInfini(true);">Charger plus d'événements</button>
+        </div>
+    {/if}
 	
 	<!-- back to top -->
 	<div id="backtop"><a id="backtoplink" href="#logo">ꜛ</a></div>

@@ -38,10 +38,12 @@ $(document).ready(function() {
 	toggleBacktop();
     
     // Initialize ajaxready at first function load
-    $(window).data('ajaxready', true);
-    $('.content').append('<div id="loader">'+_t('LOADING')+'</div>');
-    $(window).data('page', 1);
-    $(window).data('nblus', 0);
+    if($('.index').length) {
+        $(window).data('ajaxready', true);
+        $('.content').append('<div id="loader">'+_t('LOADING')+'</div>');
+        $(window).data('page', 1);
+        $(window).data('nblus', 0);
+    }
 
     if($(window).scrollTop() == 0)
         scrollInfini();
@@ -98,24 +100,28 @@ function scrollInfini(no_scroll_test = false) {
                 success: function(data) {
                     if (data.replace(/^\s+/g,'').replace(/\s+$/g,'') != '')
                     {
+                        // TODO : No scroll class added
                         // Insert new articles right before the loader
                         $('.content #loader').before(data);
                         // Delete script from page to prevent interaction with next and prev
                         $('.content .scriptaddbutton').remove();
                         //si l'élement courant est caché, selectionner le premier élément du scroll -- TODO
-                        if ($('.content section.eventSelected').attr('style')=='display: none;') {
-                            targetThisEvent($('article section.scroll:first'), true);
+                        if ($('.content article.eventSelected').attr('style')=='display: none;') {
+                            targetThisEvent($('article.scroll:first'), true);
                         }
                         // Display events with a fadeIn
-                        $('.content section.scroll').fadeIn(600);
+                        $('.content article.scroll').fadeIn(600);
                         // Delete scroll tag for next scroll
-                        $('.content section.scroll').removeClass('scroll');
+                        $('.content article.scroll').removeClass('scroll');
                         $(window).data('ajaxready', true);
                         $(window).data('page', $(window).data('page')+1);
                         $(window).data('enCoursScroll',0);
                         // Recursive call until a scroll is detected
                         if($(window).scrollTop() == 0)
                             scrollInfini();
+                    }
+                    else {
+                        $('#load_more').remove();
                     }
                 }
             });
