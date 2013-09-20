@@ -55,7 +55,9 @@ $(document).ready(function() {
 
 $(document).scroll(function() {
     toggleBacktop();
-    scrollInfini();
+    if(useAnimations) {
+        scrollInfini();
+    }
 });
 
 function scrollInfini(no_scroll_test = false) {
