@@ -119,15 +119,10 @@ function scrollInfini(no_scroll_test = false) {
                 success: function(data) {
                     if (data.replace(/^\s+/g,'').replace(/\s+$/g,'') != '')
                     {
-                        // TODO : No scroll class added
                         // Insert new articles right before the loader
                         $('.content #loader').before(data);
                         // Delete script from page to prevent interaction with next and prev
                         $('.content .scriptaddbutton').remove();
-                        //si l'élement courant est caché, selectionner le premier élément du scroll -- TODO
-                        if ($('.content article.eventSelected').attr('style')=='display: none;') {
-                            targetThisEvent($('article.scroll:first'), true);
-                        }
                         // Display events with a fadeIn
                         $('.content article.scroll').fadeIn(600);
                         // Delete scroll tag for next scroll

@@ -2,7 +2,7 @@
     
     {$plainDescription=strip_tags($value->getDescription())}	
     
-    <article class="article{if="!$value->getUnread()"} eventRead {/if}{if="$articleDisplayContent==false"} digest {/if}{if="$value->getFavorite() == 1"} favorised {/if}">
+    <article class="article{if="!$value->getUnread()"} eventRead {/if}{if="$articleDisplayContent==false"} digest {/if}{if="$value->getFavorite() == 1"} favorised {/if}{if="$scroll"} scroll{/if}">
         <a class="anchor" id="{$value->getId()}"></a>
         
         <!-- TITRE -->
