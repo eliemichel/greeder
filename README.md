@@ -21,7 +21,8 @@ Comme n'importe quel thème pour Leed, Greeder s'installe très facilement.
 
 <ol>
 	<li>Installez Leed sur votre serveur web en suivant les instructions d'installation de Leed.</li>
-    <li>Si vous utilisez la version "dev" de Leed, téléchargez <a href="https://github.com/tmos/greeder/archive/master.zip">la dernière version archivée du thème Greeder</a> ou clonez le dépôt Git. Si vous utilisez la version stable de Leed, nous vous invitons à aller voir du côté des branches de Greeder. Elles sont sous la forme suivante : "greeder_année.mois_N°commitLeed" et corresspondent aux principales versions stables de Leed. <br/>
+    <li>Si vous utilisez la version "dev" de Leed, téléchargez <a href="https://github.com/tmos/greeder/archive/master.zip">la dernière version archivée du thème Greeder</a> ou clonez le dépôt Git. <br/>
+    Si vous utilisez la version stable de Leed, nous vous invitons à aller voir du côté des branches de Greeder. Elles sont sous la forme suivante : "greeder_année.mois_N°commitLeed" et correspondent aux principales versions stables de Leed. <br/>
     Décompressez l'archive choisie et mettez tout son contenu dans le dossier _templates/_ de votre installation de Leed.
     <li>Renommez le dossier _greeder-master_ de l'archive en _greeder_.</li>
    	<li>Éditez le fichier _constant.php_ à la racine de votre installation de Leed. Modifiez la ligne :<br/>
