@@ -1,13 +1,45 @@
 {include="header"}
 
-	<aside class="mod left w300p about">
+	<aside class="mod left w300p about" id="sidebar">
+	<header>
         <h1 id="logo"><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
+        {if="($myUser==false)"}
+			<form class="formulco" id="connectpublic" action="action.php?action=login" method="POST">
+				<input type="text" class="miniInput left" name="login" placeholder="Identifiant"/>
+				<br>
+				<input type="password" class="miniInput left" name="password" placeholder="Mot de passe"/>
+				<br>
+				<button class="red connexion">Connexion</button>
+			</form>
+		{else}
+			{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
+			<table id="icons">
+				<tr>
+					<th><a href="index.php"><img src="img/home.png" class="icon" alt="{function="_t('HOME')"}"></a></th>
+					<th><a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="{function="_t('FAVORITES')"}"></a></th>
+					<th><a href="settings.php"><img src="img/settings.png" class="icon" alt="{function="_t('MANAGE')"}"></a></th>
+					<th><a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="{function="_t('LAUNCH_SYNCHRONISATION')"}"></a></th>
+					<th><a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.png" class="icon" alt="{function="_t('DISCONNECT')"}"></a></th>
+				</tr>
+			</table>
+			{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
+		{/if}
+		</header>
+		<br>
+		
 		<section class="article eventRead">
-		<h3>Auteur de Leed</h3>
+		<h3>{function="_t('AUTHOR')"}</h3>
 			<ul>
-				<li>Nom : Valentin CARRUESCO aka Idleman</li>
-				<li>Mail : <a href='mailto:idleman@idleman.fr'>idleman@idleman.fr</a></li>
-				<li>Blog : <a href="http://blog.idleman.fr">blog.idleman.fr</a></li>
+				<li>{function="_t('NAME')"} : Valentin CARRUESCO Idleman</li>
+							<li>{function="_t('MAIL')"} : <a href="mailto: idleman@idleman.fr">idleman@idleman.fr</a></li>
+							<li>{function="_t('BLOG')"} : <a href="http://blog.idleman.fr">blog.idleman.fr</a></li>
+							<li>{function="_t('CONTRIBUTORS')"} : 
+								<ul>
+								<li><a href="mailto:cobalt74@gmail.com">Maël ILLOUZ aka Cobalt64</a></li>
+								<li><a href="mailto:christophe.henry@sbgodin.fr">Christophe HENRY aka Sbgodin</a></li>
+								<li><a href="mailto:contact@simounet.net">Simon ALBERNY aka Simounet</a></li>
+								</ul>
+							</li>
 			</ul>
 		</section>
 
@@ -17,83 +49,79 @@
 				<li>Nom : Tom Canac</li>
 				<li>Mail : <a href='mailto:contact@tomcanac.com'>contact@tomcanac.com</a></li>
 				<li>Blog : <a href="http://tomcanac.com">tomcanac.com</a></li>
+				<li>Contributeurs :
+					<ul>
+						<li><a href="http://idleman.fr/">Idleman.fr</li>
+						<li><a href="http://phyks.me/">Phyks</a></li>
+						<li><a href="http://progmatique.fr/">Simon</a></li>
+					</ul>
+				</li>
+
 			</ul>
 		</section>
 	</aside>
 
 	<article class="content mod item about">
+
+		<header>
+			<section class="article">		
+				<h2>{function="_t('ABOUT')"}</h2>
+				<p>{function="_t('ABOUT_LEED')"}</p>
+			</section>
+		</header>
+
 		<section class="article">
-			<h2>GÉNÉRALITÉS</h2>
+			<h2>{function="_t('GENERALITY')"} :</h2>
 			<ul>
-				<li><b>Application :</b> Leed (Light Feed)</li>
-				<li><b>Version :</b> {$VERSION_NUMBER} {$VERSION_NAME}</li>
-				<li><b>Auteur :</b> Valentin CARRUESCO aka <a href='mailto:idleman@idleman.fr'>Idleman</a></li>
-				<li><b>Page projet :</b> <a href="http://projet.idleman.fr/leed">http://projet.idleman.fr/leed</a></li>
-				<li><b>Dépôt GIT :</b> <a href="https://github.com/ldleman/Leed.git">https://github.com/ldleman/Leed.git</a></li>
+				<li><b>{function="_t('APPLICATION')"} :</b> Leed (Light Feed)</li>
+				<li><b>{function="_t('VERSION')"} :</b> {$VERSION_NUMBER} {$VERSION_NAME}</li>
+				<li><b>{function="_t('AUTHOR')"} :</b> Valentin CARRUESCO aka <a href="mailto:idleman@idleman.fr">Idleman</a></li>
+				<li><b>{function="_t('PROJECT_PAGE')"}:</b> <a href="http://projet.idleman.fr/leed">http://projet.idleman.fr/leed</a></li>
+				<li><b>{function="_t('GIT_REPOSITORY')"} :</b> <a href="https://github.com/ldleman/Leed.git">https://github.com/ldleman/Leed.git</a></li>
 				<li><b>Licence :</b> <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/">CC by-nc-sa</a></li>
 			</ul>
 		</section>
 
 		<section class="article">
-			<h2>PRÉSENTATION</h2>
-			<p>
-				<b>Leed (contraction de Light Feed)</b> est un agrégateur RSS libre et minimaliste qui permet la consultation de flux RSS de manière rapide et non intrusive.</p><p>
-				Toutes les tâches de traitement de flux sont effectuées de manière invisible par une tâche synchronisée (Cron), ainsi, l'utilisateur ne subit pas les lenteurs dues à la récupération et au traitement de chacun des flux suivis.</p><p>
-				A noter que Leed est compatible toutes résolutions, sur pc, tablettes et smartphones et fonctionne sous tous les navigateurs.</p><p>
-                Le script est également compatible avec les fichiers d'export/import <abbr title="Outline Processor Markup Language">OPML</abbr> ce qui rend la migration de tous les agrégateurs respectant le standard <abbr title="Outline Processor Markup Language">OPML</abbr> simple et rapide.
-			</p>
+			<h2>{function="_t('PRESENTATION')"}</h2>
+			<p>{function="_t('PRESENTATION_PARAGRAPH')"}</p>
 		</section>
 
 		<section class="article">
-			<h2>INSTALLATION</h2>
-			<ol>
-				<li>Récupérez le projet sur le <a href="https://github.com/ldleman/Leed.git">dépôt GIT</a> de la version courante ou en téléchargeant l'<a href="http://projet.idleman.fr/leed/?page=Téléchargement">archive</a></li>
-				<li>Placez le projet dans votre répertoire web et appliquez une permission chmod 777 sur le dossier et son contenu</li>
-				<li>Depuis votre navigateur, accédez à la page d'installation install.php. Par exemple : http://votre.domaine.fr/leed/install.php et suivez les instructions.</li>
-				<li>Une fois l'installation terminée, supprimez le fichier install.php par mesure de sécurité.</li>
-				<li>Mettez en place un cron (sudo crontab -e pour ouvrir le fichier de cron) et placez y un appel vers la page http://votre.domaine.fr/leed/action.php?action=synchronize. Par exemple : <br/>
-
-				<code>0 * * * * wget -q -O /var/www/leed/logsCron http://127.0.0.1/leed/action.php?action=synchronize</code><br/>
-                pour mettre à jour vos flux toutes les heures à la minute 0 (il est conseillé de ne pas mettre une fréquence trop rapide pour laisser le temps au script de s'exécuter).</li>
-                <li>Appliquez une permission chmod plus restrictive (755 par exemple) sur le dossier de Leed pour plus de sécurité.</li>
-				<li>Le script est installé, merci d'avoir choisi Leed, l'agrégateur RSS libre et svelte :p.</li>
-			</ol>
+			<h2>{function="_t('INSTALLATION')"}</h2>
+			{function="_t('INSTALLATION_PARAGRAPH')"}
 		</section>
 
 		<section class="article">
-			<h2>QUESTIONS & SUGGESTIONS</h2>
-			<ul>
-				<li><b>Pour toutes questions et remarques :</b> Vérifiez dans un premier temps que la réponse ne se trouve pas dans la <a href="http://projet.idleman.fr/leed/?page=FAQ">FAQ</a> ou sur <a href="http://projet.idleman.fr/leed">le wiki du projet</a>, si ce n'est pas le cas, envoyez moi vos questions/suggestions/remarques sur <a href='mailto:idleman@idleman.fr'>idleman@idleman.fr</a></li>
-                <li>Si ces remarques, suggestions et questions concernent spécifiquement le thème greeder, créez une issue sur <a href="https://github.com/tmos/greeder">le dépôt Github de Greeder</a>.</li>
-			</ul>
+			<h2>{function="_t('QUESTIONS_SUGGESTIONS')"}</h2>
+			{function="_t('QUESTIONS_SUGGESTIONS_PARAGRAPH')"}
 		</section>
 
 		<section class="article">
-			<h2>LIBRAIRIES</h2>
-			<ul>
-				<li><b>Responsive / Cross browser :</b> Initializr (<a href="http://www.initializr.com">http://www.initializr.com</a>)</li>
-				<li><b>Javascript :</b> JQuery (<a href="http://www.jquery.com">http://www.jquery.com</a>)</li>
-				<li><b>PHP Template :</b> RainTPL (<a href="http://www.raintpl.com">http://www.raintpl.com</a>)</li>
-				<li><b>Parseur RSS :</b> SimplePie (<a href="http://simplepie.org">http://simplepie.org</a>)</li>
-			</ul>			
+			<h2>{function="_t('LIBRARIES')"}</h2>
+			{function="_t('LIBRARIES_PARAGRAPHE')"}			
 		</section>
 
 		<section class="article">
 			<h2>THÈME</h2>
-				<p>
-					Greeder est un thème reprennant les grandes lignes de l'interface de Google Reader. Le thème est responsive et est donc utilisable sur tous vos appareils.
-				</p>
-				<ul>
-					<li><a href="http://tomcanac.com">Site de l'auteur</a></li>
-					<li><a href="http://tomcanac.com/greeder/">Page officielle du thème</a></li>
-					<li><a href="https://github.com/tmos/greeder">Dépôt Github de Greeder</a></li>
-				</ul>
+			<p>
+				Greeder est un thème pour Leed, ce fut le tout premier à être disponible, dès l'implémentation du système de thèmes.
+				Initialement, Greeder à été créé pour imiter l'apparence de Google Reader, mais cette idée de départ s'est vite révélée être une contrainte, de plus la fermeture du service à poussé Greeder à sortir de ses rails... Pour le meilleur ! Greeder dispose désormais d'une identité propre, et n'est pas une simple copie. En utilisant Greeder, vous bénéficierez d'une interface claire, épurée, vous permettant de vous concentrer sur vos flux. 
+			</p>
+			<p>
+				Grâce au responsive webdesign, Greeder rend Leed utilisable sur tous vos appareils ! Les CSS fluides sauront s'adapter à votre écran desktop, à votre tablette et même à votre smartphone. Couplé aux deux plugins Shortcuts et Touch, vous pourrez même contrôler Leed avec votre clavier sur desktop, et profiter d'actions tactiles inédites sur votre smartphone ! 
+			</p>
+			<ul>
+				<li><a href="http://tomcanac.com">Site de l'auteur</a></li>
+				<li><a href="http://tomcanac.com/greeder/">Page officielle du thème</a></li>
+				<li><a href="https://github.com/tmos/greeder">Dépôt Github de Greeder</a></li>
+			</ul>
 
-                <h3><em>Remerciements :</em></h3>
-                <ul>
-                    <li>Simon (<a href="http://www.progmatique.fr/">progmatique.fr</a>)</li>
-                    <li>Phyks (Github : <a href="https://github.com/phyks">https://github.com/phyks</a>, Site perso : <a href="http://phyks.me">phyks.me</a>)</li>
-                </ul>
+			<h3><em>Remerciements :</em></h3>
+			<ul>
+				<li>Idleman (<a href="http://idleman.fr">idleman.fr</a>)</li>
+				<li>Phyks (Github : <a href="https://github.com/phyks">https://github.com/phyks</a>, Site perso : <a href="http://phyks.me">phyks.me</a>)</li>
+			</ul>
 		</section>
 	</article>
 

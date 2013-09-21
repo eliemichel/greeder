@@ -263,3 +263,94 @@ function toggleAnimations(element) {
         $(element).addClass('grey').removeClass('red').text('Off');
     }
 }
+
+$(window).scroll(function(){
+	scrollInfini();
+});
+
+function scrollInfini() {
+	var deviceAgent = navigator.userAgent.toLowerCase();
+	var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
+
+	if($('.index').length) {
+		// On teste si ajaxready vaut false, auquel cas on stoppe la fonction
+		if ($(window).data('ajaxready') == false) return;
+
+		if(($(window).scrollTop() + $(window).height()) + 1 >= $(document).height()
+		   || agentID && ($(window).scrollTop() + $(window).height()) + 150 > $(document).height())
+		{
+			// lorsqu'on commence un traitement, on met ajaxready à false
+			$(window).data('ajaxready', false);
+ 			
+ 			//j'affiche mon loader pour indiquer le chargement
+			$('article #loader').show();
+			
+			//utilisé pour l'alternance des couleurs d'un article à l'autre
+			if ($('article section:last').hasClass('eventHightLighted')) {
+				hightlighted = 1;
+			} else {
+				hightlighted = 2;
+			}
+			
+			// récupération des variables passées en Get
+			var action = getUrlVars()['action'];
+			var folder = getUrlVars()['folder'];
+			var feed = getUrlVars()['feed'];
+			var order = getUrlVars()['order'];
+			if (order) {
+				order = '&order='+order
+			} else {
+				order = ''
+			}
+			
+			$.ajax({
+				url: './article.php',
+				type: 'post',
+				data: 'scroll='+$(window).data('page')+'&nblus='+$(window).data('nblus')+'&hightlighted='+hightlighted+'&action='+action+'&folder='+folder+'&feed='+feed+order,
+ 
+				//Succès de la requête
+				success: function(data) {
+					if (data.replace(/^\s+/g,'').replace(/\s+$/g,'') != '')
+					{	// on les insère juste avant le loader
+						$('article #loader').before(data);
+						//on supprime de la page le script pour ne pas intéragir avec les next & prev
+						$('article .scriptaddbutton').remove();
+						//si l'élement courant est caché, selectionner le premier élément du scroll
+						if ($('article section.eventSelected').attr('style')=='display: none;') {
+							targetThisEvent($('article section.scroll:first'), true);
+						}
+						// on les affiche avec un fadeIn
+						$('article section.scroll').fadeIn(600);
+						// on supprime le tag de classe pour le prochain scroll
+						$('article section.scroll').removeClass('scroll');
+						$(window).data('ajaxready', true);
+						$(window).data('page', $(window).data('page')+1);
+						$(window).data('enCoursScroll',0);
+						// appel récursif tant qu'un scroll n'est pas detecté.
+						if ($(window).scrollTop()==0) scrollInfini();
+					}
+ 				}
+			});
+			// le chargement est terminé, on fait disparaitre notre loader
+			$('article #loader').fadeOut(400);			
+		}
+	}
+};
+
+/* Fonctions de séléctions */
+/* Cette fonction sera utilisé pour le scrool infinie, afin d'ajouter les évènements necessaires */
+function addEventsButtonLuNonLus(){
+	var handler = function(event){
+			var target = event.target;
+			var id = this.id;
+			if($(target).hasClass('readUnreadButton')){
+				buttonAction(target,id);
+			}else{
+				targetThisEvent(this);
+			}
+	}
+	// on vire tous les évènements afin de ne pas avoir des doublons d'évènements
+	$('article section').unbind('click');
+	// on bind proprement les click sur chaque section
+	$('article section').bind('click', handler);
+}
