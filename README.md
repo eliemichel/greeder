@@ -3,15 +3,15 @@ Greeder
 
 Greeder est un thème pour le logiciel de lecture de flux RSS <a href="https://github.com/ldleman/Leed">Leed</a>.
 
-L’interface de Greeder est inspirée de feu Google Reader, le but de ce thème est de permettre une transition en douceur vers une solution libre et respectueuse de votre vie privée pour lire vos flux RSS. C'est également un thème sobre et élégant qui propose quelques fonctionnalités non disponibles sur le thème Marigolds de Leed (notamment le choix des raccourcis claviers dans Leed, voir le dépôt des plugins pour plus d'informations). 
+L’interface de Greeder est inspirée de feu Google Reader, le but de ce thème est de permettre une transition en douceur vers une solution libre et respectueuse de votre vie privée pour lire vos flux RSS. C'est également un thème sobre et élégant qui propose quelques fonctionnalités non disponibles sur le thème Marigolds de Leed (Choix des raccourcis claviers dans Leed, actions tactiles avancées, ... ). 
 
 Le thème est responsive, vous pourrez donc l’utiliser pour lire sur votre ordinateur, tablette, smartphone sans problème : l’interface fluide s’adaptera à vos différents formats d’écran.
 
-Un aperçu du thème est disponible sur <a href="http://projets.tomcanac.com/demo-greeder/">cette instance de démonstration</a>.
+Un aperçu du thème est disponible sur <a href="http://projets.tomcanac.com/demo/greeder/">cette instance de démonstration</a>.
 
 # Fonctionnalités
 
-* Thème minimal, léger. Fonctionnalités avancées disponibles _via_ plugin.
+* Thème minimal et léger.
 * Fonctionnalités tactiles (swipe to read, ...) disponibles _via_ un plugin.
 * Gestion avancée des raccourcis claviers ( _via_ plugin). Possibilité de configurer les raccourcis claviers.
 
@@ -21,7 +21,8 @@ Comme n'importe quel thème pour Leed, Greeder s'installe très facilement.
 
 <ol>
 	<li>Installez Leed sur votre serveur web en suivant les instructions d'installation de Leed.</li>
-    <li>Téléchargez <a href="https://github.com/tmos/greeder/archive/master.zip">la dernière version archivée du thème Greeder</a> ou clonez le dépôt Git. Décompressez l'archive et mettez tout son contenu dans le dossier _templates/_ de votre installation de Leed.
+    <li>Si vous utilisez la version "dev" de Leed, téléchargez <a href="https://github.com/tmos/greeder/archive/master.zip">la dernière version archivée du thème Greeder</a> ou clonez le dépôt Git. Si vous utilisez la version stable de Leed, nous vous invitons à aller voir du côté des branches de Greeder. Elles sont sous la forme suivante : "greeder_année.mois_N°commitLeed" et corresspondent aux principales versions stables de Leed. <br/>
+    Décompressez l'archive choisie et mettez tout son contenu dans le dossier _templates/_ de votre installation de Leed.
     <li>Renommez le dossier _greeder-master_ de l'archive en _greeder_.</li>
    	<li>Éditez le fichier _constant.php_ à la racine de votre installation de Leed. Modifiez la ligne :<br/>
         <code>define('DEFAULT_THEME','marigolds');</code><br/>
@@ -40,7 +41,7 @@ Il est possible de désactiver globalement les animations en javascript utilisé
 * Site du logiciel Leed : http://projet.idleman.fr/leed
 * GitHub de Leed : https://github.com/ldleman/Leed
 * Site du thème Greeder : http://tomcanac.com/greeder/
-* Démo de Greeder : http://projets.tomcanac.com/demo-greeder/
+* Démo de Greeder : http://projets.tomcanac.com/demo/greeder/
 * Dépôt des plugins spécifiques pour greeder : https://github.com/tmos/greeder-plugins
 
 Greeder est un thème initié et développé par Tom Canac (@tmos, http://tomcanac.com).<br/>
@@ -50,8 +51,9 @@ Leed est développé par Idleman (@Idleman, http://idleman.fr/)
 
 Merci aux contributeurs suivants :
 
-* Simon (http://progmatique.fr)
 * Phyks (@Phyks, http://phyks.me)
+* Simon (http://progmatique.fr)
+
 
 # Informations pour les développeurs de plugins
 
