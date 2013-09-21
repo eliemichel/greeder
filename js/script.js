@@ -60,7 +60,7 @@ $(document).ready(function() {
     }
 
     if($(window).scrollTop() == 0)
-        scrollInfini();
+        scrollInfini(true);
 
     // Disable animations if needed
     if(useAnimations) {
