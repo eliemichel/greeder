@@ -59,7 +59,7 @@ $(document).ready(function() {
         $(window).data('nblus', 0);
     }
 
-    if($(window).scrollTop() == 0)
+    if($(window).scrollTop() == 0 && !usePagination)
         scrollInfini(true);
 
     // Disable animations if needed
