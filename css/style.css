@@ -352,6 +352,9 @@
 			min-height: calc(100% - 25px);
 			min-height: -webkit-calc(100% - 25px);
 		}
+        section.content #loader {
+            display: none;
+        }
         .settingsBloc {
             padding: 0;
         }
@@ -394,6 +397,9 @@
 		.about .article.digest h2 {
 			font-size:1.3em;
 		}
+        article.scroll {
+            display: none;
+        }
         aside.about {
             padding: 5px;
         }
@@ -483,6 +489,11 @@
 			color: white;
 			display: block;
 		}
+    /*load more button*/
+        #load_more {
+            text-align: center;
+            overflow: hidden;
+        }
 
 /* ----------------------------- */
 /* ==footer */
