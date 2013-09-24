@@ -100,7 +100,8 @@ $(document).scroll(function() {
     }
 });
 
-function scrollInfini(no_scroll_test = false) {
+function scrollInfini(no_scroll_test) {
+    if (typeof(no_scroll_test)==='undefined') no_scroll_test = false;
     var deviceAgent = navigator.userAgent.toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
 
