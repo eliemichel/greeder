@@ -491,13 +491,28 @@
 		}
     /*load more button*/
         #load_more {
-            text-align: center;
-            overflow: hidden;
+        	margin:25px 0px 25px 300px;
+		text-align: center;
+		overflow: hidden;
         }
 
 /* ----------------------------- */
 /* ==footer */
 /* ----------------------------- */
+	/*pagination*/	
+		#pagination{
+			margin:10px 0px 3px -2px;
+			text-align: center;
+		}
+		a.page {
+			margin-right:2px;
+			margin-left:2px;
+			padding:8px 12px 7px;
+			-webkit-border-radius: 2px;
+			border-radius:2px;
+			font-size:13px;
+			font-weight:bold;
+		}
 	/*credits*/
 		footer > *{
 			margin: 0px;
@@ -667,6 +682,9 @@
 			}
 			table .tabledescflux{
 				width: 75%;
+			}
+			#load_more{
+				margin:25px 0px;
 			}
 		/*back to top*/
 			#backtop{
