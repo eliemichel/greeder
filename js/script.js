@@ -54,7 +54,7 @@ $(document).ready(function() {
 
         $('#greederprefBloc button#fixSidebarButton').removeClass('disabled_button').text('Off').addClass('grey');
 
-        if(usePagination) { // Pagination enabled
+        if(fixSidebar) { // Sidebar fixed
             $('#greederprefBloc button#fixSidebarButton').text('On').removeClass('grey').addClass('red');
         }
         else {
