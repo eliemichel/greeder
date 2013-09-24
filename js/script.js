@@ -2,6 +2,8 @@
 var useAnimations = true;
 // Enable / Disable paginations : true = enabled, false = disabled
 var usePagination = false;
+// Fix or not the sidebar : true = fixed, false = not fixed
+var fixSidebar = false;
 
 // Mask back to top button if JS is enabled
 // (and display it later if needed)
@@ -22,8 +24,11 @@ $(document).ready(function() {
     if($.cookie('greederprefAnimations') == 0) { // Animations disabled
         useAnimations = false;
     }
-    if($.cookie('greederprefPagination') == 1) { // Animations disabled
+    if($.cookie('greederprefPagination') == 1) { // Pagination enabled
         usePagination = true;
+    }
+    if($.cookie('greederprefFixSidebar') == 1) { // Fix sidebar
+        fixSidebar = true;
     }
 
     // Greeder settings page
@@ -45,6 +50,15 @@ $(document).ready(function() {
         }
         else {
             $('#greederprefBloc button#paginationButton').text('Off').removeClass('red').addClass('grey');
+        }
+
+        $('#greederprefBloc button#fixSidebarButton').removeClass('disabled_button').text('Off').addClass('grey');
+
+        if(usePagination) { // Pagination enabled
+            $('#greederprefBloc button#fixSidebarButton').text('On').removeClass('grey').addClass('red');
+        }
+        else {
+            $('#greederprefBloc button#fixSidebarButton').text('Off').removeClass('red').addClass('grey');
         }
     }
 
@@ -71,6 +85,11 @@ $(document).ready(function() {
     // Handle pagination
     if(!usePagination) {
         $('#pagination').remove();
+    }
+
+    // Handle position fix for sidebar
+    if(fixSidebar) {
+        $('aside#sidebar').addClass('fixed');
     }
 });
 
@@ -423,6 +442,27 @@ function togglePagination(element) {
 
     // Store configuration in a cookie
     $.cookie('greederprefPagination', state, {
+        expire : 31536000, // expires in one year
+    });
+
+    if(state == 1) {
+        $(element).addClass('red').removeClass('grey').text('On');
+    }
+    else {
+        $(element).addClass('grey').removeClass('red').text('Off');
+    }
+}
+
+// Handles button to fix sidebar
+function toggleFixSidebar(element) {
+    var state = 1;
+    
+    if($(element).text() == 'On') { // If off, switch it to on
+        state = 0;
+    }
+
+    // Store configuration in a cookie
+    $.cookie('greederprefFixSidebar', state, {
         expire : 31536000, // expires in one year
     });
 
