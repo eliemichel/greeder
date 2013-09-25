@@ -23,7 +23,7 @@ fi
 # Combine js files
 cat js/script.js > js/script.combined.js
 
-csstidy < css/style.css > css/style.min.css
+csstidy css/style.css css/style.min.css
 jsmin < js/script.combined.js > js/script.min.js
 
 rm js/script.combined.js
