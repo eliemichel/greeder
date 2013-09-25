@@ -7,10 +7,6 @@
 
 echo ">>> Minify hook started"
 
-if [ -e "js/script.combined.js" ]
-then
-    rm js/script.combined.js
-fi
 if [ -e "js/script.min.js" ]
 then
     rm js/script.min.js
@@ -20,13 +16,8 @@ then
     rm css/style.min.css
 fi
 
-# Combine js files
-cat js/script.js > js/script.combined.js
-
 csstidy css/style.css css/style.min.css
-jsmin < js/script.combined.js > js/script.min.js
-
-rm js/script.combined.js
+cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js | jsmin > js/script.min.js
 
 git add css/style.min.css
 git add js/script.min.js
