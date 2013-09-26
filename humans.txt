@@ -3,7 +3,7 @@
 
 
 /* TEAM */
-  Creator: Tom Canac (contact@tomcanac.com)
+  Creator: Tom Canac (contact [at] tomcanac.com)
   Contributors :  Phyks (http://phyks.me)
                   Simon (progmatique.fr)
 
