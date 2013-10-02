@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# You'll need to manually install the following
+# command line utilities :
+# * csstidy to minify CSS
+# * jsmin to minify JS
+
+echo ">>> Minify hook started"
+
+if [ -e "js/script.min.js" ]
+then
+    rm js/script.min.js
+fi
+if [ -e "css/style.min.css" ]
+then
+    rm css/style.min.css
+fi
+
+csstidy css/style.css css/style.min.css
+cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js | jsmin > js/script.min.js
+
+git add css/style.min.css
+git add js/script.min.js
+
+echo -e ">>> CSS and JS files minified\n"
