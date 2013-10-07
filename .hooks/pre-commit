@@ -5,18 +5,23 @@
 # * csstidy to minify CSS
 # * jsmin to minify JS
 
-echo ">>> Minify hook started"
+
+# *** Replace these two vars if csstidy / jsmin are not in your path ***
+CSSTIDY=csstidy
+JSMIN=jsmin
+# ***
 
 if git diff-index --cached HEAD | grep js/script.js > /dev/null 2>&1
 then
+    echo ">>> Minify hook started"
     if [ -e "js/script.min.js" ]
     then
         rm js/script.min.js
     fi
 
-    if type jsmin 2>/dev/null >/dev/null
+    if type $JSMIN 2>/dev/null >/dev/null
     then
-        cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js | jsmin > js/script.min.js
+        cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js | $JSMIN > js/script.min.js
     else
         cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js > js/script.min.js
     fi
@@ -26,14 +31,15 @@ fi
 
 if git diff-index --cached HEAD | grep css/style.css > /dev/null 2>&1
 then 
+    echo ">>> Minify hook started"
     if [ -e "css/style.min.css" ]
     then
         rm css/style.min.css
     fi
 
-    if type jsmin 2>/dev/null >/dev/null
+    if type $CSSTIDY 2>/dev/null >/dev/null
     then
-        csstidy css/style.css css/style.min.css
+        $CSSTIDY css/style.css css/style.min.css
     else
         cp css/style.css css/style.min.css
     fi
