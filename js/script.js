@@ -1,4 +1,4 @@
-// Enable / Disable animations : true = enabled, false = disabled
+// Enable and Disable animations : true = enabled, false = disabled
 var useAnimations = true;
 // Enable / Disable paginations : true = enabled, false = disabled
 var usePagination = false;
