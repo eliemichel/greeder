@@ -1,17 +1,16 @@
 #!/bin/sh
 
-# You'll need to manually install the following
-# command line utilities :
-# * csstidy to minify CSS
-# * jsmin to minify JS
+# This hook handle CSS and JS minification
 
+# ******************************************************************
+# You'll need to have java installed on your system to use this hook
+# ******************************************************************
 
-# *** Replace these two vars if csstidy / jsmin are not in your path ***
-CSSTIDY=csstidy
-JSMIN=jsmin
+# *** Replace these two vars if need to use another YUICOMPRESSOR than provided ***
+YUICOMPRESSOR=".hooks/yuicompressor-2.4.8.jar"
 # ***
 
-if git diff-index --cached HEAD | grep js/script.js > /dev/null 2>&1
+if `git diff-index --cached HEAD | grep js/script.js > /dev/null 2>&1` || ! [ -e "js/script.min.js" ]
 then
     echo ">>> Minify hook started"
     if [ -e "js/script.min.js" ]
@@ -19,17 +18,15 @@ then
         rm js/script.min.js
     fi
 
-    if type $JSMIN 2>/dev/null >/dev/null
-    then
-        cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js | $JSMIN > js/script.min.js
-    else
-        cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js > js/script.min.js
-    fi
+    cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js > js/script.tmp.js
+    java -jar $YUICOMPRESSOR -o "js/script.min.js" js/script.tmp.js
+    rm js/script.tmp.js
+
     git add js/script.min.js
     echo -e ">>> JS files minified.\n"
 fi
 
-if git diff-index --cached HEAD | grep css/style.css > /dev/null 2>&1
+if `git diff-index --cached HEAD | grep css/style.css > /dev/null 2>&1` || ! [ -e "css/style.min.css" ]
 then 
     echo ">>> Minify hook started"
     if [ -e "css/style.min.css" ]
@@ -37,12 +34,7 @@ then
         rm css/style.min.css
     fi
 
-    if type $CSSTIDY 2>/dev/null >/dev/null
-    then
-        $CSSTIDY css/style.css css/style.min.css
-    else
-        cp css/style.css css/style.min.css
-    fi
+    java -jar $YUICOMPRESSOR css/style.css -o css/style.min.css
     git add css/style.min.css
     echo -e ">>> CSS files minified.\n"
 fi
