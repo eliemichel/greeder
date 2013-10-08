@@ -7,7 +7,7 @@
 # ******************************************************************
 
 # *** Replace these two vars if need to use another YUICOMPRESSOR than provided ***
-YUICOMPRESSOR=".bin/yuicompressor-2.4.8.jar"
+YUICOMPRESSOR=".hooks/yuicompressor-2.4.8.jar"
 # ***
 
 if `git diff-index --cached HEAD | grep js/script.js > /dev/null 2>&1` || ! [ -e "js/script.min.js" ]
