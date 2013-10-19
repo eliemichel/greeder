@@ -226,6 +226,9 @@
 			width: 20%;
 			text-align: center;
 		}
+		#icons a{
+			display:block;
+		}
 	/*unread elements*/
 		#numelem {
 			text-align: center;
