@@ -237,8 +237,8 @@ function removeFavorite(element, id) {
 
 function renameFolder(element, folder) {
 	var folderLine = $(element).parent().parent();
-	var folderNameCase = $('span:first',folderLine);
-	var value = folderNameCase.html();
+	var folderNameCase = $('h1:first',folderLine);
+	var value = $('span:first', folderNameCase).html();
 
 	$(element).html(_t('SAVE'));
 	$(element).attr('onclick','saveRenameFolder(this,'+folder+')');
@@ -253,7 +253,8 @@ function saveRenameFolder(element, folder) {
 
 	$(element).html(_t('RENAME'));
 	$(element).attr('onclick','renameFolder(this,'+folder+')');
-	folderNameCase.replaceWith('<h1>'+value+'</h1>');
+    var nb_feeds = $('td.tabledescflux', $(element).closest('article')).length;
+	folderNameCase.replaceWith('<h1><span>'+value+'</span> ('+nb_feeds+')</h1>');
 
 	$.ajax({
 		url: "./action.php?action=renameFolder",
