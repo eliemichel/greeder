@@ -1,0 +1,72 @@
+{loop="$events"}
+
+	{$plainDescription=strip_tags($value->getDescription())}	
+
+	<article {if="!$value->getUnread()"}class="eventRead"{/if} {if="$value->getFavorite() == 1"}class="favorised"{/if}>
+		<a class="anchor" id="{$value->getId()}"></a>
+		<nav>
+			{function="Plugin::callHook("event_pre_title", array(&$value))"}
+			{if="$value->getFavorite()!=1"}
+				<button class="btn favs" onclick="addFavorite(this,{$value->getId()});" >★</button>
+			{else}
+				<button class="btn favs" onclick="removeFavorite(this,{$value->getId()});" >★</button>
+			{/if}
+			<button class="btn red" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">{function="_t('READ')"}/{function="_t('UNREAD')"}</button>
+
+		</nav>
+		<h1>
+			<span class="star" >★</span>
+			<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" title="{$plainDescription}">{$value->getTitle()}</a> 
+			{function="Plugin::callHook("event_post_title", array(&$value))"}
+		</h1>
+		
+		<h2>
+			{function="Plugin::callHook("event_pre_top_options", array(&$value))"}
+			{if="$articleDisplayLink"}
+				<a href="index.php?action=selectedFeed&feed={$value->getFeed()}">{$allFeeds['idMap'][$value->getFeed()]['name']}</a>
+			{/if}
+			{if="$articleDisplayAuthor"}
+				par {$value->getCreator()}
+			{/if}
+
+			{if="$articleDisplayDate"} 
+				{$value->getPubdateWithInstant($time)} 
+			{/if}
+			{function="Plugin::callHook("event_post_top_options", array(&$value))"}
+		</h2>
+
+		<!-- CONTENT -->
+		{if="$articleDisplayContent"}
+		<div class="articleContent">
+			{if="$articleView=='partial'"}
+				{function="Plugin::callHook("event_pre_description", array(&$value))"}
+				{$value->getDescription()}
+				{function="Plugin::callHook("event_post_description", array(&$value))"}
+			{else}
+				{function="Plugin::callHook("event_pre_content", array(&$value))"}
+				{$value->getContent()}
+				{function="Plugin::callHook("event_post_content", array(&$value))"}
+			{/if}
+		</div> 
+		{/if}
+		<!-- DIGEST VIEW -->
+		{if="$articleView!='partial'"}
+		<h1>
+				<span class="star" >★</span>
+				<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" title="{$plainDescription}">{$value->getTitle()}</a> 
+				{function="Plugin::callHook("event_post_title", array(&$value))"}
+			</h1>
+			<nav>
+				<button class="btn red" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">{function="_t('READ')"}/{function="_t('UNREAD')"}</button>
+				{if="$value->getFavorite()!=1"}
+					<a class="grey favs" onclick="addFavorite(this,{$value->getId()});" >★</a> 
+				{else}
+					<a class="grey favs" onclick="removeFavorite(this,{$value->getId()});" >★</a> 
+				{/if}
+				{function="Plugin::callHook("event_pre_title", array(&$value))"}
+			</nav>
+			
+		{/if}
+	</article>
+{/loop}
+

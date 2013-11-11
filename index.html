@@ -1,8 +1,9 @@
 {include="header"}
+
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
-<aside class="mod left w20 mrs ma0 pa0 aside">
-	<nav id="navigation" role="navigation">
-		<h1><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
+<aside>
+	<nav>
+		<h1><a href="./index.php"><img src="img/logo.png" alt="Leed"></a></h1>
 		{if="($myUser==false)"}
 			<form id="connect" action="action.php?action=login" method="POST">
 				<input type="text" name="login" placeholder="Identifiant"/>
@@ -11,7 +12,7 @@
 			</form>
 		{else}
 			{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
-			<table id="icons">
+			<table>
 				<tr>
 					<th><a href="index.php"><img src="img/home.png" class="icon" alt="{function="_t('HOME')"}"></a></th>
 					<th><a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="{function="_t('FAVORITES')"}"></a></th>
@@ -23,14 +24,93 @@
 			{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
 		{/if}
 	</nav>
+	
+	<div id="breadcrumb" class="fade">
+	<!-- display one feed -->
+		{if="$action=='selectedFeed'"}
+			<a target="_blank" href="{$currentFeed->getWebSite()}">{$currentFeed->getName()}</a>
+			<div class="clear"></div>
+			{function="_t('SEE_THE')"}
+			<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=unread">{function="ucfirst(_t('UNREAD'))"}</a> /
+			<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=older">{function="_t('OLDER')"}</a> {function="_t('IN_FIRST')"}
+		{/if}
+		<!-- display one folder -->                
+		{if="$action=='selectedFolder'"}
+			{$currentFolder->getName()}
+		{/if}
+		<!-- display favorites -->                
+		{if="$action=='favorites'"}
+			{function="_t('FAVORITES_EVENTS',array($numberOfItem))"}
+		{/if}
+		<!-- display unread elements (default) -->                                                
+		{if="($action=='unreadEvents') || ($action=='')"}
+			{function="_t('UNREAD')"} ({$numberOfItem})
+		{/if}
+	</div>
+                        
+    <button class="btn red" onclick="if(confirm('{function="_t('CONFIRM_MARK_ALL_AS_READ')"}'))window.location='action.php?action=readAll'">{function="_t('MARK_ALL_AS_READ')"}</button>
+                {function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
+                <ul>
+                        <!--parse feeds for each folder-->
+                    	{loop="folders"}
+							{$feeds=""}
+								{if="isset($allFeedsPerFolder[$value->getId()])"}
+									{$feeds=$allFeedsPerFolder[$value->getId()]}
+								{/if}
+								{if="isset($allEvents[$value->getId()])"}
+									{$unreadEventsForFolder=$allEvents[$value->getId()]}
+								{/if}
+                        		<!-- one folder -->
+								<li>
+									<a class="readFolder" title="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
+										{if="!$value->getIsopen()"}+{else}-{/if}
+									</a>
+									{function="Plugin::callHook("menu_pre_folder_link", array(&$value))"}
+		
+									<a title="{function="_t('READ_FOLDER_ITEMS')"}" href="index.php?action=selectedFolder&amp;folder={$value->getId()}">
+										{$value->getName()}
+									</a>
+		
+									{function="Plugin::callHook("menu_post_folder_link", array(&$value))"}
+									{if="$unreadEventsForFolder!=0"}
+									<a class="fade" title="{function="_t('MARK_AS_READ_FOLDER_ITEMS',array($unreadEventsForFolder))"}" onclick="if(confirm('{function="_t('READ_ALL_FOLDER_CONFIRM')"}'))window.location='action.php?action=readFolder&amp;folder={$value->getId()}';">
+										({$unreadEventsForFolder})
+									</a>
+									{/if}
+		
+									<!-- folder's feeds -->
+									<ul {if="!$value->getIsopen()"}style="display:none;"{/if}>
+										{if="count($feeds)!=0"}
+											{loop="feeds"}
+												<li>
+													{function="Plugin::callHook("menu_pre_feed_link", array(&$value))"}
+														<a href="index.php?action=selectedFeed&amp;feed={$value2['id']}" title="{$value2['url']}">
+															{function="Functions::truncate($value2['name'],37)"}
+														</a>
+													{if="isset($unread[$value2['id']])"}
+														<a class="fade" onclick="if(confirm('{function="_t('CONFIRM_MARK_FEED_AS_READ')"}'))window.location='action.php?action=readAll&amp;feed={$value2['id']}';">
+															{$unread[$value2['id']]}
+														</a>
+													{/if}
+													{function="Plugin::callHook("menu_post_feed_link", array(&$value))"}
+												</li>
+											{/loop}
+										{/if}
+									</ul>
+								</li>
+                        	{$unreadEventsForFolder=0}
+                        {/loop}
+                </ul>
+
+        {function="Plugin::callHook("menu_post_folder_menu", array(&$myUser))"}
+	
 </aside> 
 
-<div id="main" role="main" class="mod ma0 pam txtleft">
-	<p class="">Lorem Salu bissame ! Wie geht's les samis ? Hans apporte moi une Wurschtsalad avec un picon bitte, s'il te plaît.
-		Voss ? Une Carola et du Melfor ? Yo dû, espèce de Knäckes, ch'ai dit un picon !</p> 
-	<p class="">Yoo ch'ai lu dans les DNA que le Racing a encore perdu contre Oberschaeffolsheim. Verdammi et moi ch'avais donc parié deux knacks et une flammekueche. Ah so ? T'inquiète, ch'ai ramené du schpeck, du chambon, un kuglopf et du schnaps dans mon rucksack. Allez, s'guelt ! Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p>
-	<p class="">Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
-</div>
+<main>
+	{include="article"}
+</main>
+
+<div class="clear"></div>
 
 {/if}
 {include="footer"}
