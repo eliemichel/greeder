@@ -1,0 +1,36 @@
+{include="header"}
+{if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
+<aside class="mod left w20 mrs ma0 pa0 aside">
+	<nav id="navigation" role="navigation">
+		<h1><a href="./index.php"><img src="img/logo.png" alt="logo"></a></h1>
+		{if="($myUser==false)"}
+			<form id="connect" action="action.php?action=login" method="POST">
+				<input type="text" name="login" placeholder="Identifiant"/>
+				<input type="password" name="password" placeholder="Mot de passe"/>
+				<button class="btn red">Connexion</button>
+			</form>
+		{else}
+			{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
+			<table id="icons">
+				<tr>
+					<th><a href="index.php"><img src="img/home.png" class="icon" alt="{function="_t('HOME')"}"></a></th>
+					<th><a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="{function="_t('FAVORITES')"}"></a></th>
+					<th><a href="settings.php"><img src="img/settings.png" class="icon" alt="{function="_t('MANAGE')"}"></a></th>
+					<th><a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="{function="_t('LAUNCH_SYNCHRONISATION')"}"></a></th>
+					<th><a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.png" class="icon" alt="{function="_t('DISCONNECT')"}"></a></th>
+				</tr>
+			</table>
+			{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
+		{/if}
+	</nav>
+</aside> 
+
+<div id="main" role="main" class="mod ma0 pam txtleft">
+	<p class="">Lorem Salu bissame ! Wie geht's les samis ? Hans apporte moi une Wurschtsalad avec un picon bitte, s'il te plaît.
+		Voss ? Une Carola et du Melfor ? Yo dû, espèce de Knäckes, ch'ai dit un picon !</p> 
+	<p class="">Yoo ch'ai lu dans les DNA que le Racing a encore perdu contre Oberschaeffolsheim. Verdammi et moi ch'avais donc parié deux knacks et une flammekueche. Ah so ? T'inquiète, ch'ai ramené du schpeck, du chambon, un kuglopf et du schnaps dans mon rucksack. Allez, s'guelt ! Wotch a kofee avec ton bibalaekaess et ta wurscht ? Yeuh non che suis au réchime, je ne mange plus que des Grumbeere light et che fais de la chym avec Chulien. Tiens, un rottznoz sur le comptoir.</p>
+	<p class="">Tu restes pour le lotto-owe ce soir, y'a baeckeoffe ? Yeuh non, merci vielmols mais che dois partir à la Coopé de Truchtersheim acheter des mänele et des rossbolla pour les gamins. Hopla tchao bissame ! Consectetur adipiscing elit</p>
+</div>
+
+{/if}
+{include="footer"}
