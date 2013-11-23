@@ -187,7 +187,7 @@ function toggleFolder(element, folder) {
 	}
 
 	feedBloc.slideToggle(200);
-	$(element).html((!open ? '+' : '-'));
+	$(element).html((!open ? '►' : '▼'));
 	$.ajax({
 		url:"./action.php?action=changeFolderState",
 		data:{id:folder, isopen:open}

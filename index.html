@@ -63,8 +63,8 @@
 								{/if}
                         		<!-- one folder -->
 								<li>
-									<a class="readFolder" title="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
-										{if="!$value->getIsopen()"}+{else}-{/if}
+									<a class="FoldFolder" title="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
+										{if="!$value->getIsopen()"}►{else}▼{/if}
 									</a>
 									{function="Plugin::callHook("menu_pre_folder_link", array(&$value))"}
 		

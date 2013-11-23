@@ -173,8 +173,15 @@
 	aside > button.red {
 		width: 100%;
 	}
+	aside ul{
+		list-style:none;
+	}
 	ul .fade{
 		float: right;
+	}
+	a.FoldFolder{
+		color:#6A6A6A;
+		font-size:1.2em;
 	}
 /*Articles*/
 	main {
@@ -185,6 +192,10 @@
 		background:#FFF;
 		border: 1px solid #e5e5e5;
 		border-radius:2px;
+	}
+	.eventRead{
+		background-color: #CDCDCD;
+		border-color: #CDCDCD;
 	}
 	.articleContent{
 		padding: 5px;
@@ -197,8 +208,9 @@
 		font-size: 1.6em;
 	}
 	article > h2{
-		font-weight: normal;
 		margin-top: -15px;
+		font-weight: normal;
+		font-style: italic;
 		font-size: .9em;
 	}
 	article nav{
