@@ -42,123 +42,123 @@
 
 <main>
             {if="(isset($myUser)) && ($myUser!=false)"}
-    <!-- --><section id="preferenceBloc">
-                <article>
-                    <form method="POST" action="action.php?action=updateConfiguration">				
-                    
-                    <article class="article">
-                        <h2>Général</h2>
-                        <p><label for="root">Racine du projet :</label> <input type="text" id="root" name="root" value="{$configurationManager->get('root')}"></p>
-                        Laissez bien un "/" en fin de chaîne. Par exemple : http://monsite.com/leed/
-                    </article>
+		<section id="preferenceBloc">
+			<article>
+				<form method="POST" action="action.php?action=updateConfiguration">				
 
-                    <article class="article">
-                        <h2>Utilisateur</h2>
-                        <p><label for="login">Identifiant :</label> <input type="text" id="login" name="login" value="{$myUser->getLogin()}"></p>
-                        <p><label for="password">Mot de passe :</label> <input type="password" id="password" name="password" value=""></p>
-                        Laissez le champ vide si vous ne souhaitez pas changer le mot de passe.
-                    </article>
+					<article>
+						<h2>Général</h2>
+							<label for="root">Racine du projet :</label>
+							<input type="text" id="root" name="root" value="{$configurationManager->get('root')}">
+							<p>Laissez bien un "/" en fin de chaîne. Par exemple : http://monsite.com/leed/</p>
+					</article>
 
-                    <article class="article">
-                        <h2>Synchronisation</h2>
-                        <p><input type="radio"  {if="$synchronisationType=='auto'"} checked="checked" {/if} value="auto" id="synchronisationTypeComplete" name="synchronisationType"> <label for="synchronisationTypeComplete"><strong>Automatique (complet) :</strong></label> Le script mettra à jour automatiquement tous vos flux en une seule fois, ceci permet la mise à jour en une fois de tous vos flux mais peux faire ramer votre serveur, les appels cron ne doivent pas être trop rapprochés.</p>
-                        <p><input type="radio" {if=" $synchronisationType=='graduate'"} checked="checked" {/if}  value="graduate" id="synchronisationTypeGraduated" name="synchronisationType"> <label for="synchronisationTypeGraduated"><strong>Automatique (gradué) :</strong></label> Le script mettra à jour automatiquement les 10 flux les plus vieux en terme de mise à jour, ceci permet d'alléger la charge serveur et d'éviter les timeouts intempestifs mais nécessite un appel de cron plus fréquent afin de mettre à jour le plus de flux possible.</p>
-                        <p><input type="radio" {if="$synchronisationType=='manual'"} checked="checked" {/if}  value="manual" id="synchronisationTypeManual" name="synchronisationType"> <label for="synchronisationTypeManual"><strong>Manuel (complet) :</strong></label> Le script ne fait aucune mise à jour automatique, vous devez faire vous-même les mises à jour depuis l'espace administration.</p>
-                        <strong>Code de synchronisation :</strong> {$synchronisationCode}
-                        <h3>Options de synchronisation :</h3>
-                        <fieldset>
-                            <legend>Activer le cache</legend>
-                            <input type="radio" {if="$synchronisationEnableCache"} checked="checked" {/if} id="synchronisationEnableCacheYes" name="synchronisationEnableCache" value="1"/><label for="synchronisationEnableCacheYes">Oui</label>
-                            <input type="radio" {if="!$synchronisationEnableCache"} checked="checked" {/if} id="synchronisationEnableCacheNo" name="synchronisationEnableCache" value="0"/><label for="synchronisationEnableCacheNo">Non</label><br/>
-                            <p>Cette option vous permet de désactiver la mise en cache. Cependant, la désactivation du cache peut entraîner des temps de chargement plus longs.</p>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Forcer l'intégration</legend>
-                            <input value="1" {if="$synchronisationForceFeed"} checked="checked" {/if} id="synchronisationForceFeedYes" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedYes">Oui</label>
-                            <input {if="!$synchronisationForceFeed"} checked="checked" {/if} value="0" id="synchronisationForceFeedNo" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedNo">Non</label>
-                            <p>Les flux RSS et Atom sont censés avoir des types MIME associés spécifiques afin que le logiciel sache quel type de données il s'agit. Certains flux ne suivent pas ces règles (par exemple text/plain). SimplePie suit les meilleures pratiques par défaut, mais vous pouvez forcer l'intégration avec ce paramètre.</p>
-                        </fieldset>
-                    </article>
+					<article>
+						<h2>Utilisateur</h2>
+							<label for="login">Identifiant :</label> <input type="text" id="login" name="login" value="{$myUser->getLogin()}">
+							<label for="password">Mot de passe :</label> <input type="password" id="password" name="password" value="">
+							<p>Laissez le champ vide si vous ne souhaitez pas changer le mot de passe.</p>
+					</article>
 
-                    <article class="article">
-                            {if="$myUser!=false"}
-                        <h2>Préférences</h2>
-                        <fieldset>
-                            <legend>Autoriser la lecture anonyme</legend>
-                            <input type="radio" {if="$articleDisplayAnonymous=='1'"} checked="checked" {/if} value="1" id="articleDisplayAnonymousYes" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousYes">Oui</label>
-                            <input type="radio" {if="$articleDisplayAnonymous=='0'"} checked="checked" {/if} value="0" id="articleDisplayAnonymousNo" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousNo">Non</label><br/>
-                            <span class="note">NB : si vous choisissez cette option, les utilisateurs non authentifiés pourront consulter vos flux (sans pouvoir les marquer comme lu/non lu).</span>
-                        </fieldset>
-                        <fieldset>
-                            <legend><label for="articlePerPages">Nombre d'articles par page</label></legend>
-                            <input type="text" value="{$configurationManager->get('articlePerPages')}" id="articlePerPages" name="articlePerPages" size="4" />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Articles les plus récents en premier (sur la page d'accueil)</legend>
-                            <input value="1" id="articleDisplayHomeSortYes" name="articleDisplayHomeSort" type="radio"><label for="articleDisplayHomeSortYes">Oui</label>
-                            <input checked="checked" value="0" id="articleDisplayHomeSortNo" name="articleDisplayHomeSort" type="radio"><label for="articleDisplayHomeSortNo">Non</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Articles les plus récents en premier (sur les dossiers)</legend>
-                            <input value="1" id="articleDisplayFolderSortYes" name="articleDisplayFolderSort" type="radio"><label for="articleDisplayFolderSortYes">Oui</label>
-                            <input checked="checked" value="0" id="articleDisplayFolderSorttNo" name="articleDisplayFolderSort" type="radio"><label for="articleDisplayFolderSortNo">Non</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Affichage du lien direct de l'article</legend>
-                            <input type="radio"  {if="$articleDisplayLink=='1'"} checked="checked" {/if}value="1" id="articleDisplayLinkYes" name="articleDisplayLink" /><label for="articleDisplayLinkYes">Oui</label>
-                            <input type="radio" {if="$articleDisplayLink=='0'"} checked="checked" {/if} value="0" id="articleDisplayLinkNo" name="articleDisplayLink" /><label for="articleDisplayLinkNo">Non</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Affichage de la date de l'article</legend>
-                            <input type="radio" {if="$articleDisplayDate=='1'"} checked="checked" {/if} value="1" id="articleDisplayDateYes" name="articleDisplayDate" /><label for="articleDisplayDateYes">Oui</label>
-                            <input type="radio" {if="$articleDisplayDate=='0'"} checked="checked" {/if} value="0" id="articleDisplayDateNo" name="articleDisplayDate" /><label for="articleDisplayDateNo">Non</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Affichage de l'auteur de l'article</legend>
-                            <input type="radio" {if="$articleDisplayAuthor=='1'"} checked="checked" {/if} value="1" id="articleDisplayAuthorYes" name="articleDisplayAuthor" /><label for="articleDisplayAuthorYes">Oui</label>
-                            <input type="radio" {if="$articleDisplayAuthor=='0'"} checked="checked" {/if} value="0" id="articleDisplayAuthorNo" name="articleDisplayAuthor" /><label for="articleDisplayAuthorNo">Non</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Affichage du contenu de l'article</legend>
-                            <input type="radio" onchange="$('.articleView').slideToggle(200);" {if="$articleDisplayContent=='1'"} checked="checked" {/if} value="1" id="articleDisplayContentYes" name="articleDisplayContent" /><label for="articleDisplayContentYes">Oui</label>
-                            <input type="radio" onchange="$('.articleView').slideToggle(200);" {if="$articleDisplayContent=='0'"} checked="checked" {/if} value="0" id="articleDisplayContentNo" name="articleDisplayContent" /><label for="articleDisplayContentNo">Non</label><br/>
-                            <div class="articleView"{$articleDisplayContent==0 ? 'style="display: none;"':''}>
-                                <input type="radio" {if="$articleView=='partial'"} checked="checked" {/if} value="partial" id="articleViewPartial" name="articleView"{if="$articleDisplayContent=='0'"} disabled="disabled"{/if} /><label for="articleViewPartial">Partiel</label>
-                                <input type="radio" {if="$articleView=='complete'"} checked="checked" {/if} value="complete" id="articleViewComplete" name="articleView"{if="$articleDisplayContent=='0'"} disabled="disabled"{/if} /><label for="articleViewComplete">Complet</label>
-                            </div>
-                            <span class="note">NB : si vous choissisez un affichage partiel des articles, un clic sur ces derniers menera à l'article sur le blog de l'auteur.</span>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Conserver les <input type="text" value="{$configurationManager->get('feedMaxEvents')}" name="feedMaxEvents" size="4" /> derniers événements d'un flux</legend>
-                            <span class="note">NB : Plus il y aura d'événements à conserver, plus votre base de données sera importante. Nous vous conseillons de garder les 50 derniers événements au maximum pour conserver une performance correcte.<br />Notez que vos événements marqués comme favoris ne seront jamais supprimés.</span>
-                        </fieldset>
-                    </article>
-                    
-                    <button class="red" name="installButton">Enregistrer</button>
-                    </form>
-                    {else}
-                        <p>Vous devez être connecté pour voir le bookmarklet.</p>
-                    {/if}
-                </article>
-            </section>
+					<article>
+						<h2>Synchronisation</h2>
+							<input type="radio"  {if="$synchronisationType=='auto'"} checked="checked" {/if} value="auto" id="synchronisationTypeComplete" name="synchronisationType"> <label for="synchronisationTypeComplete"><strong>Automatique (complet) :</strong></label>
+								<p>Le script mettra à jour automatiquement tous vos flux en une seule fois, ceci permet la mise à jour en une fois de tous vos flux mais peux faire ramer votre serveur, les appels cron ne doivent pas être trop rapprochés.</p>
+							<input type="radio" {if=" $synchronisationType=='graduate'"} checked="checked" {/if}  value="graduate" id="synchronisationTypeGraduated" name="synchronisationType"> <label for="synchronisationTypeGraduated"><strong>Automatique (gradué) :</strong></label>
+								<p>Le script mettra à jour automatiquement les 10 flux les plus vieux en terme de mise à jour, ceci permet d'alléger la charge serveur et d'éviter les timeouts intempestifs mais nécessite un appel de cron plus fréquent afin de mettre à jour le plus de flux possible.</p>
+							<input type="radio" {if="$synchronisationType=='manual'"} checked="checked" {/if}  value="manual" id="synchronisationTypeManual" name="synchronisationType"> <label for="synchronisationTypeManual"><strong>Manuel (complet) :</strong></label>
+								<p>Le script ne fait aucune mise à jour automatique, vous devez faire vous-même les mises à jour depuis l'espace administration.</p>p>
+							<strong>Code de synchronisation :</strong> {$synchronisationCode}
+							
+							<h3>Options de synchronisation :</h3>
+								<fieldset>
+									<legend>Activer le cache</legend>
+									<input type="radio" {if="$synchronisationEnableCache"} checked="checked" {/if} id="synchronisationEnableCacheYes" name="synchronisationEnableCache" value="1"/><label for="synchronisationEnableCacheYes">Oui</label>
+									<input type="radio" {if="!$synchronisationEnableCache"} checked="checked" {/if} id="synchronisationEnableCacheNo" name="synchronisationEnableCache" value="0"/><label for="synchronisationEnableCacheNo">Non</label><br/>
+									<p>Cette option vous permet de désactiver la mise en cache. Cependant, la désactivation du cache peut entraîner des temps de chargement plus longs.</p>
+								</fieldset>
+								<fieldset>
+									<legend>Forcer l'intégration</legend>
+									<input value="1" {if="$synchronisationForceFeed"} checked="checked" {/if} id="synchronisationForceFeedYes" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedYes">Oui</label>
+									<input {if="!$synchronisationForceFeed"} checked="checked" {/if} value="0" id="synchronisationForceFeedNo" name="synchronisationForceFeed" type="radio"><label for="synchronisationForceFeedNo">Non</label>
+									<p>Les flux RSS et Atom sont censés avoir des types MIME associés spécifiques afin que le logiciel sache quel type de données il s'agit. Certains flux ne suivent pas ces règles (par exemple text/plain). SimplePie suit les meilleures pratiques par défaut, mais vous pouvez forcer l'intégration avec ce paramètre.</p>
+								</fieldset>
+					</article>
+
+					<article>
+						<h2>Préférences</h2>
+							<fieldset>
+								<legend>Autoriser la lecture anonyme</legend>
+								<input type="radio" {if="$articleDisplayAnonymous=='1'"} checked="checked" {/if} value="1" id="articleDisplayAnonymousYes" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousYes">Oui</label>
+								<input type="radio" {if="$articleDisplayAnonymous=='0'"} checked="checked" {/if} value="0" id="articleDisplayAnonymousNo" name="articleDisplayAnonymous" /><label for="articleDisplayAnonymousNo">Non</label><br/>
+								<span class="note">NB : si vous choisissez cette option, les utilisateurs non authentifiés pourront consulter vos flux (sans pouvoir les marquer comme lu/non lu).</span>
+							</fieldset>
+							<fieldset>
+								<legend><label for="articlePerPages">Nombre d'articles par page</label></legend>
+								<input type="text" value="{$configurationManager->get('articlePerPages')}" id="articlePerPages" name="articlePerPages" size="4" />
+							</fieldset>
+							<fieldset>
+								<legend>Articles les plus récents en premier (sur la page d'accueil)</legend>
+								<input value="1" id="articleDisplayHomeSortYes" name="articleDisplayHomeSort" type="radio"><label for="articleDisplayHomeSortYes">Oui</label>
+								<input checked="checked" value="0" id="articleDisplayHomeSortNo" name="articleDisplayHomeSort" type="radio"><label for="articleDisplayHomeSortNo">Non</label>
+							</fieldset>
+							<fieldset>
+								<legend>Articles les plus récents en premier (sur les dossiers)</legend>
+								<input value="1" id="articleDisplayFolderSortYes" name="articleDisplayFolderSort" type="radio"><label for="articleDisplayFolderSortYes">Oui</label>
+								<input checked="checked" value="0" id="articleDisplayFolderSorttNo" name="articleDisplayFolderSort" type="radio"><label for="articleDisplayFolderSortNo">Non</label>
+							</fieldset>
+							<fieldset>
+								<legend>Affichage du lien direct de l'article</legend>
+								<input type="radio"  {if="$articleDisplayLink=='1'"} checked="checked" {/if}value="1" id="articleDisplayLinkYes" name="articleDisplayLink" /><label for="articleDisplayLinkYes">Oui</label>
+								<input type="radio" {if="$articleDisplayLink=='0'"} checked="checked" {/if} value="0" id="articleDisplayLinkNo" name="articleDisplayLink" /><label for="articleDisplayLinkNo">Non</label>
+							</fieldset>
+							<fieldset>
+								<legend>Affichage de la date de l'article</legend>
+								<input type="radio" {if="$articleDisplayDate=='1'"} checked="checked" {/if} value="1" id="articleDisplayDateYes" name="articleDisplayDate" /><label for="articleDisplayDateYes">Oui</label>
+								<input type="radio" {if="$articleDisplayDate=='0'"} checked="checked" {/if} value="0" id="articleDisplayDateNo" name="articleDisplayDate" /><label for="articleDisplayDateNo">Non</label>
+							</fieldset>
+							<fieldset>
+								<legend>Affichage de l'auteur de l'article</legend>
+								<input type="radio" {if="$articleDisplayAuthor=='1'"} checked="checked" {/if} value="1" id="articleDisplayAuthorYes" name="articleDisplayAuthor" /><label for="articleDisplayAuthorYes">Oui</label>
+								<input type="radio" {if="$articleDisplayAuthor=='0'"} checked="checked" {/if} value="0" id="articleDisplayAuthorNo" name="articleDisplayAuthor" /><label for="articleDisplayAuthorNo">Non</label>
+							</fieldset>
+							<fieldset>
+								<legend>Affichage du contenu de l'article</legend>
+								<input type="radio" onchange="$('.articleView').slideToggle(200);" {if="$articleDisplayContent=='1'"} checked="checked" {/if} value="1" id="articleDisplayContentYes" name="articleDisplayContent" /><label for="articleDisplayContentYes">Oui</label>
+								<input type="radio" onchange="$('.articleView').slideToggle(200);" {if="$articleDisplayContent=='0'"} checked="checked" {/if} value="0" id="articleDisplayContentNo" name="articleDisplayContent" /><label for="articleDisplayContentNo">Non</label><br/>
+								<div class="articleView"{$articleDisplayContent==0 ? 'style="display: none;"':''}>
+								<input type="radio" {if="$articleView=='partial'"} checked="checked" {/if} value="partial" id="articleViewPartial" name="articleView"{if="$articleDisplayContent=='0'"} disabled="disabled"{/if} /><label for="articleViewPartial">Partiel</label>
+								<input type="radio" {if="$articleView=='complete'"} checked="checked" {/if} value="complete" id="articleViewComplete" name="articleView"{if="$articleDisplayContent=='0'"} disabled="disabled"{/if} /><label for="articleViewComplete">Complet</label>
+								</div>
+								<span class="note">NB : si vous choissisez un affichage partiel des articles, un clic sur ces derniers menera à l'article sur le blog de l'auteur.</span>
+							</fieldset>
+							<fieldset>
+								<legend>Conserver les <input type="text" value="{$configurationManager->get('feedMaxEvents')}" name="feedMaxEvents" size="4" /> derniers événements d'un flux</legend>
+								<span class="note">NB : Plus il y aura d'événements à conserver, plus votre base de données sera importante. Nous vous conseillons de garder les 50 derniers événements au maximum pour conserver une performance correcte.<br />Notez que vos événements marqués comme favoris ne seront jamais supprimés.</span>
+							</fieldset>
+					</article>
+					<button class="red" name="installButton">Enregistrer</button>
+				</form>
+			</article>
+		</section>
         {/if}
 
 		<section id="manageBloc">
 			<article>
 				<article id="addBloc">
 					<form action="action.php?action=addFeed" method="POST">
-					<h2>Nouveau flux</h2>
-					Adresse du flux RSS : <input type="text" name="newUrl" placeholder="http://monflux.com/rss"/>&nbsp;
-					<select name="newUrlCategory">
-					{loop="$folders"}
-					<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
-					{/loop}
-					</select>
-					<button class="red buttonw93">Ajouter</button>
-					</form>
+						<h2>Nouveau flux</h2>
+							Adresse du flux RSS : <input type="text" name="newUrl" placeholder="http://monflux.com/rss"/>&nbsp;
+							<select name="newUrlCategory">
+							{loop="$folders"}
+								<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
+							{/loop}
+							</select>
+							<button class="red">Ajouter</button>
+						</form>
 					<form action="action.php?action=addFolder" method="POST">
-					<h2>Ajout d'un dossier</h2>
-					Nom du dossier : <input type="text" name="newFolder"> <button class="red buttonw93">Ajouter</button>
+						<h2>Ajout d'un dossier</h2>
+							Nom du dossier : <input type="text" name="newFolder"> <button class="red">Ajouter</button>
 					</form>
 				</article>
 

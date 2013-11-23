@@ -100,7 +100,10 @@
 		.articleContent h6 {
 			font-size: 1em;
 		}
-
+/*Repeat this !*/
+	a.FoldFolder, aside li a.fade, #menuSettings li{
+		cursor: pointer;
+	}
 /*links*/
 	a {
 		text-decoration:none;
@@ -117,6 +120,9 @@
 		padding: 0px 8px;
 		text-align: center;
 	}	
+	.square{
+		width: 35px;
+	}
 	.red {
 		background:#d14836;
 		color:#fff;
@@ -140,8 +146,8 @@
 		color: #FFF
 	}
 	.green{
-		background: #a2dd42;
-		color: #6A6A6A;
+		background: #4ead48;
+		color: #FFF;
 	}
 
 	.fade{
@@ -229,11 +235,9 @@
 		float:right;
 	}
 /*Navbar Articles*/
-			
 	.favs{
 		font-size: 1.5em;
 		margin: 0px;
-		width: 35px;
 		background-color: #6A6A6A;
 		color: #fff;
 	}

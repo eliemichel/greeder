@@ -1,5 +1,4 @@
 {loop="$events"}
-
 	{$plainDescription=strip_tags($value->getDescription())}	
 
 	<article {if="!$value->getUnread()"}class="eventRead"{/if} {if="$value->getFavorite() == 1"}class="favorised"{/if}>
@@ -7,9 +6,9 @@
 		<nav>
 			{function="Plugin::callHook("event_pre_title", array(&$value))"}
 			{if="$value->getFavorite()!=1"}
-				<button class="btn favs" onclick="addFavorite(this,{$value->getId()});" >★</button>
+				<button class="btn square favs" onclick="addFavorite(this,{$value->getId()});" >★</button>
 			{else}
-				<button class="btn favs" onclick="removeFavorite(this,{$value->getId()});" >★</button>
+				<button class="btn square favs" onclick="removeFavorite(this,{$value->getId()});" >★</button>
 			{/if}
 			<button class="btn red" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">{function="_t('READ')"}/{function="_t('UNREAD')"}</button>
 
@@ -69,4 +68,3 @@
 		{/if}
 	</article>
 {/loop}
-
