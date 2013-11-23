@@ -1,6 +1,7 @@
 {include="header"}
 
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
+{function="Plugin::callHook("menu_pre_folder_menu", array(&$myUser))"}
 <aside>
 	<nav>
 		<h1><a href="./index.php"><img src="img/logo.png" alt="Leed"></a></h1>
@@ -111,6 +112,20 @@
 </main>
 
 <div class="clear"></div>
+
+{else}
+
+	<main>
+		<h1>{function="_t('YOU_MUST_BE_LOGGED')"}</h1>
+		<p>{function="_t('IF_ADMIN_THEN_CONFIG')"}</p>
+			<form action="action.php?action=login" method="POST">
+				<input type="text" class="miniInput left" name="login" placeholder="{function="_t('LOGIN')"}"/>
+				<br>
+				<input type="password" class="miniInput left" name="password" placeholder="{function="_t('PASSWORD')"}"/>
+				<br>
+				<button class="btn red">Connexion</button>
+			</form>
+	</main>
 
 {/if}
 {include="footer"}
