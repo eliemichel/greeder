@@ -30,7 +30,12 @@
 		line-height: 1.5;
 		margin: .75em 0 0;
 	}
-
+	ul, ol {
+		padding-left: 0;
+    	}
+	main ul, main ol {
+		padding-left: 2em;
+    	}
 	div, textarea, table, td, th, code, pre, samp {
 		word-wrap: break-word;
 		-webkit-hyphens: auto;
@@ -175,6 +180,12 @@
 	}
 	aside ul{
 		list-style:none;
+	}
+	aside li > ul {
+		padding:5px;
+		margin:0px 0px 5px 20px;
+		border-radius:2px;
+		background-color: #CDCDCD;
 	}
 	ul .fade{
 		float: right;
