@@ -18,7 +18,7 @@ then
         rm js/script.min.js
     fi
 
-    cat js/libs/jquery-2.0.3.min.js js/libs/jquery.cookie.min.js js/script.js > js/script.tmp.js
+    cat js/jquery-2.0.3.min.js js/jquery.cookie.min.js js/script.js > js/script.tmp.js
     java -jar $YUICOMPRESSOR -o "js/script.min.js" js/script.tmp.js
     rm js/script.tmp.js
 
@@ -26,16 +26,16 @@ then
     echo -e ">>> JS files minified.\n"
 fi
 
-if `git diff-index --cached HEAD | grep css/style.css > /dev/null 2>&1` || ! [ -e "css/style.min.css" ]
+if `git diff-index --cached HEAD | grep css/styles.css > /dev/null 2>&1` || ! [ -e "css/styles.min.css" ]
 then 
     echo ">>> Minify hook started"
-    if [ -e "css/style.min.css" ]
+    if [ -e "css/styles.min.css" ]
     then
-        rm css/style.min.css
+        rm css/styles.min.css
     fi
 
-    java -jar $YUICOMPRESSOR css/style.css -o css/style.min.css
-    git add css/style.min.css
+    java -jar $YUICOMPRESSOR css/styles.css -o css/styles.min.css
+    git add css/styles.min.css
     echo -e ">>> CSS files minified.\n"
 fi
 

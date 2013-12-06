@@ -1,3 +1,28 @@
+// JS file for Greeder theme
+//
+// Index :
+// =======
+// * Parameters
+// * Initialization
+// * Misc
+// * Back to top button
+// * Options
+// * Lazy loading
+// * Internationalization
+// * Folders
+// * Favorites
+// * Read / Unread
+// * Feed settings
+// * Synchronization
+// * Settings page functions
+
+// Note on minification :
+// ======================
+// When you edit this file, you must run the pre-commit hook in .hook dir to regenerate a minified version of the script.
+
+// ==========
+// Parameters
+// ==========
 // Enable and Disable animations : true = enabled, false = disabled
 var useAnimations = true;
 // Enable / Disable paginations : true = enabled, false = disabled
@@ -5,76 +30,30 @@ var usePagination = false;
 // Fix or not the sidebar : true = fixed, false = not fixed
 var fixSidebar = false;
 
+// ==============
+// Initialization
+// ==============
+
 // Mask back to top button if JS is enabled
 // (and display it later if needed)
-// => This avoides making him blinking fastly
+// => This avoids making him blinking fastly
 if($('#backtop').length) {
 	$('#backtop').hide();
 }
 
 $(document).ready(function() {
-	// Page settings
-	if($('.settingsBloc').length) {
-		var hash = window.location.hash;
-		if(hash.length) {
-			toggleBlocks(hash);
-		}
-	}
-
-    if($.cookie('greederprefAnimations') == 0) { // Animations disabled
+    // Animations disabled
+    if($.cookie('greederprefAnimations') == 0) {
         useAnimations = false;
     }
-    if($.cookie('greederprefPagination') == 1) { // Pagination enabled
+    // Pagination enabled
+    if($.cookie('greederprefPagination') == 1) {
         usePagination = true;
     }
-    if($.cookie('greederprefFixSidebar') == 1) { // Fix sidebar
+    // Fix sidebar
+    if($.cookie('greederprefFixSidebar') == 1) {
         fixSidebar = true;
     }
-
-    // Greeder settings page
-    $('#greederprefBloc .js-needed').remove();
-    if($('#greederprefBloc').length) {
-        $('#greederprefBloc button#animationsButton').removeClass('disabled_button');
-
-        if(!useAnimations) { // Animations disabled
-            $('#greederprefBloc button#animationsButton').text('Off').removeClass('red').addClass('grey');
-        }
-        else {
-            $('#greederprefBloc button#animationsButton').text('On').removeClass('grey').addClass('red');
-        }
-
-        $('#greederprefBloc button#paginationButton').removeClass('disabled_button').text('Off').addClass('grey');
-
-        if(usePagination) { // Pagination enabled
-            $('#greederprefBloc button#paginationButton').text('On').removeClass('grey').addClass('red');
-        }
-        else {
-            $('#greederprefBloc button#paginationButton').text('Off').removeClass('red').addClass('grey');
-        }
-
-        $('#greederprefBloc button#fixSidebarButton').removeClass('disabled_button').text('Off').addClass('grey');
-
-        if(fixSidebar) { // Sidebar fixed
-            $('#greederprefBloc button#fixSidebarButton').text('On').removeClass('grey').addClass('red');
-        }
-        else {
-            $('#greederprefBloc button#fixSidebarButton').text('Off').removeClass('red').addClass('grey');
-        }
-    }
-
-    // Back to top button handling
-	toggleBacktop();
-    
-    // Initialize ajaxready at first function load
-    if($('.index').length) {
-        $(window).data('ajaxready', true);
-        $('.content').append('<div id="loader">'+_t('LOADING')+'</div>');
-        $(window).data('page', 1);
-        $(window).data('nblus', 0);
-    }
-
-    if($(window).scrollTop() == 0 && !usePagination)
-        scrollInfini(true);
 
     // Disable animations if needed
     if(useAnimations) {
@@ -92,15 +71,175 @@ $(document).ready(function() {
         $('aside#sidebar').addClass('fixed');
         $('section.content').addClass('fixed');
     }
+
+    // Back to top button handling
+	toggleBacktop();
+    
+    // Initialize ajaxready at first function load
+    if($('.index').length) {
+        $(window).data('ajaxready', true);
+        $('.content').append('<div id="loader">'+_t('LOADING')+'</div>');
+        $(window).data('page', 1);
+        $(window).data('nblus', 0);
+    }
+
+    if($(window).scrollTop() == 0 && !usePagination)
+        scrollInfini(true);
+
+	// Settings page
+    // Handle the blocks display for settings page
+	if($('.settingsBloc').length) {
+		var hash = window.location.hash;
+		if(hash.length) {
+			toggleBlocks(hash);
+		}
+	}
+
+    if($('#greederprefBloc').length) {
+        $('#greederprefBloc .js-needed').remove();
+
+        $('#greederprefBloc button#animationsButton').removeClass('disabled_button');
+        // Button to disable animations
+        if(!useAnimations) {
+            $('#greederprefBloc button#animationsButton').text('Off').removeClass('red').addClass('grey');
+        }
+        else {
+            $('#greederprefBloc button#animationsButton').text('On').removeClass('grey').addClass('red');
+        }
+
+        // Button to disable pagination
+        $('#greederprefBloc button#paginationButton').removeClass('disabled_button').text('Off').addClass('grey');
+        if(usePagination) {
+            $('#greederprefBloc button#paginationButton').text('On').removeClass('grey').addClass('red');
+        }
+        else {
+            $('#greederprefBloc button#paginationButton').text('Off').removeClass('red').addClass('grey');
+        }
+
+        // Button to fix sidebar
+        $('#greederprefBloc button#fixSidebarButton').removeClass('disabled_button').text('Off').addClass('grey');
+        if(fixSidebar) {
+            $('#greederprefBloc button#fixSidebarButton').text('On').removeClass('grey').addClass('red');
+        }
+        else {
+            $('#greederprefBloc button#fixSidebarButton').text('Off').removeClass('red').addClass('grey');
+        }
+    }
 });
 
 $(document).scroll(function() {
-    toggleBacktop();
+    toggleBacktop(); // Back to top button
+
     if(useAnimations && !usePagination) {
         scrollInfini();
     }
 });
 
+// ====
+// Misc
+// ====
+// Parse GET parameters in the URL
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        if (hash[1]){
+            rehash = hash[1].split('#');
+            vars[hash[0]] = rehash[0];
+        }
+        else {
+            vars[hash[0]] = '';
+        }
+    }
+    return vars;
+}
+
+// ==================
+// Back to top button
+// ==================
+function toggleBacktop() {
+	var screen_height = parseInt($(window).height());
+
+	if($(document).scrollTop() >= screen_height / 3) {
+		$('#backtop').show();
+	}
+	else {
+		$('#backtop').hide();
+	}
+}
+
+// ===============================================
+// Options : animations, pagination, fixed sidebar
+// ===============================================
+function toggleAnimations(element) {
+    var state = 0;
+    
+    if($(element).text() == 'Off') { // If off, switch it to on
+        state = 1;
+    }
+
+    // Store configuration in a cookie
+    $.cookie('greederprefAnimations', state, {
+        expire : 31536000, // expires in one year
+    });
+
+    if(state == 1) {
+        $(element).addClass('red').removeClass('grey').text('On');
+    }
+    else {
+        $(element).addClass('grey').removeClass('red').text('Off');
+    }
+}
+
+function togglePagination(element) {
+    var state = 1;
+    
+    if($(element).text() == 'On') { // If off, switch it to on
+        state = 0;
+    }
+
+    // Store configuration in a cookie
+    $.cookie('greederprefPagination', state, {
+        expire : 31536000, // expires in one year
+    });
+
+    if(state == 1) {
+        $(element).addClass('red').removeClass('grey').text('On');
+    }
+    else {
+        $(element).addClass('grey').removeClass('red').text('Off');
+    }
+}
+
+function toggleFixSidebar(element) {
+    var state = 1;
+    
+    if($(element).text() == 'On') { // If off, switch it to on
+        state = 0;
+    }
+
+    // Store configuration in a cookie
+    $.cookie('greederprefFixSidebar', state, {
+        expire : 31536000, // expires in one year
+    });
+
+    if(state == 1) {
+        $(element).addClass('red').removeClass('grey').text('On');
+    }
+    else {
+        $(element).addClass('grey').removeClass('red').text('Off');
+    }
+}
+
+// ============
+// Lazy loading
+// ============
+
+// no_scroll_test is used to force the ajax query without testing if the view has been scrolled
 function scrollInfini(no_scroll_test) {
     if (typeof(no_scroll_test)==='undefined') no_scroll_test = false;
     var deviceAgent = navigator.userAgent.toLowerCase();
@@ -166,7 +305,9 @@ function scrollInfini(no_scroll_test) {
     }
 };
 
+// ====================
 // Internationalization
+// ====================
 function _t(key,args){
     value = i18n[key];
     if(args!=null){
@@ -177,7 +318,9 @@ function _t(key,args){
     return value;
 }
 
-// Functions to handle browsing in menu (display / mask feeds in folder)
+// =======
+// Folders
+// =======
 function toggleFolder(element, folder) {
 	feedBloc = $('ul', $(element).parent());
 
@@ -194,6 +337,36 @@ function toggleFolder(element, folder) {
 	});
 }
 
+// Rename a folder on settings page
+function renameFolder(element, folder) {
+	var folderLine = $(element).parent().parent();
+	var folderNameCase = $('span:first',folderLine);
+	var value = folderNameCase.html();
+
+	$(element).html(_t('SAVE'));
+	$(element).attr('onclick','saveRenameFolder(this,'+folder+')');
+	folderNameCase.replaceWith('<td><input type="text" name="folderName" value="'+value+'"/></td>');
+}
+
+// Save the new name for a folder on settings page
+function saveRenameFolder(element, folder) {
+	var folderLine = $(element).parent().parent();
+	var folderNameCase = $('td:first',folderLine);
+	var value = $('input',folderNameCase).val();
+
+	$(element).html(_t('RENAME'));
+	$(element).attr('onclick','renameFolder(this,'+folder+')');
+	folderNameCase.replaceWith('<h1>'+value+'</h1>');
+
+	$.ajax({
+		url: "./action.php?action=renameFolder",
+		data:{id:folder,name:value}
+	});
+}
+
+// =========
+// Favorites
+// =========
 function addFavorite(element, id) {
     var activeScreen = $('#pageTop').html();
     $.ajax({
@@ -236,70 +409,10 @@ function removeFavorite(element, id) {
     });
 }
 
-function renameFolder(element, folder) {
-	var folderLine = $(element).parent().parent();
-	var folderNameCase = $('span:first',folderLine);
-	var value = folderNameCase.html();
-
-	$(element).html(_t('SAVE'));
-	$(element).attr('onclick','saveRenameFolder(this,'+folder+')');
-	folderNameCase.replaceWith('<td><input type="text" name="folderName" value="'+value+'"/></td>');
-}
-
-
-function saveRenameFolder(element, folder) {
-	var folderLine = $(element).parent().parent();
-	var folderNameCase = $('td:first',folderLine);
-	var value = $('input',folderNameCase).val();
-
-	$(element).html(_t('RENAME'));
-	$(element).attr('onclick','renameFolder(this,'+folder+')');
-	folderNameCase.replaceWith('<h1>'+value+'</h1>');
-
-	$.ajax({
-		url: "./action.php?action=renameFolder",
-		data:{id:folder,name:value}
-	});
-}
-
-function renameFeed(element, feed) {
-	var feedLine = $(element).parent().parent();
-	var feedNameCase = $('td:first a',feedLine);
-	var feedNameValue = feedNameCase.html();
-	var feedUrlCase = $('td:first span',feedLine);
-	var feedUrlValue = $('a', feedUrlCase).html();
-	var url = feedNameCase.attr('href');
-
-	$(element).html(_t('SAVE'));
-	$(element).attr('onclick','saveRenameFeed(this,'+feed+',"'+url+'")');
-	feedNameCase.replaceWith('<input type="text" name="feedName" value="'+feedNameValue+'" size="25" />');
-	feedUrlCase.replaceWith('<input type="text" name="feedUrl" value="'+feedUrlValue+'" size="25" />');
-}
-
-function saveRenameFeed(element, feed, url) {
-	var feedLine = $(element).parent().parent();
-	var feedNameCase = $('td:first input[name="feedName"]',feedLine);
-	var feedNameValue = feedNameCase.val();
-	var feedUrlCase = $('td:first input[name="feedUrl"]',feedLine);
-	var feedUrlValue = feedUrlCase.val();
-
-	$(element).html(_t('RENAME'));
-	$(element).attr('onclick','renameFeed(this,'+feed+')');
-	feedNameCase.replaceWith('<a href="'+url+'">'+feedNameValue+'</a>');
-	feedUrlCase.replaceWith('<span class="underlink"><a href="'+feedUrlValue+'">'+feedUrlValue+'</a></span>');
-
-	$.ajax({
-		url: "./action.php?action=renameFeed",
-		data:{id:feed,name:feedNameValue,url:feedUrlValue}
-	});
-}
-
-function changeFeedFolder(element, id) {
-	var value = $(element).val();
-	window.location = "./action.php?action=changeFeedFolder&feed="+id+"&folder="+value;
-}
-
-function readThis(element, id, from, callback) { // TODO
+// =============
+// Read / Unread
+// =============
+function readThis(element, id, from, callback) {
     if(typeof(callback) === 'undefined') callback = false;
 
     var activeScreen = $('#pageTop').html();
@@ -368,7 +481,50 @@ function readThis(element, id, from, callback) { // TODO
 	}
 }
 
-// Manually synchronize feeds, from the menu button
+// =============
+// Feed settings
+// =============
+function renameFeed(element, feed) {
+	var feedLine = $(element).parent().parent();
+	var feedNameCase = $('td:first a',feedLine);
+	var feedNameValue = feedNameCase.html();
+	var feedUrlCase = $('td:first span',feedLine);
+	var feedUrlValue = $('a', feedUrlCase).html();
+	var url = feedNameCase.attr('href');
+
+	$(element).html(_t('SAVE'));
+	$(element).attr('onclick','saveRenameFeed(this,'+feed+',"'+url+'")');
+	feedNameCase.replaceWith('<input type="text" name="feedName" value="'+feedNameValue+'" size="25" />');
+	feedUrlCase.replaceWith('<input type="text" name="feedUrl" value="'+feedUrlValue+'" size="25" />');
+}
+
+function saveRenameFeed(element, feed, url) {
+	var feedLine = $(element).parent().parent();
+	var feedNameCase = $('td:first input[name="feedName"]',feedLine);
+	var feedNameValue = feedNameCase.val();
+	var feedUrlCase = $('td:first input[name="feedUrl"]',feedLine);
+	var feedUrlValue = feedUrlCase.val();
+
+	$(element).html(_t('RENAME'));
+	$(element).attr('onclick','renameFeed(this,'+feed+')');
+	feedNameCase.replaceWith('<a href="'+url+'">'+feedNameValue+'</a>');
+	feedUrlCase.replaceWith('<span class="underlink"><a href="'+feedUrlValue+'">'+feedUrlValue+'</a></span>');
+
+	$.ajax({
+		url: "./action.php?action=renameFeed",
+		data:{id:feed,name:feedNameValue,url:feedUrlValue}
+	});
+}
+
+function changeFeedFolder(element, id) {
+	var value = $(element).val();
+	window.location = "./action.php?action=changeFeedFolder&feed="+id+"&folder="+value;
+}
+
+
+// ===============
+// Synchronization
+// ===============
 function synchronize(code, callback) {
 	if(code != '') {
 		$('.content').html('<article class="article">'+
@@ -388,8 +544,9 @@ function synchronize(code, callback) {
 	}
 }
 
-// Mask and display blocks in settings
-
+// =======================
+// Settings page functions
+// =======================
 function toggleBlocks(target) {
 	if($(target).length) {
 		$('#main section, #main article').hide();
@@ -400,99 +557,4 @@ function toggleBlocks(target) {
 	else {
 		window.location.hash = "";
 	}
-}
-
-// Handles display pf the back to top button
-function toggleBacktop() {
-	var screen_height = parseInt($(window).height());
-
-	if($(document).scrollTop() >= screen_height / 3) {
-		$('#backtop').show();
-	}
-	else {
-		$('#backtop').hide();
-	}
-}
-
-// Handles button to manage animations status
-function toggleAnimations(element) {
-    var state = 0;
-    
-    if($(element).text() == 'Off') { // If off, switch it to on
-        state = 1;
-    }
-
-    // Store configuration in a cookie
-    $.cookie('greederprefAnimations', state, {
-        expire : 31536000, // expires in one year
-    });
-
-    if(state == 1) {
-        $(element).addClass('red').removeClass('grey').text('On');
-    }
-    else {
-        $(element).addClass('grey').removeClass('red').text('Off');
-    }
-}
-
-// Handles button to manage animations status
-function togglePagination(element) {
-    var state = 1;
-    
-    if($(element).text() == 'On') { // If off, switch it to on
-        state = 0;
-    }
-
-    // Store configuration in a cookie
-    $.cookie('greederprefPagination', state, {
-        expire : 31536000, // expires in one year
-    });
-
-    if(state == 1) {
-        $(element).addClass('red').removeClass('grey').text('On');
-    }
-    else {
-        $(element).addClass('grey').removeClass('red').text('Off');
-    }
-}
-
-// Handles button to fix sidebar
-function toggleFixSidebar(element) {
-    var state = 1;
-    
-    if($(element).text() == 'On') { // If off, switch it to on
-        state = 0;
-    }
-
-    // Store configuration in a cookie
-    $.cookie('greederprefFixSidebar', state, {
-        expire : 31536000, // expires in one year
-    });
-
-    if(state == 1) {
-        $(element).addClass('red').removeClass('grey').text('On');
-    }
-    else {
-        $(element).addClass('grey').removeClass('red').text('Off');
-    }
-}
-
-// Get GET parameteres in URL and parse them
-function getUrlVars()
-{
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        if (hash[1]){
-            rehash = hash[1].split('#');
-            vars[hash[0]] = rehash[0];
-        }
-        else {
-            vars[hash[0]] = '';
-        }
-    }
-    return vars;
 }
