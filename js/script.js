@@ -23,8 +23,6 @@
 // ==========
 // Parameters
 // ==========
-// Enable and Disable animations : true = enabled, false = disabled
-var useAnimations = true;
 // Enable / Disable paginations : true = enabled, false = disabled
 var usePagination = false;
 // Fix or not the sidebar : true = fixed, false = not fixed
@@ -42,10 +40,6 @@ if($('#backtop').length) {
 }
 
 $(document).ready(function() {
-    // Animations disabled
-    if($.cookie('greederprefAnimations') == 0) {
-        useAnimations = false;
-    }
     // Pagination enabled
     if($.cookie('greederprefPagination') == 1) {
         usePagination = true;
@@ -53,12 +47,6 @@ $(document).ready(function() {
     // Fix sidebar
     if($.cookie('greederprefFixSidebar') == 1) {
         fixSidebar = true;
-    }
-
-    // Disable animations if needed
-    if(useAnimations) {
-        $('body').removeClass('no-animations');
-        $('#load_more').remove();
     }
 
     // Handle pagination
@@ -98,15 +86,6 @@ $(document).ready(function() {
     if($('#greederprefBloc').length) {
         $('#greederprefBloc .js-needed').remove();
 
-        $('#greederprefBloc button#animationsButton').removeClass('disabled_button');
-        // Button to disable animations
-        if(!useAnimations) {
-            $('#greederprefBloc button#animationsButton').text('Off').removeClass('red').addClass('grey');
-        }
-        else {
-            $('#greederprefBloc button#animationsButton').text('On').removeClass('grey').addClass('red');
-        }
-
         // Button to disable pagination
         $('#greederprefBloc button#paginationButton').removeClass('disabled_button').text('Off').addClass('grey');
         if(usePagination) {
@@ -130,7 +109,7 @@ $(document).ready(function() {
 $(document).scroll(function() {
     toggleBacktop(); // Back to top button
 
-    if(useAnimations && !usePagination) {
+    if(!usePagination) {
         scrollInfini();
     }
 });
@@ -173,28 +152,8 @@ function toggleBacktop() {
 }
 
 // ===============================================
-// Options : animations, pagination, fixed sidebar
+// Options : pagination, fixed sidebar
 // ===============================================
-function toggleAnimations(element) {
-    var state = 0;
-    
-    if($(element).text() == 'Off') { // If off, switch it to on
-        state = 1;
-    }
-
-    // Store configuration in a cookie
-    $.cookie('greederprefAnimations', state, {
-        expire : 31536000, // expires in one year
-    });
-
-    if(state == 1) {
-        $(element).addClass('red').removeClass('grey').text('On');
-    }
-    else {
-        $(element).addClass('grey').removeClass('red').text('Off');
-    }
-}
-
 function togglePagination(element) {
     var state = 1;
     
