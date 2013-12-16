@@ -182,12 +182,11 @@
 /* -----------------------------*/
 /* ==Layout
 /* -----------------------------*/
-	#flex{
-		display : flex;
-	}	
+		
 /*Sidebar*/		
 	aside {
-		flex:0 300px;
+		width:300px;
+		float:left;
 		padding-left: 5px;
 	}
 	aside h1{
@@ -202,9 +201,6 @@
 	}
 	nav a{
 		cursor:pointer;
-		display:block;
-	}
-	nav img{
 	}
 	#breadcrumb{
 		text-align: center;
@@ -240,7 +236,6 @@
 
 /*Articles*/
 	main {
-		flex:3;
 		overflow:hidden;
 	}
 	article{
@@ -287,26 +282,13 @@
 	.favorised .star{
 		color: #FFD200;
 	}
-/*Footer*/
-	footer{
-	}
-
 
 	@media (min-width: 1280px) {	/*desktop*/
 		
 	}
 
-	@media (max-width: 850px) {		/*tablet*/
-		#flex{
-			display:inherit;
-		}
-		aside{
-			flex:none;
-			width:100%;
-		}
-		main{
-			flex:none;
-		}
+	@media (max-width: 768px) {		/*tablet*/
+
 	}
 
 	@media (max-width: 640px) {		/*smartphone*/

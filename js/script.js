@@ -486,7 +486,7 @@ function changeFeedFolder(element, id) {
 // ===============
 function synchronize(code, callback) {
 	if(code != '') {
-		$('.content').html('<article class="article">'+
+		$('main').html('<article>'+
 				'<iframe class="importFrame" src="action.php?action=synchronize&amp;format=html&amp;code='+code+'" name="idFrameSynchro" id="idFrameSynchro" height="400"></iframe>'+
 				'</article>');
 
