@@ -1,13 +1,16 @@
 {include="header"}
-{if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
 
+{if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
+{function="Plugin::callHook("menu_pre_folder_menu", array(&$myUser))"}
+<div id="flex">
 <aside>
 	<nav>
-		<h1><a href="./index.php"><img src="img/logo.png" alt="Leed"></a></h1>
+		<h1><a href="./index.php"><img src="img/logo.png" id="logo" alt="Leed"></a></h1>
 		{if="($myUser==false)"}
 			<form id="connect" action="action.php?action=login" method="POST">
 				<input type="text" name="login" placeholder="Identifiant"/>
 				<input type="password" name="password" placeholder="Mot de passe"/>
+				<input type="checkbox" class="miniInput left" name="rememberMe">Rester connecté ?<br/>
 				<button class="btn red">Connexion</button>
 			</form>
 		{else}
@@ -24,9 +27,6 @@
 			{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
 		{/if}
 	</nav>
-	
-	<div id="breadcrumb" class="fade">
-	</div>
 		<ul id="menuSettings">
 			<li onclick="toggleBlocks('#manageBloc');">{function="_t('FEED_MANAGING')"}</li>
 			<li onclick="toggleBlocks('#preferenceBloc');">{function="_t('PREFERENCES')"} Leed</li>
@@ -145,24 +145,43 @@
 
 		<section id="manageBloc">
 			<article>
-				<article id="addBloc">
+				<article>
 					<form action="action.php?action=addFeed" method="POST">
 						<h2>Nouveau flux</h2>
-							Adresse du flux RSS : <input type="text" name="newUrl" placeholder="http://monflux.com/rss"/>&nbsp;
-							<select name="newUrlCategory">
-							{loop="$folders"}
-								<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
-							{/loop}
-							</select>
-							<button class="red">Ajouter</button>
+							<table>
+								<tr>
+									<td id="loopFoldersSettingsName">
+										Adresse du flux RSS : <input type="text" name="newUrl" placeholder="http://monflux.com/rss"/>&nbsp;
+									</td>
+									<td id="loopFoldersSettingsSelect">
+										<select name="newUrlCategory">
+										{loop="$folders"}
+											<option {if="$value->getId()==1"}selected="selected"{/if} value="{$value->getId()}">{$value->getName()}</option>
+										{/loop}
+										</select>
+									</td>
+									<td id="loopFoldersSettingsButtons">
+										<button class="red">Ajouter</button>
+									</td>
+								</tr>
+							</table>
 						</form>
 					<form action="action.php?action=addFolder" method="POST">
 						<h2>Ajout d'un dossier</h2>
-							Nom du dossier : <input type="text" name="newFolder"> <button class="red">Ajouter</button>
+							<table>
+							<tr>
+								<td di="loopFoldersSettingsName">
+									Nom du dossier : <input type="text" name="newFolder">
+								</td>
+								<td id="loopFoldersSettingsButtons">
+									<button class="red">Ajouter</button>
+								</td>
+							</tr>
+							</table>
 					</form>
 				</article>
 
-				<ul class="clear tableflux">
+				<ul id="loopFoldersSettings" class="clear tableflux">
 					{$feedsForFolder=""}
 					{loop="$folders"}  
 					{$feedsForFolder=$value->getFeeds()}
@@ -170,7 +189,7 @@
 						<article>
 							<table>
 								<tr>
-									<td >
+									<td>
 										<h1><span>{$value->getName()}</span> ({function="count($feedsForFolder)"})</h1>
 									</td>
 									<td style="text-align:right;">
@@ -186,21 +205,19 @@
 								{if="count($feeds)!=0"}
 									{loop="$feedsForFolder"}
 										<tr>
-											<td class="tabledescflux">
+											<td id="loopFoldersSettingsName">
 												<a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink"><a href="{$value2->getUrl()}">{$value2->getUrl()}</a></span>
 											</td>
-											<td>
+											<td id="loopFoldersSettingsSelect">
 												<select onchange="changeFeedFolder(this,{$value2->getId()});">
 													{loop="$folders"}
 														<option {if="$value2->getFolder()==$value3->getId()"}selected="selected"{/if} value="{$value3->getId()}">{$value3->getName()}</option>
 													{/loop}
 												</select>
 											</td>
-											<td>
-												<button class="grey buttonw93" onclick="renameFeed(this,{$value2->getId()})">Renommer</button>
-											</td>
-											<td>
-												<button class="grey buttonw93" onclick="if(confirm('Etes vous sûr de vouloir supprimer le flux &quot;{$value2->getName()}&quot; ?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button>
+											<td id="loopFoldersSettingsButtons">
+												<button class="btn grey" onclick="renameFeed(this,{$value2->getId()})">Renommer</button>
+												<button class="btn grey" onclick="if(confirm('Etes vous sûr de vouloir supprimer le flux &quot;{$value2->getName()}&quot; ?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button>
 											</td>
 										</tr>
 									{/loop}
@@ -274,7 +291,8 @@
 		</section>
 
 		{function="Plugin::callHook("setting_post_section", array(&$myUser))"}
-	</main>		
+	</main>	
+</div>	
 {else}
 	<main>
 		<h1>Vous devez être connecté pour consulter vos flux </h1>

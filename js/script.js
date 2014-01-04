@@ -216,7 +216,7 @@ function scrollInfini(no_scroll_test) {
             $(window).data('ajaxready', false);
             
             // Display the loader to indicate the loading
-            $('.content #loader').show();
+            $('#main #loader').show();
             
             // Get vars sent as GET
             var action = getUrlVars()['action'];
@@ -239,13 +239,13 @@ function scrollInfini(no_scroll_test) {
                     if (data.replace(/^\s+/g,'').replace(/\s+$/g,'') != '')
                     {
                         // Insert new articles right before the loader
-                        $('.content #loader').before(data);
+                        $('#main #loader').before(data);
                         // Delete script from page to prevent interaction with next and prev
-                        $('.content .scriptaddbutton').remove();
+                        $('#main .scriptaddbutton').remove();
                         // Display events with a fadeIn
-                        $('.content article.scroll').fadeIn(600);
+                        $('#main article.scroll').fadeIn(600);
                         // Delete scroll tag for next scroll
-                        $('.content article.scroll').removeClass('scroll');
+                        $('#main article.scroll').removeClass('scroll');
                         $(window).data('ajaxready', true);
                         $(window).data('page', $(window).data('page')+1);
                         $(window).data('enCoursScroll',0);
@@ -259,7 +259,7 @@ function scrollInfini(no_scroll_test) {
                 }
             });
             // When loading is finished, remove the loader
-            $('.content #loader').fadeOut(400);          
+            $('#main #loader').fadeOut(400);          
         }
     }
 };

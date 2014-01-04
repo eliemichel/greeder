@@ -107,11 +107,20 @@
 			font-size: 1em;
 		}
 /*Repeat this !*/
-	a.FoldFolder, aside li a.fade, #menuSettings li{
+	a.FoldFolder, aside li a.fade,
+	#menuSettings li{
 		cursor: pointer;
 	}
+	aside ul a,
+	#menuSettings li{
+		-webkit-transition: all .2s ease;
+		-moz-transition: all .2s ease;
+		-ms-transition: all .2s ease;
+		-o-transition: all .2s ease;
+		transition: all .2s ease;
+	}
 /*links*/
-	a {
+	a, #menuSettings li{
 		text-decoration:none;
 		color:#15C;
 	}
@@ -219,9 +228,19 @@
 	aside ul{
 		list-style:none;
 	}
+	aside > ul > li:hover,
+	#menuSettings li:hover{
+		background-color: #6A6A6A;
+		border-radius: 2px;
+	}
+	aside > ul > li:hover > a{
+		color: #FFF;
+	}
+	#menuSettings li{
+		padding: 2px;
+	}
 	aside li > ul {
 		padding:5px;
-		margin:0px 0px 5px 20px;
 		border-radius:2px;
 		background-color: #CDCDCD;
 	}
@@ -232,6 +251,43 @@
 		color:#6A6A6A;
 		font-size:1.2em;
 	}
+/*Settings*/
+	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc,#greederprefBloc{
+		display:none;
+	}
+	
+	article article{
+		border-style: dashed;
+		border-left: none;
+		border-right: none;
+		border-bottom: none;
+		border-radius: 0px;
+		margin: 5px 0px 0px 0px;
+		padding: 10px;
+	}
+	#loopFoldersSettings{
+		list-style: none;
+		padding-left: 0px;
+	}
+		#loopFoldersSettingsName{
+			width: 50%;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+			#loopFoldersSettingsName a{
+				display: inline;
+			}
+		#loopFoldersSettingsSelect{
+			width: 25%;
+		}
+			#loopFoldersSettingsSelect select{
+				width: 100%;
+				min-width: 100px;
+			}
+		#loopFoldersSettingsButtons{
+			width: 205px;
+			text-align: right;
+		}
 /*syncIframe*/
 	article iframe{
 		border: none;
@@ -272,6 +328,9 @@
 	article nav{
 		margin: 3px;
 		float:right;
+	}
+	#load_more {
+		display: none;
 	}
 /*Navbar Articles*/
 	.favs{

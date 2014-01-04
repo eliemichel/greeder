@@ -109,11 +109,40 @@
 	
 </aside> 
 
-<main>
+<main id="main">
 	{include="article"}
+	
+	{if="$pages!=0"}
+	<p id="pagination">
+		<a class="grey-h page">Page {$page}/{$pages} : </a>
+
+		{if="$previousPages>0"}
+			<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$previousPages}">&lt;&lt;</a>
+		{/if}
+
+		{loop="pagesArray"}
+
+		{if="$page!=$value"}
+			<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$value}">{$value}</a> 
+		{else}
+			<a class="grey-h page">{$value}</a>
+		{/if}
+
+		{/loop}
+
+		{if="$nextPages>0"}
+			<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$nextPages}">&gt;&gt;</a>
+		{/if}
+	</p> 
+	{/if}
+
+	{if="$numberOfItem != 0"}
+		<div id="load_more">
+			<button class="red" onclick="scrollInfini(true);">Charger plus d'articles</button>
+		</div>
+	{/if}	
 </main>
 
-<div class="clear"></div>
 
 <div id="backtop"><a id="backtoplink" href="#logo">ꜛ</a></div>
 
