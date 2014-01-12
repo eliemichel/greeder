@@ -205,17 +205,20 @@
 								{if="count($feeds)!=0"}
 									{loop="$feedsForFolder"}
 										<tr>
-											<td id="loopFoldersSettingsName">
-												<a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a><span class="underlink"><a href="{$value2->getUrl()}">{$value2->getUrl()}</a></span>
+											<td class="loopFoldersSettingsName">
+												<a href="index.php?action=selectedFeed&amp;feed={$value2->getId();}">{$value2->getName()}</a>
 											</td>
-											<td id="loopFoldersSettingsSelect">
+											<td class="loopFoldersSettingsLink shorten">
+											<a href="{$value2->getUrl()}">{$value2->getUrl()}</a>
+											</td>
+											<td class="loopFoldersSettingsSelect">
 												<select onchange="changeFeedFolder(this,{$value2->getId()});">
 													{loop="$folders"}
 														<option {if="$value2->getFolder()==$value3->getId()"}selected="selected"{/if} value="{$value3->getId()}">{$value3->getName()}</option>
 													{/loop}
 												</select>
 											</td>
-											<td id="loopFoldersSettingsButtons">
+											<td class="loopFoldersSettingsButtons">
 												<button class="btn grey" onclick="renameFeed(this,{$value2->getId()})">Renommer</button>
 												<button class="btn grey" onclick="if(confirm('Etes vous sûr de vouloir supprimer le flux &quot;{$value2->getName()}&quot; ?')){window.location='action.php?action=removeFeed&amp;id={$value2->getId()}';}">Supprimer</button>
 											</td>

@@ -152,9 +152,6 @@
 	table {
 		width: 100%;
 	}
-	.table {
-		display: table;
-	}
 	caption {
 		padding: 10px;
 		color: #555;
@@ -195,7 +192,7 @@
 		border-radius: 2px;
 	}
 	input{
-		margin: 5px 0px;
+		margin: 0px;
 		padding: 2px 5px;
 		border: 1px solid rgb(220, 220, 220);
 	}

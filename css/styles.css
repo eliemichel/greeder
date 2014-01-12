@@ -36,6 +36,13 @@
 		line-height: 1.5;
 		margin: .75em 0 0;
 	}
+	input,
+	select{
+	}
+	select{
+		border: none;
+		padding: 4px;
+	}
 	ul, ol {
 		padding-left: 0;
     	}
@@ -194,6 +201,34 @@
 	#flex{
 		display : flex;
 	}	
+/*Connect*/
+	#connect input,
+	#connect button {
+		width: 100%;
+	}
+	#connect form{
+		max-width: 250px;
+		margin: 2rem auto;
+		padding: 1rem;
+		border-radius: 2px;
+		background-color: #DCDCDC;
+	}
+	#connect [type="checkbox"]{
+		margin-right: 1rem;
+	}
+	#connect label{
+		margin: 0;
+	}
+	#connect.insidebar * {
+		width:100%;
+		margin: 3px 0px;
+	}
+	#connect.inmain {
+		width: 75%;
+		margin: 0 auto;
+		text-align: center;
+	}
+
 /*Sidebar*/		
 	aside {
 		flex:0 300px;
@@ -202,13 +237,7 @@
 	aside h1{
 		text-align: center;
 	}
-	#connect input{
-		height:31px;
-	}
-	#connect * {
-		width:100%;
-		margin: 3px 0px;
-	}
+
 	nav a{
 		cursor:pointer;
 		display:block;
@@ -269,25 +298,33 @@
 		list-style: none;
 		padding-left: 0px;
 	}
-		#loopFoldersSettingsName{
-			width: 50%;
+	#loopFoldersSettings td.shorten{
+		white-space: nowrap;
+		overflow: hidden;
+	}
+		/*td's*/
+		.loopFoldersSettingsName{
 			white-space: nowrap;
 			overflow: hidden;
 		}
-			#loopFoldersSettingsName a{
+			.loopFoldersSettingsName a{
 				display: inline;
 			}
-		#loopFoldersSettingsSelect{
+		.loopFoldersSettingsSelect{
 			width: 25%;
 		}
-			#loopFoldersSettingsSelect select{
+			.loopFoldersSettingsSelect select{
 				width: 100%;
 				min-width: 100px;
 			}
-		#loopFoldersSettingsButtons{
+		.loopFoldersSettingsButtons{
 			width: 205px;
 			text-align: right;
 		}
+	.loopFoldersSettings .rename{
+		height: 40px;
+		margin: 0;
+	}
 /*syncIframe*/
 	article iframe{
 		border: none;
@@ -348,8 +385,8 @@
 	}
 /*Footer*/
 	footer{
+		text-align: center;
 	}
-
 
 	@media (min-width: 1280px) {	/*desktop*/
 		
