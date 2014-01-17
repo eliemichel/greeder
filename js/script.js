@@ -408,12 +408,14 @@ function readThis(element, id, from, callback) {
 							break;
 						case 'selectedFolder':
 							parent.addClass('eventRead');
+							parent.fadeOut(200); 
 							// We count how many articles have been read to substract them to the infinite scroll query
 							$(window).data('nblus', $(window).data('nblus')+1);
 							break;
 						default:
 							// Any other case : favorites, selectedFeed, ...
 							parent.addClass('eventRead');
+							parent.fadeOut(200);
 							break;
 					}
 				}
