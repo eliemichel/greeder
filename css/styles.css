@@ -231,6 +231,7 @@
 		text-align: center;
 	}
 	#connect.inmain form{
+		margin: 0 auto;
 		max-width: 250px;
 	}
 
