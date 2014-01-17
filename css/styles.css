@@ -231,7 +231,7 @@
 		text-align: center;
 	}
 	#connect.inmain form{
-		margin: 0 auto;
+		margin: 2rem auto;
 		max-width: 250px;
 	}
 
@@ -445,18 +445,18 @@
 	}
 
 	@media (max-width: 640px) {		/*smartphone*/
-		table,
-		tbody {
+		main table,
+		main tbody {
 			display: block;
 		}
-		tr {
+		main tr {
 			display: table;
 			width: 100%;
 		}
-		td {
+		main td {
 			display: table-row;
 		}
-		td > *{
+		main td > *{
 			margin: .5rem
 		}
 	}
