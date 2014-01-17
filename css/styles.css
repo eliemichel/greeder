@@ -36,9 +36,6 @@
 		line-height: 1.5;
 		margin: .75em 0 0;
 	}
-	input,
-	select{
-	}
 	select{
 		border: none;
 		padding: 4px;
@@ -119,7 +116,11 @@
 		cursor: pointer;
 	}
 	aside ul a,
-	#menuSettings li{
+	aside ul a:hover,
+	#menuSettings li,
+	#menuSettings li:hover,
+	.btn,
+	.btn:hover{
 		-webkit-transition: all .2s ease;
 		-moz-transition: all .2s ease;
 		-ms-transition: all .2s ease;
@@ -202,24 +203,25 @@
 		display : flex;
 	}	
 /*Connect*/
-	#connect input,
-	#connect button {
+	#connect form > input,
+	#connect button,
+	#connect label {
 		width: 100%;
+		margin: .5rem 0;
+	}
+	#connect form > input{
+		height: 35px;
+		border: none;
 	}
 	#connect form{
-		max-width: 250px;
-		margin: 2rem auto;
 		padding: 1rem;
 		border-radius: 2px;
-		background-color: #DCDCDC;
+		background-color: #dcdcdc;
 	}
 	#connect [type="checkbox"]{
 		margin-right: 1rem;
 	}
-	#connect label{
-		margin: 0;
-	}
-	#connect.insidebar * {
+	#connect.insidebar form {
 		width:100%;
 		margin: 3px 0px;
 	}
@@ -227,6 +229,9 @@
 		width: 75%;
 		margin: 0 auto;
 		text-align: center;
+	}
+	#connect.inmain form{
+		max-width: 250px;
 	}
 
 /*Sidebar*/		
@@ -257,35 +262,49 @@
 	aside ul{
 		list-style:none;
 	}
-	aside > ul > li:hover,
-	#menuSettings li:hover{
+	aside > ul > li:hover{
 		background-color: #6A6A6A;
 		border-radius: 2px;
 	}
 	aside > ul > li:hover > a{
 		color: #FFF;
 	}
-	#menuSettings li{
-		padding: 2px;
-	}
+	
 	aside li > ul {
 		padding:5px;
-		border-radius:2px;
+		border-radius:0px 0px 2px 2px;
 		background-color: #CDCDCD;
 	}
 	ul .fade{
 		float: right;
+		padding-right: 2px;
 	}
 	a.FoldFolder{
 		color:#6A6A6A;
 		font-size:1.2em;
+		padding-left: 2px;
 	}
 /*Settings*/
+	#menuSettings li{
+		padding:5px 20px;
+	}
+	#menuSettings a{
+		display: block;
+	}
+	#menuSettings li:hover{
+		background-color: #6A6A6A;
+		border-radius: 2px;
+	}
+
 	#importexportBloc,#bookBloc,#preferenceBloc,#synchronizeBloc,#pluginBloc,#greederprefBloc{
 		display:none;
 	}
-	
-	article article{
+	.settingsPage{
+		background-color: #FFF;
+		margin: 5px;
+		padding-top: 3px;
+	}
+	.settingsPage article{
 		border-style: dashed;
 		border-left: none;
 		border-right: none;
@@ -321,9 +340,12 @@
 			width: 205px;
 			text-align: right;
 		}
-	.loopFoldersSettings .rename{
-		height: 40px;
-		margin: 0;
+	#addModifyFeeds  button {
+		float: right;
+	}
+	#addModifyFeeds input,
+	#addModifyFeeds select{
+		width: 98%;
 	}
 /*syncIframe*/
 	article iframe{
@@ -336,7 +358,8 @@
 		flex:3;
 		overflow:hidden;
 	}
-	article{
+	article,
+	.settingsPage {
 		margin:5px;
 		background:#FFF;
 		border: 1px solid #e5e5e5;
@@ -349,20 +372,20 @@
 	.articleContent{
 		padding: 5px;
 	}
-	article > h1, article > h2{
+	article.feedArticle > h1, article.feedArticle > h2{
 		margin: 0px;
 		padding: 5px;
 	}
-	article > h1{
+	article.feedArticle > h1{
 		font-size: 1.6em;
 	}
-	article > h2{
+	article.feedArticle > h2{
 		margin-top: -15px;
 		font-weight: normal;
 		font-style: italic;
 		font-size: .9em;
 	}
-	article nav{
+	article.feedArticle nav{
 		margin: 3px;
 		float:right;
 	}
@@ -406,5 +429,18 @@
 	}
 
 	@media (max-width: 640px) {		/*smartphone*/
-
+		table,
+		tbody {
+			display: block;
+		}
+		tr {
+			display: table;
+			width: 100%;
+		}
+		td {
+			display: table-row;
+		}
+		td > *{
+			margin: .5rem
+		}
 	}

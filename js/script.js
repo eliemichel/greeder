@@ -509,8 +509,8 @@ function synchronize(code, callback) {
 // =======================
 function toggleBlocks(target) {
 	if($(target).length) {
-		$('#main section, #main article').hide();
-		$('#main '+target+', #main '+target+' article').fadeToggle(200, function() {
+		$('main section').hide();
+		$('section'+target).fadeToggle(200, function() {
 			window.location.hash = target;
 		});
 	}
