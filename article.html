@@ -22,7 +22,7 @@
 		<h2>
 			{function="Plugin::callHook("event_pre_top_options", array(&$value))"}
 			{if="$articleDisplayLink"}
-				<a href="index.php?action=selectedFeed&feed={$value->getFeed()}">{$allFeeds['idMap'][$value->getFeed()]['name']}</a>
+				<a href="index.php?action=selectedFeed&amp;feed={$value->getFeed()}">{$allFeeds['idMap'][$value->getFeed()]['name']}</a>
 			{/if}
 			{if="$articleDisplayAuthor"}
 				par {$value->getCreator()}
