@@ -54,6 +54,9 @@
 		-o-hyphens: auto;
 		hyphens: auto;
 	}
+	.clear {
+		clear: both;
+	}
 	h1 {
 		font-size: 2em;
 		line-height: 1.7em;
