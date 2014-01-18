@@ -243,8 +243,10 @@
 	aside h1{
 		text-align: center;
 	}
-
-	nav a{
+	nav td{
+		text-align: center;
+	}
+	nav td a{
 		cursor:pointer;
 		display:block;
 	}
