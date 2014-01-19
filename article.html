@@ -49,12 +49,7 @@
 		{/if}
 		<!-- DIGEST VIEW -->
 		{if="$articleView!='partial'"}
-			<h1>
-				<span class="star" >★</span>
-				<a onclick="readThis(this,{$value->getId()},'title');" target="_blank" href="{$value->getLink()}" title="{$plainDescription}">{$value->getTitle()}</a> 
-				{function="Plugin::callHook("event_post_title", array(&$value))"}
-			</h1>
-			<nav>
+			<nav style="float:right">
 				{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				{if="$value->getFavorite()!=1"}
 					<button class="btn square favs" onclick="addFavorite(this,{$value->getId()});" >★</button>
