@@ -76,7 +76,14 @@ $(document).ready(function() {
 
 	// Settings page
 	// Handle the blocks display for settings page
-	if($('.settingsBloc').length) {
+	if($('.settingsPage').length) {
+                // Handling partial or complete articles display block
+                if($("input[name='articleDisplayContent']").length){
+                    $("input[name='articleDisplayContent']").click(function(){
+                        toggleArticleView();
+                    });
+                }
+
 		var hash = window.location.hash;
 		if(hash.length) {
 			toggleBlocks(hash);
@@ -509,6 +516,11 @@ function synchronize(code, callback) {
 // =======================
 // Settings page functions
 // =======================
+function toggleArticleView(){
+    var element = $("input[name=articleView]");
+    element.prop("disabled",!element.prop("disabled"));
+}
+
 function toggleBlocks(target) {
 	if($(target).length) {
 		$('main section').hide();
