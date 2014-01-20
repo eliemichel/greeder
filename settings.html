@@ -95,13 +95,13 @@
 						</fieldset>
 						<fieldset>
 							<legend>Articles les plus récents en premier (sur la page d'accueil)</legend>
-							<input value="1" id="articleDisplayHomeSortYes" name="articleDisplayHomeSort" type="radio"><label for="articleDisplayHomeSortYes">Oui</label>
-							<input checked="checked" value="0" id="articleDisplayHomeSortNo" name="articleDisplayHomeSort" type="radio"><label for="articleDisplayHomeSortNo">Non</label>
+							<input value="1" id="articleDisplayHomeSortYes" name="articleDisplayHomeSort" type="radio"{if="$articleDisplayHomeSort"} checked="checked"{/if} /><label for="articleDisplayHomeSortYes">Oui</label>
+							<input value="0" id="articleDisplayHomeSortNo" name="articleDisplayHomeSort" type="radio" {if="!$articleDisplayHomeSort"} checked="checked"{/if} /><label for="articleDisplayHomeSortNo">Non</label>
 						</fieldset>
 						<fieldset>
 							<legend>Articles les plus récents en premier (sur les dossiers)</legend>
-							<input value="1" id="articleDisplayFolderSortYes" name="articleDisplayFolderSort" type="radio"><label for="articleDisplayFolderSortYes">Oui</label>
-							<input checked="checked" value="0" id="articleDisplayFolderSorttNo" name="articleDisplayFolderSort" type="radio"><label for="articleDisplayFolderSortNo">Non</label>
+							<input value="1" id="articleDisplayFolderSortYes" name="articleDisplayFolderSort" type="radio"{if="$articleDisplayFolderSort"} checked="checked"{/if} /><label for="articleDisplayFolderSortYes">Oui</label>
+							<input value="0" id="articleDisplayFolderSorttNo" name="articleDisplayFolderSort" type="radio"{if="!$articleDisplayFolderSort"} checked="checked"{/if} /><label for="articleDisplayFolderSortNo">Non</label>
 						</fieldset>
 						<fieldset>
 							<legend>Affichage du lien direct de l'article</legend>
