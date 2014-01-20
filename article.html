@@ -48,7 +48,7 @@
 		</div> 
 		{/if}
 		<!-- DIGEST VIEW -->
-		{if="$articleView!='partial'"}
+		{if="$articleDisplayContent=='1' && $articleView=='complete'"}
 			<nav style="float:right">
 				{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				{if="$value->getFavorite()!=1"}
