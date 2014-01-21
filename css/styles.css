@@ -329,11 +329,12 @@ a.FoldFolder {
 	padding-left:0;
 	list-style:none;
 }
+
+/*List of feeds. Pretty hard to do something nice here...*/
 #loopFoldersSettings td.shorten {
 	overflow:hidden;
 	white-space:nowrap;
 }
-/*td's*/
 .loopFoldersSettingsName {
 	overflow:hidden;
 	white-space:nowrap;
@@ -346,11 +347,13 @@ a.FoldFolder {
 }
 .loopFoldersSettingsSelect select {
 	width:100%;
-	min-width:100px;
 }
 .loopFoldersSettingsButtons {
-	width:205px;
+	overflow:hidden;
 	text-align:right;
+}
+.loopFoldersSettingsButtons button{
+	width: 45%
 }
 #addModifyFeeds button {
 	float:right;
@@ -451,6 +454,7 @@ footer {
 	}
 }
 @media(max-width:640px) {
+	/*Display the table in lines*/
 	main table,
 	main tbody {
 		display:block;
@@ -464,5 +468,14 @@ footer {
 	}
 	main td > * {
 		margin:.5rem;
+	}
+	/*change color for 1/2 lines of the table.*/
+	
+	#loopFoldersSettings tr{
+		margin-top: 1rem
+	}
+	/*Fixes due to the tinx space aviable*/
+	.loopFoldersSettingsButtons button {
+		width: auto;
 	}
 }
