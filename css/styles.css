@@ -453,14 +453,16 @@ footer {
 	main {
 		flex:none;
 	}
-	/*back to top*/
+	aside > button.red {
+		width: calc(100% - 5px);
+	}
 	#backtop{
 		left:auto;
 		bottom: -60px;
 		right: -60px;
 		height: 120px;
 		width: 120px;
-		padding: 10px 0px 10px 15px;
+		padding: 5px 0px 10px 15px;
 		text-align: left;
 		-webkit-border-radius: 60px;
 		border-radius: 60px;
@@ -482,7 +484,6 @@ footer {
 	main td > * {
 		margin:.5rem;
 	}
-	/*change color for 1/2 lines of the table.*/
 	
 	#loopFoldersSettings tr{
 		margin-top: 1rem
