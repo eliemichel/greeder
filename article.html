@@ -1,7 +1,7 @@
 {loop="$events"}
 	{$plainDescription=strip_tags($value->getDescription())}	
 
-	<article class="feedArticle{if="!$value->getUnread()"} eventRead {/if}{if="$articleDisplayContent==false"} digest {/if}{if="$value->getFavorite() == 1"} favorised {/if}">
+    <article class="feedArticle{if="!$value->getUnread()"} eventRead {/if}{if="$articleDisplayContent==false"} digest {/if}{if="$value->getFavorite() == 1"} favorised {/if}{if="$scroll"} scroll{/if}">
 		<a class="anchor" id="{$value->getId()}"></a>
 		<nav>
 			{function="Plugin::callHook("event_pre_title", array(&$value))"}
