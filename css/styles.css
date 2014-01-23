@@ -5,6 +5,9 @@
  */
 /* -----------------------------*/
 /* ==Style/* -----------------------------*/
+.hidden {
+    display: none;
+}
 /*base*/
 html {
 	font-size:62.5%;
@@ -423,6 +426,9 @@ article.feedArticle nav {
 }
 #load_more {
 	display:none;
+}
+article.scroll {
+    display: none;
 }
 /*Navbar Articles*/
 .favs {

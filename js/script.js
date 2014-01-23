@@ -57,16 +57,16 @@ $(document).ready(function() {
 	// Handle position fix for sidebar
 	if(fixSidebar) {
 		$('aside#sidebar').addClass('fixed');
-		$('section.content').addClass('fixed');
+		$('#main').addClass('fixed');
 	}
 
 	// Back to top button handling
 	toggleBacktop();
 	
 	// Initialize ajaxready at first function load
-	if($('.index').length) {
+	if($('#main').length) {
 		$(window).data('ajaxready', true);
-		$('.content').append('<div id="loader">'+_t('LOADING')+'</div>');
+		$('#main').append('<div id="loader">'+_t('LOADING')+'</div>');
 		$(window).data('page', 1);
 		$(window).data('nblus', 0);
 	}
@@ -211,7 +211,7 @@ function scrollInfini(no_scroll_test) {
 	var deviceAgent = navigator.userAgent.toLowerCase();
 	var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
 
-	if($('.index').length) {
+	if($('#main').length) {
 		// Test if ajaxready is false, and exit in this case (block multiple calls)
 		if ($(window).data('ajaxready') == false)
 			return;
