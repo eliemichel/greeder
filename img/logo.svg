@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="90.402313"
+   width="92.400002"
    height="33.545399"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="Nouveau document 1">
+   sodipodi:docname="logo.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,7 +58,7 @@
      transform="translate(-180.22516,-480.88946)">
     <g
        id="g3876"
-       transform="matrix(0.04085453,0,0,0.04085453,173.29904,477.86112)"
+       transform="matrix(0.04085453,0,0,0.04085453,174.29904,477.86112)"
        style="fill:#6a6a6a;fill-opacity:1;stroke:none">
       <path
          id="path2995"
@@ -89,14 +89,14 @@
     <text
        xml:space="preserve"
        style="font-size:37.47461319px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#6a6a6a;fill-opacity:1;stroke:none;font-family:Sans"
-       x="227.78928"
+       x="228.85666"
        y="474.64154"
        id="text3026"
        sodipodi:linespacing="125%"
-       transform="scale(0.93686537,1.0673892)"><tspan
+       transform="scale(0.93686538,1.0673892)"><tspan
          sodipodi:role="line"
          id="tspan3028"
-         x="227.78928"
+         x="228.85666"
          y="474.64154"
          style="font-size:22.48476982px;font-weight:bold;fill:#6a6a6a;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold">L<tspan
    style="font-size:22.48476982px;font-style:italic;fill:#6a6a6a;stroke:none;-inkscape-font-specification:Sans Bold Italic"

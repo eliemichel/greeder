@@ -3,144 +3,147 @@
 {if="($configurationManager->get('articleDisplayAnonymous')=='1') || ($myUser!=false)"}
 {function="Plugin::callHook("menu_pre_folder_menu", array(&$myUser))"}
 <div id="flex">
-<aside>
-	<nav>
-		<h1><a href="./index.php"><img src="img/logo.png" id="logo" alt="Leed"></a></h1>
-		{if="($myUser==false)"}
-		<div id="connect" class="insidebar">
-			{include="connectform"}
+	<aside>
+		<nav>
+			<h1><a href="./index.php"><img src="img/logo.svg" id="logo" alt="Leed" onerror="this.removeAttribute('onerror'); this.src='logo.png'"></a></h1>
+			{if="($myUser==false)"}
+			<div id="connect" class="insidebar">
+				{include="connectform"}
+			</div>
+			{else}
+				{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
+				<table>
+					<tr>
+						<td><a href="index.php"><img src="img/home.svg" class="icon" alt="{function="_t('HOME')"}" onerror="this.removeAttribute('onerror'); this.src='logo.png'" ></a></td>
+						<td><a href="index.php?action=favorites"><img src="img/favs.svg" class="icon" alt="{function="_t('FAVORITES')"}" onerror="this.removeAttribute('onerror'); this.src='logo.png'" ></a></td>
+						<td><a href="settings.php"><img src="img/settings.svg" class="icon" alt="{function="_t('MANAGE')"}" onerror="this.removeAttribute('onerror'); this.src='logo.png'" ></a></td>
+						<td><a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.svg" class="icon" alt="{function="_t('LAUNCH_SYNCHRONISATION')"}" onerror="this.removeAttribute('onerror'); this.src='logo.png'" ></a></td>
+						<td><a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.svg" class="icon" alt="{function="_t('DISCONNECT')"}" onerror="this.removeAttribute('onerror'); this.src='logo.png'" ></a></td>
+					</tr>
+				</table>
+				{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
+			{/if}
+		</nav>
+		
+		<div id="breadcrumb" class="fade">
+		<!-- display one feed -->
+			{if="$action=='selectedFeed'"}
+				<a target="_blank" href="{$currentFeed->getWebSite()}">{$currentFeed->getName()}</a>
+				<div class="clear"></div>
+				{function="_t('SEE_THE')"}
+				<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=unread">{function="ucfirst(_t('UNREAD'))"}</a> /
+				<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=older">{function="_t('OLDER')"}</a> {function="_t('IN_FIRST')"}
+			{/if}
+			<!-- display one folder -->                
+			{if="$action=='selectedFolder'"}
+				{$currentFolder->getName()}
+			{/if}
+			<!-- display favorites -->                
+			{if="$action=='favorites'"}
+				{function="_t('FAVORITES_EVENTS',array($numberOfItem))"}
+			{/if}
+			<!-- display unread elements (default) -->                                                
+			{if="($action=='unreadEvents') || ($action=='')"}
+				{function="_t('UNREAD')"} ({$numberOfItem})
+			{/if}
 		</div>
-		{else}
-			{function="Plugin::callHook("header_post_logo", array(&$myUser))"}
-			<table>
-				<tr>
-					<td><a href="index.php"><img src="img/home.png" class="icon" alt="{function="_t('HOME')"}"></a></td>
-					<td><a href="index.php?action=favorites"><img src="img/favs.png" class="icon" alt="{function="_t('FAVORITES')"}"></a></td>
-					<td><a href="settings.php"><img src="img/settings.png" class="icon" alt="{function="_t('MANAGE')"}"></a></td>
-					<td><a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.png" class="icon" alt="{function="_t('LAUNCH_SYNCHRONISATION')"}"></a></td>
-					<td><a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.png" class="icon" alt="{function="_t('DISCONNECT')"}"></a></td>
-				</tr>
-			</table>
-			{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
-		{/if}
-	</nav>
-	
-	<div id="breadcrumb" class="fade">
-	<!-- display one feed -->
-		{if="$action=='selectedFeed'"}
-			<a target="_blank" href="{$currentFeed->getWebSite()}">{$currentFeed->getName()}</a>
-			<div class="clear"></div>
-			{function="_t('SEE_THE')"}
-			<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=unread">{function="ucfirst(_t('UNREAD'))"}</a> /
-			<a href="index.php?action=selectedFeed&amp;feed={$_['feed']}&amp;page={$page}&amp;order=older">{function="_t('OLDER')"}</a> {function="_t('IN_FIRST')"}
-		{/if}
-		<!-- display one folder -->                
-		{if="$action=='selectedFolder'"}
-			{$currentFolder->getName()}
-		{/if}
-		<!-- display favorites -->                
-		{if="$action=='favorites'"}
-			{function="_t('FAVORITES_EVENTS',array($numberOfItem))"}
-		{/if}
-		<!-- display unread elements (default) -->                                                
-		{if="($action=='unreadEvents') || ($action=='')"}
-			{function="_t('UNREAD')"} ({$numberOfItem})
-		{/if}
-	</div>
 
-	<button class="btn red" onclick="if(confirm('{function="_t('CONFIRM_MARK_ALL_AS_READ')"}'))window.location='action.php?action=readAll'">{function="_t('MARK_ALL_AS_READ')"}</button>
-				{function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
-				<ul>
-					<!--parse feeds for each folder-->
-						{loop="folders"}
-							{$feeds=""}
-								{if="isset($allFeedsPerFolder[$value->getId()])"}
-									{$feeds=$allFeedsPerFolder[$value->getId()]}
-								{/if}
-								{if="isset($allEvents[$value->getId()])"}
-									{$unreadEventsForFolder=$allEvents[$value->getId()]}
-								{/if}
-								<!-- one folder -->
-								<li>
-									<a class="FoldFolder" title="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
-										{if="!$value->getIsopen()"}►{else}▼{/if}
-									</a>
-									{function="Plugin::callHook("menu_pre_folder_link", array(&$value))"}
-		
-									<a title="{function="_t('READ_FOLDER_ITEMS')"}" href="index.php?action=selectedFolder&amp;folder={$value->getId()}">
-										{$value->getName()}
-									</a>
-		
-									{function="Plugin::callHook("menu_post_folder_link", array(&$value))"}
-									{if="$unreadEventsForFolder!=0"}
-									<a class="fade" title="{function="_t('MARK_AS_READ_FOLDER_ITEMS',array($unreadEventsForFolder))"}" onclick="if(confirm('{function="_t('READ_ALL_FOLDER_CONFIRM')"}'))window.location='action.php?action=readFolder&amp;folder={$value->getId()}';">
-										({$unreadEventsForFolder})
-									</a>
+		<button class="btn red" onclick="if(confirm('{function="_t('CONFIRM_MARK_ALL_AS_READ')"}'))window.location='action.php?action=readAll'">{function="_t('MARK_ALL_AS_READ')"}</button>
+					{function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
+					<ul>
+						<!--parse feeds for each folder-->
+							{loop="folders"}
+								{$feeds=""}
+									{if="isset($allFeedsPerFolder[$value->getId()])"}
+										{$feeds=$allFeedsPerFolder[$value->getId()]}
 									{/if}
-		
-									<!-- folder's feeds -->
-									<ul {if="!$value->getIsopen()"}style="display:none;"{/if}>
-										{if="count($feeds)!=0"}
-											{loop="feeds"}
-												<li>
-													{function="Plugin::callHook("menu_pre_feed_link", array(&$value))"}
-														<a href="index.php?action=selectedFeed&amp;feed={$value2['id']}" title="{function="htmlentities($value2['url'])"}">
-															{function="htmlentities(Functions::truncate($value2['name'],37))"}
-														</a>
-													{if="isset($unread[$value2['id']])"}
-														<a class="fade" onclick="if(confirm('{function="_t('CONFIRM_MARK_FEED_AS_READ')"}'))window.location='action.php?action=readAll&amp;feed={$value2['id']}';">
-															{$unread[$value2['id']]}
-														</a>
-													{/if}
-													{function="Plugin::callHook("menu_post_feed_link", array(&$value))"}
-												</li>
-											{/loop}
+									{if="isset($allEvents[$value->getId()])"}
+										{$unreadEventsForFolder=$allEvents[$value->getId()]}
+									{/if}
+									<!-- one folder -->
+									<li>
+										<a class="FoldFolder" title="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
+											{if="!$value->getIsopen()"}►{else}▼{/if}
+										</a>
+										{function="Plugin::callHook("menu_pre_folder_link", array(&$value))"}
+			
+										<a title="{function="_t('READ_FOLDER_ITEMS')"}" href="index.php?action=selectedFolder&amp;folder={$value->getId()}">
+											{$value->getName()}
+										</a>
+			
+										{function="Plugin::callHook("menu_post_folder_link", array(&$value))"}
+										{if="$unreadEventsForFolder!=0"}
+										<a class="fade" title="{function="_t('MARK_AS_READ_FOLDER_ITEMS',array($unreadEventsForFolder))"}" onclick="if(confirm('{function="_t('READ_ALL_FOLDER_CONFIRM')"}'))window.location='action.php?action=readFolder&amp;folder={$value->getId()}';">
+											({$unreadEventsForFolder})
+										</a>
 										{/if}
-									</ul>
-								</li>
-							{$unreadEventsForFolder=0}
-						{/loop}
-					</ul>
+			
+										<!-- folder's feeds -->
+										<ul {if="!$value->getIsopen()"}style="display:none;"{/if}>
+											{if="count($feeds)!=0"}
+												{loop="feeds"}
+													<li>
+														{function="Plugin::callHook("menu_pre_feed_link", array(&$value))"}
+															<a href="index.php?action=selectedFeed&amp;feed={$value2['id']}" title="{function="htmlentities($value2['url'])"}">
+																{function="htmlentities(Functions::truncate($value2['name'],37))"}
+															</a>
+														{if="isset($unread[$value2['id']])"}
+															<a class="fade" onclick="if(confirm('{function="_t('CONFIRM_MARK_FEED_AS_READ')"}'))window.location='action.php?action=readAll&amp;feed={$value2['id']}';">
+																{$unread[$value2['id']]}
+															</a>
+														{/if}
+														{function="Plugin::callHook("menu_post_feed_link", array(&$value))"}
+													</li>
+												{/loop}
+											{/if}
+										</ul>
+									</li>
+								{$unreadEventsForFolder=0}
+							{/loop}
+						</ul>
 
-		{function="Plugin::callHook("menu_post_folder_menu", array(&$myUser))"}
-</aside> 
+			{function="Plugin::callHook("menu_post_folder_menu", array(&$myUser))"}
+	</aside> 
 
-<main id="main">
-	{include="article"}
-	
-	{if="$pages!=0"}
-	<p id="pagination">
-		<a class="grey-h page">Page {$page}/{$pages} : </a>
+	<main id="main">
+		{include="article"}
+		
+		{if="$pages!=0"}
+		<p id="pagination">
+			<a class="grey-h page">Page {$page}/{$pages} : </a>
 
-		{if="$previousPages>0"}
-			<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$previousPages}">&lt;&lt;</a>
+			{if="$previousPages>0"}
+				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$previousPages}">&lt;&lt;</a>
+			{/if}
+
+			{loop="pagesArray"}
+
+			{if="$page!=$value"}
+				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$value}">{$value}</a> 
+			{else}
+				<a class="grey-h page">{$value}</a>
+			{/if}
+
+			{/loop}
+
+			{if="$nextPages>0"}
+				<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$nextPages}">&gt;&gt;</a>
+			{/if}
+		</p> 
 		{/if}
 
-		{loop="pagesArray"}
+		{if="$numberOfItem != 0"}
+			<div id="load_more">
+				<button class="red" onclick="scrollInfini(true);">Charger plus d'articles</button>
+			</div>
+		{/if}	
+	</main>
 
-		{if="$page!=$value"}
-			<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$value}">{$value}</a> 
-		{else}
-			<a class="grey-h page">{$value}</a>
-		{/if}
-
-		{/loop}
-
-		{if="$nextPages>0"}
-			<a class="grey page" href="index.php?action={$action}{if="$action=='selectedFeed'"}&amp;feed={$currentFeed->getId()}{/if}{if="$action=='selectedFolder'"}&amp;folder={$currentFolder->getId()}{/if}&amp;page={$nextPages}">&gt;&gt;</a>
-		{/if}
-	</p> 
-	{/if}
-
-	{if="$numberOfItem != 0"}
-		<div id="load_more">
-			<button class="red" onclick="scrollInfini(true);">Charger plus d'articles</button>
-		</div>
-	{/if}	
-</main>
-
-
-<div id="backtop"><a id="backtoplink" href="#logo">ꜛ</a></div>
+	<div id="backtop">
+		<a id="backtoplink" href="#logo">
+			<img src="img/top.svg" class="icon" alt="ꜛ" onerror="this.removeAttribute('onerror'); this.src='top.png'" >
+		</a>
+	</div>
 </div>
 {else}
 
