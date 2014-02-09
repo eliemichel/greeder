@@ -4,7 +4,7 @@
 <div id="flex">
 <aside>
 	<nav>
-		<h1><a href="./index.php"><img src="img/logo.png" id="logo" alt="Leed"></a></h1>
+		<h1><a href="./index.php"><img src="img/logo.svg" id="logo" alt="Leed" onerror="this.removeAttribute('onerror'); this.src='logo.png'"></a></h1>
 		{if="($myUser==false)"}
 		<div id="connect" class="insidebar">
 			{include="connectform"}
@@ -19,7 +19,7 @@
 					<td><a class="synchronyzeButton" title="Synchroniser" onclick="synchronize('{if="$myUser"}{$synchronisationCode}{/if}');"><img src="img/sync.svg" class="icon" alt="{function="_t('LAUNCH_SYNCHRONISATION')"}" onerror="this.removeAttribute('onerror'); this.src='logo.png'" ></a></td>
 					<td><a class="deco" onclick="window.location='action.php?action=logout'"><img src="img/off.svg" class="icon" alt="{function="_t('DISCONNECT')"}" onerror="this.removeAttribute('onerror'); this.src='logo.png'" ></a></td>
 				</tr>
-			</table>
+				</table>
 			{function="Plugin::callHook("navigate_post_link", array(&$myUser))"}
 		{/if}
 	</nav>
@@ -294,10 +294,10 @@
 	</main>	
 </div>	
 {else}
-	<main>
-		<h1>Vous devez être connecté pour consulter vos flux </h1>
+	<main id="connect" class="inmain">
+		<h1>{function="_t('YOU_MUST_BE_LOGGED')"}</h1>
+		<p>{function="_t('IF_ADMIN_THEN_CONFIG')"}</p>
 			{include="connectform"}
-		<p>Si vous &ecirc;tes administrateur, vous pouvez r&eacute;gler les droits de visualisation dans la partie administration.</p>
 	</main>
 {/if}
 {include="footer"}

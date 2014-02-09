@@ -274,7 +274,7 @@ aside ul {
 	list-style:none;
 }
 aside > ul > li {
-	padding: 3px;
+	margin: 4px 0;
 }
 aside > ul > li:hover {
 	border-radius:2px;
@@ -285,7 +285,7 @@ aside > ul > li:hover > a {
 }
 aside li > ul {
 	padding:5px;
-	border-radius:0 0 2px 2px;
+	border-radius: 2px;
 	background-color:#CDCDCD;
 }
 ul .fade {
