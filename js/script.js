@@ -335,7 +335,7 @@ function saveRenameFolder(element, folder) {
 // ========================
 // Hamburger icon Feed List
 // ========================
-$("#feedList").addClass("js").before('<div id="menu">&#9776;</div>');
+$("#feedList").addClass("js").before('<div id="menu"><img src="./templates/greeder/img/ham.svg" alt="Feed list" onerror="this.removeAttribute(\'onerror\'); this.src=\'./templates/greeder/img/ham.png\'"></div>');
 $("#menu").click(function(){
 	$("#feedList").slideToggle(200);
 });
