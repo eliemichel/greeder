@@ -50,7 +50,7 @@
 
 		<button class="btn red" onclick="if(confirm('{function="_t('CONFIRM_MARK_ALL_AS_READ')"}'))window.location='action.php?action=readAll'">{function="_t('MARK_ALL_AS_READ')"}</button>
 					{function="Plugin::callHook("menu_post_header_options", array(&$myUser))"}
-					<ul>
+					<ul id="feedList">
 						<!--parse feeds for each folder-->
 							{loop="folders"}
 								{$feeds=""}

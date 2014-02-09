@@ -10,6 +10,7 @@
 // * Lazy loading
 // * Internationalization
 // * Folders
+// * hamburger icon Feed List
 // * Favorites
 // * Read / Unread
 // * Feed settings
@@ -330,6 +331,19 @@ function saveRenameFolder(element, folder) {
 		data:{id:folder,name:value}
 	});
 }
+
+// ========================
+// Hamburger icon Feed List
+// ========================
+$("#feedList").addClass("js").before('<div id="menu">&#9776;</div>');
+$("#menu").click(function(){
+	$("#feedList").slideToggle(200);
+});
+$(window).resize(function(){
+	if(window.innerWidth > 768) {
+	$("#feedList").removeAttr("style");
+	}
+});
 
 // =========
 // Favorites
