@@ -48,6 +48,8 @@ Après minification, un fichier css/css.min.css et un fichier js/js.min.js seron
 
 Après chaque modification, les fichiers minifiés doivent être régénérés pour qu'ils soient toujours commités dans le même état que les autres fichiers, non minifiés. Ceci peut se faire aisément avec un hook git si vous le souhaitez.
 
+Pour forcer la minification à nouveau, supprimer les fichiers css/css.min.css et js/js.min.js et relancer "make".
+
 ## Informations utiles
 
 * Site du logiciel Leed : http://projet.idleman.fr/leed
