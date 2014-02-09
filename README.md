@@ -9,13 +9,13 @@ Le thème est responsive, vous pourrez donc l’utiliser pour lire sur votre ord
 
 Un aperçu du thème est disponible sur <a href="http://projets.tomcanac.com/demo/greeder/">cette instance de démonstration</a>.
 
-# Fonctionnalités
+## Fonctionnalités
 
 * Thème minimal et léger.
 * Fonctionnalités tactiles (swipe to read, ...) disponibles _via_ un plugin.
 * Gestion avancée des raccourcis claviers ( _via_ plugin). Possibilité de configurer les raccourcis claviers.
 
-# Installation
+## Installation
 
 Comme n'importe quel thème pour Leed, Greeder s'installe très facilement.
 
@@ -33,7 +33,24 @@ Comme n'importe quel thème pour Leed, Greeder s'installe très facilement.
      <li>Vous êtes désormais un utilisateur de Greeder !</li>
 </ol>
 
-# Informations utiles
+## Information sur la minification, pour les développeurs
+
+Un makefile est fourni pour minifier automatiquement les fichiers css et js du thème. Pour l'utiliser, vous devez placer le fichier yuicompressor contenant le programme de minification à la racine du dossier.
+
+Pour se faire :
+<ol>
+    <li>Récupérer yuicompressor ici : https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.jar</li>
+    <li>Placer le fichier récupéré (sans le renommer) à la racine du dossier</li>
+    <li>Vous pouvez désormais lancer la commande "make" à la racine du dossier de greeder pour minifier le CSS et le JS.
+</ol>
+
+Après minification, un fichier css/css.min.css et un fichier js/js.min.js seront générés, contenant tout le code nécessaire. Ces fichiers étant ceux utilisés par Greeder, il faut lancer "make" après chaque modification des fichiers non minifiés.
+
+Après chaque modification, les fichiers minifiés doivent être régénérés pour qu'ils soient toujours commités dans le même état que les autres fichiers, non minifiés. Ceci peut se faire aisément avec un hook git si vous le souhaitez.
+
+Pour forcer la minification à nouveau, supprimer les fichiers css/css.min.css et js/js.min.js et relancer "make".
+
+## Informations utiles
 
 * Site du logiciel Leed : http://projet.idleman.fr/leed
 * GitHub de Leed : https://github.com/ldleman/Leed
@@ -44,7 +61,7 @@ Comme n'importe quel thème pour Leed, Greeder s'installe très facilement.
 Greeder est un thème initié et développé par Tom Canac (@tmos, http://tomcanac.com).<br/>
 Leed est développé par Idleman (@Idleman, http://idleman.fr/)
 
-# Remerciements
+## Remerciements
 
 Merci aux contributeurs suivants :
 
