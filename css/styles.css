@@ -37,6 +37,9 @@
 			font-size:1em;
 			line-height:1.5;
 		}
+		fieldset {
+			border: 1px solid #E5E5E5;
+		}
 		select {
 			padding:4px;
 			border:none;
