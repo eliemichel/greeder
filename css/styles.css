@@ -330,7 +330,6 @@
 		}
 		.settingsPage article {
 			margin:5px 0 0;
-			padding:10px;
 			border-style:dashed;
 			border-right:none;
 			border-bottom:none;
@@ -410,7 +409,11 @@
 			background-color:#CDCDCD;
 		}
 		.articleContent {
-			padding:5px;
+			
+		}
+		.articleContent,
+		.settingsPage article{
+			padding: 2rem 3rem;
 		}
 		article.feedArticle > h1,
 		article.feedArticle > h2 {
@@ -430,13 +433,20 @@
 			float:right;
 			margin:3px;
 		}
-		#load_more {
+		article nav button{
+			margin-bottom: 3px
+		}
+		#load_more,
+		#loader {
+			text-align: center;
+			margin-top: 2rem;
 			display:none;
 		}
 		article.scroll {
 			display: none;
 		}
 	/*Navbar Articles*/
+
 		.favs {
 			font-size:1.5em;
 			color:#FFF;
@@ -493,6 +503,10 @@
 			}
 	}
 	@media(max-width:640px) {
+		.articleContent,
+		.settingsPage article{
+			padding: 2rem;
+		}
 		/*Display the table in lines*/
 			main table,
 			main tbody {
