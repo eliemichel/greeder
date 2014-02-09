@@ -10,7 +10,7 @@ css/css.min.css: css/styles.css css/knacss.css
 	$(YUICOMPRESSOR) -o css/css.min.css css/css.tmp.css
 	rm css/css.tmp.css
 	@echo "[CSS] Minification successful"
-	@echo -e "================================\n"
+	@echo "================================"
 
 js/js.min.js: js/script.js js/jquery.cookie.min.js js/jquery-2.0.3.min.js
 	@echo "================================"
