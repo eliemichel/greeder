@@ -305,15 +305,14 @@
 			color:#6A6A6A;
 		}
 	/*Settings*/
-		#menuSettings li {
-			padding:5px 20px;
-		}
 		#menuSettings a {
 			display:block;
+			padding:5px 20px;
 		}
-		#menuSettings li:hover {
+		#menuSettings a:hover {
 			border-radius:2px;
 			background-color:#6A6A6A;
+			color: #FFF;
 		}
 		#importexportBloc,
 		#bookBloc,
