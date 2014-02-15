@@ -10,7 +10,7 @@
 			{else}
 				<button class="btn square favs" onclick="removeFavorite(this,{$value->getId()});" >★</button>
 			{/if}
-			<button class="btn red nav_buttons" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">{function="_t('READ')"}/{function="_t('UNREAD')"}</button>
+			<button class="btn red read_button" onclick="readThis(this,{$value->getId()}{$action=='unreadEvents' || $action==''?',true':''});">{function="_t('READ')"}/{function="_t('UNREAD')"}</button>
 		</nav>
 		<h1>
 			<span class="star" >★</span>
