@@ -3,7 +3,7 @@
 
     <article class="feedArticle{if="!$value->getUnread()"} eventRead {/if}{if="$articleDisplayContent==false"} digest {/if}{if="$value->getFavorite() == 1"} favorised {/if}{if="$scroll"} scroll{/if}">
 		<a class="anchor" id="{$value->getId()}"></a>
-		<nav class="buttons-bar">
+		<nav class="articles-button-bar">
 			{function="Plugin::callHook("event_pre_title", array(&$value))"}
 			{if="$value->getFavorite()!=1"}
 				<button class="btn square favs" onclick="addFavorite(this,{$value->getId()});" >★</button>
@@ -49,7 +49,7 @@
 		{/if}
 		<!-- DIGEST VIEW -->
 		{if="$articleDisplayContent=='1' && $articleView=='complete'"}
-			<nav style="float:right" class="buttons-bar">
+			<nav style="float:right" class="articles-button-bar">
 				{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				{if="$value->getFavorite()!=1"}
 					<button class="btn square favs" onclick="addFavorite(this,{$value->getId()});" >★</button>
