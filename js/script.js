@@ -247,7 +247,7 @@ function scrollInfini(no_scroll_test) {
 					if (data.replace(/^\s+/g,'').replace(/\s+$/g,'') != '')
 					{
 						// Insert new articles right before the loader
-						$('#main #load_more').before(data);
+						$('#main #loader').before(data);
 						// Delete script from page to prevent interaction with next and prev
 						$('#main .scriptaddbutton').remove();
 						// Display events with a fadeIn
@@ -262,7 +262,7 @@ function scrollInfini(no_scroll_test) {
 							scrollInfini();
 					}
 					else {
-						$('#load_more').remove();
+						$('#loader').remove();
 					}
 				}
 			});
