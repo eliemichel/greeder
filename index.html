@@ -63,7 +63,7 @@
 									<!-- one folder -->
 									<li>
 										<a class="FoldFolder" title="Plier/Deplier le dossier" onclick="toggleFolder(this,{$value->getId()});" >
-											{if="!$value->getIsopen()"}►{else}▼{/if}
+											▼
 										</a>
 										{function="Plugin::callHook("menu_pre_folder_link", array(&$value))"}
 			
@@ -79,7 +79,7 @@
 										{/if}
 			
 										<!-- folder's feeds -->
-										<ul {if="!$value->getIsopen()"}style="display:none;"{/if}>
+										<ul>
 											{if="count($feeds)!=0"}
 												{loop="feeds"}
 													<li>

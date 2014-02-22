@@ -41,6 +41,22 @@ if($('#backtop').length) {
 }
 
 $(document).ready(function() {
+    // Handle toggle status for folders
+    toggle_status = $.cookie('greedertoggleFolder');
+    if(typeof(toggle_status) !== 'undefined') {
+        toggle_status = JSON.parse(toggle_status);
+        for(i in toggle_status) {
+            if(toggle_status[i] == 0 || toggle_status[i] == 1) {
+                var css_status = 'block';
+                if(toggle_status[i] == 0) {
+                    $('.FoldFolder').eq(i-1).html('►');
+                    css_status = 'none';
+                }
+                $('ul', $('.FoldFolder').eq(i-1).parent()).css('display', css_status);
+            }
+        }
+    }
+
 	// Pagination enabled
 	if($.cookie('greederprefPagination') == 1) {
 		usePagination = true;
@@ -289,18 +305,25 @@ function _t(key,args){
 // Folders
 // =======
 function toggleFolder(element, folder) {
-	feedBloc = $('ul', $(element).parent());
+	var feedBloc = $('ul', $(element).parent());
 
-	open = 0;
+	var open = 0;
 	if(feedBloc.css('display') == 'none') {
 		open = 1;
 	}
 
 	feedBloc.slideToggle(200);
 	$(element).html((!open ? '►' : '▼'));
-	$.ajax({
-		url:"./action.php?action=changeFolderState",
-		data:{id:folder, isopen:open}
+
+    var folders_status = $.cookie('greedertoggleFolder');
+    if(typeof(folders_status) !== 'undefined')
+        folders_status = JSON.parse(folders_status);
+    else
+        folders_status = new Array();
+    folders_status[folder] = open;
+
+	$.cookie('greedertoggleFolder', JSON.stringify(folders_status), {
+		expire : 31536000, // expires in one year
 	});
 }
 
