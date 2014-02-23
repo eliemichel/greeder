@@ -454,10 +454,16 @@ function readThis(element, id, from, callback) {
 							parent.addClass('eventRead');
 							// We count how many articles have been read to substract them to the infinite scroll query
 							$(window).data('nblus', $(window).data('nblus')+1);
+                            if(callback){
+                                callback();
+                            }
 							break;
 						default:
 							// Any other case : favorites, selectedFeed, ...
 							parent.addClass('eventRead');
+                            if(callback){
+                                callback();
+                            }
 							break;
 					}
 				}
@@ -478,6 +484,10 @@ function readThis(element, id, from, callback) {
 						parent.removeClass('eventRead');
 						// Count how many articles have been set to unread
 						if ( (activeScreen=='') || (activeScreen=='selectedFolder') ) $(window).data('nblus', $(window).data('nblus') - 1);
+
+                        if(callback){
+                            callback();
+                        }
 					}
 				}
 			});
