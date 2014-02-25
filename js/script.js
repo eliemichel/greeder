@@ -28,6 +28,8 @@
 var usePagination = false;
 // Fix or not the sidebar : true = fixed, false = not fixed
 var fixSidebar = false;
+// Handle hamburger status
+var hamburger_status = 0;
 
 // ==============
 // Initialization
@@ -55,6 +57,15 @@ $(document).ready(function() {
                 $('ul', $('.FoldFolder').eq(i-1).parent()).css('display', css_status);
             }
         }
+    }
+
+    // Handle hamburger status
+    if(typeof($.cookie('greederhamburgerStatus')) !== 'undefined') {
+        hamburger_status = $.cookie('greederhamburgerStatus');
+    }
+
+    if(hamburger_status == 1) {
+        $("#feedList").toggle(0);
     }
 
 	// Pagination enabled
@@ -359,8 +370,13 @@ function saveRenameFolder(element, folder) {
 // Hamburger icon Feed List
 // ========================
 $("#feedList").addClass("js").before('<div id="menu"><img src="./templates/greeder/img/ham.svg" alt="Feed list" onerror="this.removeAttribute(\'onerror\'); this.src=\'./templates/greeder/img/ham.png\'"></div>');
+
 $("#menu").click(function(){
 	$("#feedList").slideToggle(200);
+    hamburger_status = 1 - hamburger_status;
+	$.cookie('greederhamburgerStatus', window.hamburger_status, {
+		expire : 31536000, // expires in one year
+	});
 });
 $(window).resize(function(){
 	if(window.innerWidth > 768) {
