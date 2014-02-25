@@ -46,22 +46,36 @@ $(document).ready(function() {
     // Handle toggle status for folders
     toggle_status = $.cookie('greedertoggleFolder');
     if(typeof(toggle_status) !== 'undefined') {
-        toggle_status = JSON.parse(toggle_status);
-        for(i in toggle_status) {
-            if(toggle_status[i] == 0 || toggle_status[i] == 1) {
-                var css_status = 'block';
-                if(toggle_status[i] == 0) {
-                    $('.FoldFolder').eq(i-1).html('►');
-                    css_status = 'none';
+        try {
+            toggle_status = JSON.parse(toggle_status);
+
+            for(i in toggle_status) {
+                if(toggle_status[i] == 0 || toggle_status[i] == 1) {
+                    var css_status = 'block';
+                    if(toggle_status[i] == 0) {
+                        $('.FoldFolder').eq(i-1).html('►');
+                        css_status = 'none';
+                    }
+                    $('ul', $('.FoldFolder').eq(i-1).parent()).css('display', css_status);
                 }
-                $('ul', $('.FoldFolder').eq(i-1).parent()).css('display', css_status);
             }
+        }
+        catch(e) {
+            $.cookie('greedertoggleFolder', JSON.stringify(Array()), {
+                expire : -31536000, // expires in one year
+            });
         }
     }
 
     // Handle hamburger status
     if(typeof($.cookie('greederhamburgerStatus')) !== 'undefined') {
         hamburger_status = $.cookie('greederhamburgerStatus');
+        if(parseInt(hamburger_status) == NaN) {
+            hamburger_status = 0;
+            $.cookie('greederhamburgerStatus', 0, {
+                expire : -31536000, // expires in one year
+            });
+        }
     }
 
     if(hamburger_status == 1) {
