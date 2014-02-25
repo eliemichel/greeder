@@ -292,6 +292,7 @@
 			padding:5px;
 			border-radius: 2px;
 			background-color:#CDCDCD;
+            display: none;
 		}
 		ul .fade {
 			float:right;
