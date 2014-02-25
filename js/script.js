@@ -78,7 +78,7 @@ $(document).ready(function() {
         }
     }
 
-    if(hamburger_status == 1) {
+    if(hamburger_status == 1 && window.innerWidth < 850) {
         $("#feedList").toggle(0);
     }
 
@@ -392,10 +392,18 @@ $("#menu").click(function(){
 		expire : 31536000, // expires in one year
 	});
 });
-$(window).resize(function(){
-	if(window.innerWidth > 768) {
-	$("#feedList").removeAttr("style");
-	}
+
+$(window).resize(function() {
+    if(hamburger_status == 1 && window.innerWidth < 850) {
+        $("#feedList").css("display", "block");
+    }
+    else if(window.innerWidth < 850) {
+        $("#feedList").css("display", "none");
+    }
+
+    if(window.innerWidth > 850) {
+        $("#feedList").css("display", "block");
+    }
 });
 
 // =========
