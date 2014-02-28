@@ -51,7 +51,7 @@ $(document).ready(function() {
 
             for(i in toggle_status) {
                 if(toggle_status[i] == 0 || toggle_status[i] == 1) {
-                    var css_status = 'block';
+                    var css_status = 'none';
                     if(toggle_status[i] == 1) {
                         $('.FoldFolder').eq(i-1).html('▼');
                         css_status = 'block';
