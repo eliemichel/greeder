@@ -357,8 +357,31 @@
 			width:25%;
 		}
 		.loopFoldersSettingsSelect select {
-			width:100%;
+			width:calc(100% - 50px);
 		}
+		.loopFoldersSettingsSelect input[type=checkbox],
+		.loopFoldersSettingsSelect label{
+			float: right;
+			padding:0 4px;
+		}
+		.loopFoldersSettingsSelect input[type=checkbox] {
+			display:none;
+		}
+		.loopFoldersSettingsSelect input[type=checkbox] + label {
+			background: url("../img/visible_yes.svg");
+			height: 26px;
+			width: 26px;
+			display:inline-block;
+			padding: 0 0 0 0px;
+		}
+		.loopFoldersSettingsSelect input[type=checkbox]:checked + label {
+			background: url("../img/visible_no.svg");
+			height: 26px;
+			width: 26px;
+			display:inline-block;
+			padding: 0 0 0 0px;
+		}
+
 		.loopFoldersSettingsButtons {
 			overflow:hidden;
 			text-align:right;

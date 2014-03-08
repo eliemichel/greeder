@@ -41,7 +41,7 @@
 
 
 <main>
-    {if="(isset($myUser)) && ($myUser!=false)"}
+	{if="(isset($myUser)) && ($myUser!=false)"}
 		<section class="settingsPage" id="preferenceBloc">
 			<form method="POST" action="action.php?action=updateConfiguration">		
 				<article>		
@@ -137,7 +137,7 @@
 				</article>
 			</form>
 		</section>
-        {/if}
+		{/if}
 
 		<section class="settingsPage" id="manageBloc">
 				<article id="addModifyFeeds">
@@ -177,6 +177,7 @@
 								</tr>
 							</table>
 					</form>
+
 				</article>
 					<ul id="loopFoldersSettings" class="clear tableflux">
 						{$feedsForFolder=""}
@@ -214,6 +215,13 @@
 															<option {if="$value2->getFolder()==$value3->getId()"}selected="selected"{/if} value="{$value3->getId()}">{$value3->getName()}</option>
 														{/loop}
 													</select>
+
+														{if="$value2->getIsverbose()==0"}
+														<input id="{$value2->getUrl()}" onclick="toggleFeedVerbose(this,{$value2->getIsverbose()},{$value2->getId()})" type="checkbox" title="{function="_t('HIDE_FEED_IS_VERBOSE')"}"><label for="{$value2->getUrl()}"></label>
+														{else}
+														<input id="{$value2->getUrl()}" onclick="toggleFeedVerbose(this,{$value2->getIsverbose()},{$value2->getId()})" type="checkbox" title="{function="_t('HIDE_FEED_IS_VERBOSE')"}" checked> <label for="{$value2->getUrl()}"></label>
+														{/if}
+
 												</td>
 												<td class="loopFoldersSettingsButtons">
 													<button class="btn grey" onclick="renameFeed(this,{$value2->getId()})">Renommer</button>
@@ -223,7 +231,7 @@
 										{/loop}
 									{/if}
 								</table>
-                            </article>
+							</article>
 						</li>
 						{/loop}
 					</ul>
@@ -262,7 +270,7 @@
 				{/if}
 			</article>
 		</section>
-    
+	
 		<section class="settingsPage" id="greederprefBloc">
 			<article>
 				<h2>Pagination</h2>
