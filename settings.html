@@ -243,7 +243,15 @@
 					<article>
 						<h2>{$value->getName()}</h2>
 							<ul>
-								<li><b>Auteur:</b> <a href="mailto:{$value->getMail()}">{$value->getAuthor()}</a></li>
+								{$authors=$value->getAuthor()}
+								{$mails=$value->getMail()}
+								{if="is_array($authors)"}
+									{loop="authors"}
+										<li><b>Auteur:</b> <a href="mailto:{$mails[$key2]}">{$value}</a></li>
+									{/loop}
+								{else}
+									<li><b>Auteur:</b> <a href="mailto:{$mails}">{$authors}</a></li>
+								{/if}
 								<li><b>Licence:</b> {$value->getLicence()}</li>
 								<li><b>Version:</b> <code>{$value->getVersion()}</code></li>
 								<li><b>Site web:</b> <a href="{$value->getLink()}">{$value->getLink()}</a></li>
