@@ -247,7 +247,8 @@
 								{$mails=$value->getMail()}
 								{if="is_array($authors)"}
 									{loop="authors"}
-										<li><b>Auteur:</b> <a href="mailto:{$mails[$key2]}">{$value}</a></li>
+										{$mail_address=$mails[$key2]}
+										<li><b>Auteur:</b> {if="$mail_address"}<a href="mailto:{$mails[$key2]}">{/if}{$value}{if="$mail_address"}</a>{/if}</li>
 									{/loop}
 								{else}
 									<li><b>Auteur:</b> <a href="mailto:{$mails}">{$authors}</a></li>
