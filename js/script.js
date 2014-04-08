@@ -627,12 +627,12 @@ function toggleFeedVerbose(button,action,idFeed){
         url: "./action.php?action=displayFeedIsVerbose&displayFeedIsVerbose="+action+"&idFeed="+idFeed,
         success:function(msg){
             if(msg.status == 'noconnect') {
-                alert(msg.texte)
+                alert(msg.texte);
             } else {
                 if( console && console.log && msg!="" ) console.log(msg);
                 //changement de l'évènement onclick pour faire l'inverse lors du prochain clic
-                var reverseaction = 0
-                if (action==0) { reverseaction = 1 }
+                var reverseaction = 0;
+                if (action==0) { reverseaction = 1; }
                 $(button).attr('onclick','toggleFeedVerbose(this,'+reverseaction+', '+idFeed+');');
             }
         }
@@ -644,12 +644,12 @@ function toggleOptionFeedVerbose(button,action){
         url: "./action.php?action=optionFeedIsVerbose&optionFeedIsVerbose="+action,
         success:function(msg){
             if(msg.status == 'noconnect') {
-                alert(msg.texte)
+                alert(msg.texte);
             } else {
                 if( console && console.log && msg!="" ) console.log(msg);
                 //changement de l'évènement onclick pour faire l'inverse lors du prochain clic
-                var reverseaction = 0
-                if (action==0) { reverseaction = 1 }
+                var reverseaction = 0;
+                if (action==0) { reverseaction = 1; }
                 $(button).attr('onclick','toggleOptionFeedVerbose(this,'+reverseaction+');');
                 //Changement du statut des cases à cocher sur les feed (afficher ou cacher)
                 if (action==1){
