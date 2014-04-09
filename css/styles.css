@@ -1,0 +1,556 @@
+/* -----------------------------*/
+/* ==Minification :
+/* When you edit this file, you must run the pre-commit hook in .hook dir to regenerate a minified version of the script.
+/* -----------------------------*/
+
+/* -----------------------------*/
+/* ==Style
+/* -----------------------------*/
+	.hidden {
+		display: none;
+	}
+	
+	/*base*/
+		html {
+			font-size:62.5%;
+		}
+		body {
+			font-family:arial,sans-serif;
+			font-size:1.4em;
+			line-height:1.5;
+			color:#222;
+			background-color:#F1F1F1;
+		}
+		p,
+		ul,
+		ol,
+		dl,
+		blockquote,
+		pre,
+		td,
+		th,
+		textarea,
+		caption,
+		details,
+		figure {
+			margin:.75em 0 0;
+			font-size:1em;
+			line-height:1.5;
+		}
+		fieldset {
+			border: 1px solid #E5E5E5;
+		}
+		select {
+			padding:4px;
+			border:none;
+		}
+		ul,
+		ol {
+			padding-left:0;
+		}
+		main ul,
+		main ol {
+			padding-left:2em;
+		}
+		div,
+		textarea,
+		table,
+		td,
+		th,
+		code,
+		pre,
+		samp {
+			-webkit-hyphens:auto;
+			-moz-hyphens:auto;
+			hyphens:auto;
+			word-wrap:break-word;
+			-ms-hyphens:auto;
+			-o-hyphens:auto;
+		}
+		.clear {
+			clear:both;
+		}
+		h1, h2, h3, h4, h5, h6{
+			font-family:helvetica,arial,sans-serif;
+		}
+		h1 {
+			margin:.8077em 0 0;
+			font-size:2em;
+			line-height:1.7em;
+		}
+		.articleContent h1 {
+			font-size:1.8em;
+		}
+		.enclosure h1 {
+			margin-top:1.2em;
+			font-size:1.2em;
+		}
+		h2 {
+			margin:.875em 0 0;
+			font-size:1.8em;
+			line-height:1.5em;
+		}
+		.articleContent h2 {
+			font-size:1.5em;
+		}
+		h3 {
+			margin:.9545em 0 0;
+			font-size:1.5em;
+			line-height:1.3em;
+		}
+		.articleContent h3 {
+			font-size:1.3em;
+		}
+		h4 {
+			margin:1.05em 0 0;
+			font-size:1.3em;
+			line-height:1.2em;
+		}
+		.articleContent h4 {
+			font-size:1.2em;
+		}
+		h5 {
+			margin:1.1667em 0 0;
+			font-size:1.2em;
+			line-height:1.1em;
+		}
+		.articleContent h5 {
+			font-size:1.1em;
+		}
+		h6 {
+			margin:1.3125em 0 0;
+			font-size:1em;
+			line-height:1.1em;
+		}
+		.articleContent h6 {
+			font-size:1em;
+		}
+	/*Repeat this !*/
+		a.FoldFolder,
+		aside li a.fade,
+		#menuSettings li {
+			cursor:pointer;
+		}
+		aside ul a,
+		aside ul a:hover,
+		#menuSettings li,
+		#menuSettings li:hover,
+		.btn,
+		.btn:hover {
+			-webkit-transition:all .2s ease;
+			-moz-transition:all .2s ease;
+			-ms-transition:all .2s ease;
+			-o-transition:all .2s ease;
+			transition:all .2s ease;
+		}
+	/*links*/
+		a,
+		#menuSettings li {
+			text-decoration:none;
+			color:#15C;
+		}
+	/*buttons*/
+		button,
+		.btn {
+			height:35px;
+			padding:0 8px;
+			border:0 none;
+			border-radius:2px;
+			text-align:center;
+			font-weight:bold;
+			line-height:35px;
+		}
+		.square {
+			width:35px;
+		}
+		.red {
+			color:#FFF;
+			background:#D14836;
+		}
+		.red:hover,
+		.red:active {
+			background:#C03927;
+		}
+		.grey {
+			color:#444;
+			background:#DCDCDC;
+		}
+		.grey:hover,
+		.grey:active {
+			background:#BCBCBC;
+		}
+		/*A yellow class is defined line 430*/
+		.blue {
+			color:#FFF;
+			background:#15C;
+		}
+		.green {
+			color:#FFF;
+			background:#4EAD48;
+		}
+		.fade {
+			color:#6A6A6A;
+		}
+	/*Backtop*/
+	#backtop {
+			position:fixed;
+			bottom:50px;
+			left:120px;
+			width:60px;
+			height:60px;
+			border-radius:100%;
+			text-align:center;
+			color:#F1F1F1;
+			background-color:#D14836;
+			cursor:pointer;
+			-webkit-box-shadow: 0 0 3px -1px #666;
+		box-shadow: 0 0 3px -1px #666;
+		}
+		#backtop a {
+			display:block;
+			color:#FFF;
+			padding-top: 10px;
+		}
+/* -----------------------------*/
+/* ==Layout
+/* -----------------------------*/
+	#flex {
+		display:flex;
+	}
+	/*Connect*/
+		#connect form {
+			padding:1rem;
+			border-radius:2px;
+			background-color:#DCDCDC;
+		}
+		#connect form input {
+			height:35px;
+			border:none;
+		}
+		#connect [type="text"] ,
+		#connect [type="password"] ,
+		#connect button,
+		#connect label {
+			width:100%;
+			margin:.5rem 0;
+		}
+		#connect [type="checkbox"] {
+			margin-right:1rem;
+		}
+		#connect.insidebar form {
+			width:100%;
+			margin: 3px 0;
+		}
+		#connect.inmain {
+			width:75%;
+			margin:0 auto;
+			text-align:center;
+		}
+		#connect.inmain form {
+			margin:2rem auto;
+			max-width:250px;
+		}
+	/*Sidebar*/
+		aside {
+			flex:0 300px;
+			padding-left:5px;
+		}
+		aside h1 {
+			text-align:center;
+		}
+		nav td {
+			text-align:center;
+		}
+		nav a {
+			display:block;
+			cursor:pointer;
+		}
+		#breadcrumb {
+			width:100%;
+			height:35px;
+			text-align:center;
+			font-weight:bold;
+			line-height:35px;
+		}
+		#menu {
+			display: none;
+		}
+		aside > button.red {
+			width:100%;
+		}
+		aside ul {
+			list-style:none;
+		}
+		#feedList > li:hover {
+			border-radius:2px;
+			background-color:#6A6A6A;
+		}
+		#feedList > li:hover > a {
+			color:#FFF;
+		}
+		#feedList ul {
+			padding:5px;
+			border-radius: 2px;
+			background-color:#CDCDCD;
+            display: none;
+		}
+		ul .fade {
+			float:right;
+			
+		}
+		#feedList  > li > .fade {
+			padding: 3px 3px 0 0;
+		}
+		a.FoldFolder {
+			padding-left:2px;
+			font-size:1.4em;
+			color:#6A6A6A;
+		}
+	/*Settings*/
+		#menuSettings a {
+			display:block;
+			padding:5px 20px;
+		}
+		#menuSettings a:hover {
+			border-radius:2px;
+			background-color:#6A6A6A;
+			color: #FFF;
+		}
+		#importexportBloc,
+		#bookBloc,
+		#preferenceBloc,
+		#synchronizeBloc,
+		#pluginBloc,
+		#greederprefBloc {
+			display:none;
+		}
+		.settingsPage {
+			margin:5px;
+			padding-top:3px;
+			background-color:#FFF;
+		}
+		.settingsPage article {
+			margin:5px 0 0;
+			border-style:dashed;
+			border-right:none;
+			border-bottom:none;
+			border-left:none;
+			border-radius:0;
+		}
+		#loopFoldersSettings {
+			padding-left:0;
+			list-style:none;
+		}
+	/*List of feeds. Pretty hard to do something nice here...*/
+		#loopFoldersSettings td.shorten {
+			overflow:hidden;
+			white-space:nowrap;
+		}
+		.loopFoldersSettingsName {
+			overflow:hidden;
+			white-space:nowrap;
+		}
+		.loopFoldersSettingsName a {
+			display:inline;
+		}
+		.loopFoldersSettingsSelect {
+			width:25%;
+		}
+		.loopFoldersSettingsSelect select {
+			width:calc(100% - 50px);
+		}
+		.loopFoldersSettingsSelect input[type=checkbox],
+		.loopFoldersSettingsSelect label{
+			float: right;
+			padding:0 4px;
+		}
+		.loopFoldersSettingsSelect input[type=checkbox] {
+			display:none;
+		}
+		.loopFoldersSettingsSelect input[type=checkbox] + label {
+			background: url("../img/visible_yes.svg");
+			height: 26px;
+			width: 26px;
+			display:inline-block;
+			padding: 0 0 0 0px;
+		}
+		.loopFoldersSettingsSelect input[type=checkbox]:checked + label {
+			background: url("../img/visible_no.svg");
+			height: 26px;
+			width: 26px;
+			display:inline-block;
+			padding: 0 0 0 0px;
+		}
+
+		.loopFoldersSettingsButtons {
+			overflow:hidden;
+			text-align:right;
+		}
+		.loopFoldersSettingsButtons button{
+			width: 45%
+		}
+		#addModifyFeeds button {
+			float:right;
+		}
+		#addModifyFeeds input,
+		#addModifyFeeds select {
+			width:98%;
+		}
+	/*syncIframe*/
+		article iframe {
+			width:100%;
+			border:none;
+		}
+		.errorSync {
+			margin:10px 5px 10px 0;
+			padding:5px;
+			border-radius:2px;
+			color:#FFF;
+			background-color:#D14836;
+		}
+		iframe {
+			margin:0;
+			border:0;
+		}
+		#idFrameSynchro,
+		#idFrame {
+			width:100%;
+		}
+	/*Articles*/
+		main {
+			flex:3;
+			overflow:hidden;
+		}
+		article,
+		.settingsPage {
+			margin:5px;
+			border:1px solid #E5E5E5;
+			border-radius:2px;
+			background:#FFF;
+		}
+		.eventRead {
+			border-color:#CDCDCD;
+			background-color:#CDCDCD;
+		}
+		.articleContent {
+			
+		}
+		.articleContent,
+		.settingsPage article{
+			padding: 2rem 3rem;
+		}
+		article.feedArticle > h1,
+		article.feedArticle > h2 {
+			margin:0;
+			padding:5px;
+		}
+		article.feedArticle > h1 {
+			font-size:1.6em;
+		}
+		article.feedArticle > h2 {
+			margin-top:-15px;
+			font-size:.9em;
+			font-style:italic;
+			font-weight:normal;
+		}
+		article.feedArticle nav {
+			float:right;
+			margin:3px;
+		}
+		article nav button{
+			margin-bottom: 3px
+		}
+		#loader {
+			text-align: center;
+			margin-top: 2rem;
+			display:none;
+		}
+		article.scroll {
+			display: none;
+		}
+	/*Navbar Articles*/
+
+		.favs {
+			font-size:1.5em;
+			color:#FFF;
+			background:#6A6A6A;
+		}
+		.favorised .favs,
+		.yellow {
+			color: #FFF;
+			background:#FFD200;
+		}
+		.favorised .star {
+			color:#FFD200;
+		}
+	/*Footer*/
+	footer {
+		text-align:center;
+	}
+/* -----------------------------*/
+/* ==Responsive
+/* -----------------------------*/
+	@media(max-width:850px) {
+		#flex {
+			display:inherit;
+		}
+		aside {
+			flex:none;
+			width:100%;
+		}
+		main {
+			flex:none;
+		}
+		aside > button.red {
+			width: calc(100% - 5px);
+		}
+		#backtop{
+			left:auto;
+			bottom: -60px;
+			right: -60px;
+			height: 120px;
+			width: 120px;
+			text-align: left;
+			padding: 5px 0px 10px 20px;
+		}
+		/*hamburger*/
+			#menu {
+				display: block;
+				color: #6A6A6A;
+				font-size:3em;
+				text-align: center;
+				cursor: pointer;
+			}
+			#feedList.js {
+				display: none;
+			}
+	}
+	@media(max-width:640px) {
+		.articleContent,
+		.settingsPage article{
+			padding: 2rem;
+		}
+		/*Display the table in lines*/
+			main table,
+			main tbody {
+				display:block;
+			}
+			main tr {
+				display:table;
+				width:100%;
+			}
+			main td {
+				display:table-row;
+			}
+			main td > * {
+				margin:.5rem;
+			}
+			
+			#loopFoldersSettings tr{
+				margin-top: 1rem
+			}
+		/*Fixes due to the tin space aviable*/
+			.loopFoldersSettingsButtons button {
+				width: auto;
+			}
+	}

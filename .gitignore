@@ -1,3 +1,6 @@
+# YUICOMPRESSOR
+yuicompressor*
+
 #################
 ## Eclipse
 #################
@@ -9,6 +12,7 @@ bin/
 tmp/
 *.tmp
 *.bak
+*.*~
 *.swp
 *~.nib
 local.properties
@@ -161,3 +165,6 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+#BTsync
+*.!sync
