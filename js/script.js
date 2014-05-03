@@ -63,7 +63,7 @@ $(document).ready(function() {
         }
         catch(e) {
             $.cookie('greedertoggleFolder', JSON.stringify(Array()), {
-                expire : -31536000, // expires in one year
+                expire : -31536000 // expires in one year
             });
         }
     }
@@ -71,10 +71,10 @@ $(document).ready(function() {
     // Handle hamburger status
     if(typeof($.cookie('greederhamburgerStatus')) !== 'undefined') {
         hamburger_status = $.cookie('greederhamburgerStatus');
-        if(parseInt(hamburger_status) == NaN) {
+        if(isNaN(parseInt(hamburger_status))) {
             hamburger_status = 0;
             $.cookie('greederhamburgerStatus', 0, {
-                expire : -31536000, // expires in one year
+                expire : -31536000 // expires in one year
             });
         }
     }
@@ -213,7 +213,7 @@ function togglePagination(element) {
 
 	// Store configuration in a cookie
 	$.cookie('greederprefPagination', state, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 
 	if(state == 1) {
@@ -233,7 +233,7 @@ function toggleFixSidebar(element) {
 
 	// Store configuration in a cookie
 	$.cookie('greederprefFixSidebar', state, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 
 	if(state == 1) {
@@ -349,7 +349,7 @@ function toggleFolder(element, folder) {
     folders_status[folder] = open;
 
 	$.cookie('greedertoggleFolder', JSON.stringify(folders_status), {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 }
 
@@ -390,7 +390,7 @@ $("#menu").click(function(){
 	$("#feedList").slideToggle(200);
     hamburger_status = 1 - hamburger_status;
 	$.cookie('greederhamburgerStatus', window.hamburger_status, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 });
 
