@@ -35,16 +35,17 @@ Comme n'importe quel thème pour Leed, Greeder s'installe très facilement.
 
 ## Information sur la minification, pour les développeurs
 
-Un makefile est fourni pour minifier automatiquement les fichiers css et js du thème. Pour l'utiliser, vous devez placer le fichier yuicompressor contenant le programme de minification à la racine du dossier.
+Un makefile est fourni pour minifier automatiquement les fichiers css et js du thème. Pour l'utiliser, vous devez placer le fichier yuicompressor contenant le programme de minification à la racine du dossier ou éditer la ligne $YUICOMPRESSOR dans le Makefile pour s'adapter à votre configuration. Pour la minification du JS, vous devez aussi insaller closure-compiler et adapter le Makefile en conséquence ($CLOSURE).
 
 Pour se faire :
 <ol>
     <li>Récupérer yuicompressor ici : https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.jar</li>
     <li>Placer le fichier récupéré (sans le renommer) à la racine du dossier</li>
+    <li>Installez closure-compiler.</li>
     <li>Vous pouvez désormais lancer la commande "make" à la racine du dossier de greeder pour minifier le CSS et le JS.
 </ol>
 
-Après minification, un fichier css/css.min.css et un fichier js/js.min.js seront générés, contenant tout le code nécessaire. Ces fichiers étant ceux utilisés par Greeder, il faut lancer "make" après chaque modification des fichiers non minifiés.
+Après minification, un fichier css/css.min.css et un fichier js/js.min.js seront générés, contenant tout le code nécessaire. Ces fichiers étant ceux utilisés par Greeder, il faut lancer "make" après chaque modification des fichiers non minifiés. Un sourcemap pour le JS minifié est également généré, pour faciliter le débuggage.
 
 Après chaque modification, les fichiers minifiés doivent être régénérés pour qu'ils soient toujours commités dans le même état que les autres fichiers, non minifiés. Ceci peut se faire aisément avec un hook git si vous le souhaitez.
 
