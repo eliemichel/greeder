@@ -3,10 +3,10 @@ YUICOMPRESSOR ?= java -jar yuicompressor-2.4.8.jar
 
 all: css/css.min.css js/js.min.js
 
-css/css.min.css: css/styles.css css/knacss.css
+css/css.min.css: css/styles.css css/knacss.css css/feedContentReset.css
 	@echo "================================"
 	@echo "[CSS] Starting minification"
-	cat css/knacss.css css/styles.css > css/css.tmp.css
+	cat css/knacss.css css/styles.css css/feedContentReset.css > css/css.tmp.css
 	$(YUICOMPRESSOR) -o css/css.min.css css/css.tmp.css
 	rm css/css.tmp.css
 	@echo "[CSS] Minification successful"

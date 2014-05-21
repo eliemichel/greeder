@@ -6,10 +6,6 @@
 /* -----------------------------*/
 /* ==Style
 /* -----------------------------*/
-	.hidden {
-		display: none;
-	}
-	
 	/*base*/
 		html {
 			font-size:62.5%;
@@ -67,8 +63,17 @@
 			-ms-hyphens:auto;
 			-o-hyphens:auto;
 		}
-		.clear {
-			clear:both;
+		b{
+			font-weight: bold;
+		}
+		i{
+			font-style: italic;
+		}
+		blockquote{
+			margin-left: 4px;
+			padding-left: 4px;
+			border-left: 2px solid #F1F1F1;
+			font-style: italic;
 		}
 		h1, h2, h3, h4, h5, h6{
 			font-family:helvetica,arial,sans-serif;
@@ -77,9 +82,6 @@
 			margin:.8077em 0 0;
 			font-size:2em;
 			line-height:1.7em;
-		}
-		.articleContent h1 {
-			font-size:1.8em;
 		}
 		.enclosure h1 {
 			margin-top:1.2em;
@@ -90,40 +92,31 @@
 			font-size:1.8em;
 			line-height:1.5em;
 		}
-		.articleContent h2 {
-			font-size:1.5em;
-		}
 		h3 {
 			margin:.9545em 0 0;
 			font-size:1.5em;
 			line-height:1.3em;
-		}
-		.articleContent h3 {
-			font-size:1.3em;
 		}
 		h4 {
 			margin:1.05em 0 0;
 			font-size:1.3em;
 			line-height:1.2em;
 		}
-		.articleContent h4 {
-			font-size:1.2em;
-		}
 		h5 {
 			margin:1.1667em 0 0;
 			font-size:1.2em;
 			line-height:1.1em;
-		}
-		.articleContent h5 {
-			font-size:1.1em;
 		}
 		h6 {
 			margin:1.3125em 0 0;
 			font-size:1em;
 			line-height:1.1em;
 		}
-		.articleContent h6 {
-			font-size:1em;
+		.clear {
+			clear:both;
+		}
+		.hidden {
+			display: none;
 		}
 	/*Repeat this !*/
 		a.FoldFolder,
@@ -192,7 +185,7 @@
 			color:#6A6A6A;
 		}
 	/*Backtop*/
-	#backtop {
+		#backtop {
 			position:fixed;
 			bottom:50px;
 			left:120px;
@@ -432,9 +425,6 @@
 			border-color:#CDCDCD;
 			background-color:#CDCDCD;
 		}
-		.articleContent {
-			
-		}
 		.articleContent,
 		.settingsPage article{
 			padding: 2rem 3rem;
@@ -484,9 +474,9 @@
 			color:#FFD200;
 		}
 	/*Footer*/
-	footer {
-		text-align:center;
-	}
+		footer {
+			text-align:center;
+		}
 /* -----------------------------*/
 /* ==Responsive
 /* -----------------------------*/
