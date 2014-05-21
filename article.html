@@ -1,6 +1,7 @@
 {loop="$events"}
 	{$plainDescription=strip_tags($value->getDescription())}	
 
+    {function="Plugin::callHook("event_pre_section", array(&$value))"}
     <article class="feedArticle{if="!$value->getUnread()"} eventRead {/if}{if="$articleDisplayContent==false"} digest {/if}{if="$value->getFavorite() == 1"} favorised {/if}{if="$scroll"} scroll{/if}">
 		<a class="anchor" id="{$value->getId()}"></a>
 		<nav class="articles-button-bar">
@@ -30,26 +31,40 @@
 			{if="$articleDisplayDate"} 
 				{$value->getPubdateWithInstant($time)} 
 			{/if}
+
+		<!--Change the display mode for one shot -->
+		{if="$articleDisplayMode=='title'"}
+			<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_TITLE')"}">|&nbsp;&nbsp;</a>
+		{/if}
+		{if="$articleDisplayMode=='summary'"}
+			<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_SUMMARY')"}">||&nbsp;</a>
+		{/if}
+		{if="$articleDisplayMode=='content'"}
+			<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_CONTENT')"}">|||</a>
+		{/if}
+
 			{function="Plugin::callHook("event_post_top_options", array(&$value))"}
 		</h2>
 
 		<!-- CONTENT -->
-		{if="$articleDisplayContent"}
-		<div class="articleContent">
-			{if="$articleView=='partial'"}
+		{if="$articleDisplayMode=='summary'"}
+			<div class="articleContent">
 				{function="Plugin::callHook("event_pre_description", array(&$value))"}
 				{$value->getDescription()}
 				{function="Plugin::callHook("event_post_description", array(&$value))"}
-			{else}
+			</div>
+		{/if}
+
+		{if="$articleDisplayMode=='content'"}
+			<div class="articleContent">
 				{function="Plugin::callHook("event_pre_content", array(&$value))"}
 				{$value->getContent()}
 				{function="Plugin::callHook("event_post_content", array(&$value))"}
-			{/if}
-		</div> 
+			</div>
 		{/if}
 		<!-- DIGEST VIEW -->
-		{if="$articleDisplayContent=='1' && $articleView=='complete'"}
-			<nav style="float:right" class="articles-button-bar">
+		{if="$articleDisplayMode=='content'"}
+			<nav class="articles-button-bar articles-button-bar-repeat">
 				{function="Plugin::callHook("event_pre_title", array(&$value))"}
 				{if="$value->getFavorite()!=1"}
 					<button class="btn square favs" onclick="addFavorite(this,{$value->getId()});" >★</button>

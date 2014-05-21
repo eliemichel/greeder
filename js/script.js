@@ -2,21 +2,22 @@
 //
 // Index :
 // =======
-// * Parameters
-// * Initialization
-// * Misc
-// * Back to top button
-// * Options
-// * Lazy loading
-// * Internationalization
-// * Folders
-// * hamburger icon Feed List
-// * Favorites
-// * Read / Unread
-// * Feed settings
-// * Synchronization
-// * Settings page functions
-// * Verbose feeds
+// Parameters
+// Initialization
+// Misc
+// Back to top button
+// Options
+// Lazy loading
+// Internationalization
+// Folders
+// hamburger icon Feed List
+// Favorites
+// Read / Unread
+// Changing the display in live
+// Feed settings
+// Synchronization
+// Settings page functions
+// Verbose feeds
 
 // Note on minification :
 // ======================
@@ -532,6 +533,83 @@ function readThis(element, id, from, callback) {
 			});
 		}
 	}
+}
+
+// ============================
+// Changing the display in live
+// ============================
+function toggleArticleDisplayMode(button, target){
+    if ($('#'+target+' > .summary').length>0 && $('#'+target+' > .summary').attr('style')!='display: none;'){
+
+        // je suis en mode affichage réduit et je passe en affichage mode complet
+        action = 'content';
+        $('#'+target+' > .summary').hide();
+        // chargement de l'article complet (content)
+        if ($.trim($('#'+target+' > .content').text()).length==0){
+            $.ajax({
+                url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
+                success:function(msg){
+                    if(msg.status == 'noconnect') {
+                        alert(msg.texte)
+                    } else {
+                        if( console && console.log && msg!="" ) console.log(msg);
+                        $('#'+target+' > .content').html(msg);
+                        $('#'+target+' > .content').show()
+                        // btn pour passer en mode title
+                        button.innerHTML = '|||';
+                        button.title = _t('EVENT_DISPLAY_CONTENT');
+                        $('#'+target+' > .articleDetails').last().show();
+                    }
+                }
+            });
+        } else {
+            $('#'+target+' > .content').show()
+            // btn pour passer en mode title
+            button.innerHTML = '|||';
+            button.title = _t('EVENT_DISPLAY_CONTENT');
+            $('#'+target+' > .articleDetails').last().show();
+        }
+
+    }else{
+        if ($('#'+target+' > .content').length>0 && $('#'+target+' > .content').attr('style')!='display: none;'){
+            // je suis en mode affichage complet et je passe en affichage mode title
+            $('#'+target+' > .content').hide();
+            // btn pour passer en mode reduit
+            button.innerHTML = '|&nbsp;&nbsp;';
+            button.title = _t('EVENT_DISPLAY_TITLE');
+            if ($('#'+target+' > .articleDetails').length > 1) {
+                $('#'+target+' > .articleDetails').last().hide();
+            }
+
+        }  else {
+
+            // je suis en mode affichage titre et je passe en affichage mode réduit
+            action = 'summary';
+            // chargement de l'article réduit (description)
+            if ($.trim($('#'+target+' > .summary').text()).length==0){
+                $.ajax({
+                    url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
+                    success:function(msg){
+                        if(msg.status == 'noconnect') {
+                            alert(msg.texte)
+                        } else {
+                            if( console && console.log && msg!="" ) console.log(msg);
+                            $('#'+target+' > .summary').html(msg);
+                            $('#'+target+' > .summary').show();
+                            // btn pour passer en mode complet
+                            button.innerHTML = '||&nbsp;';
+                            button.title = _t('EVENT_DISPLAY_SUMMARY');
+                        }
+                    }
+                });
+            } else {
+                $('#'+target+' > .summary').show();
+                // btn pour passer en mode complet
+                button.innerHTML = '||&nbsp;';
+                button.title = _t('EVENT_DISPLAY_SUMMARY');
+            }
+        }
+    }
 }
 
 // =============

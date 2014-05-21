@@ -453,11 +453,11 @@
 			font-style:italic;
 			font-weight:normal;
 		}
-		article.feedArticle nav {
+		.articles-button-bar {
 			float:right;
 			margin:3px;
 		}
-		article nav button{
+		.articles-button-bar button{
 			margin-bottom: 3px
 		}
 		#loader {
