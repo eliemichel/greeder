@@ -45,44 +45,44 @@ if($('#backtop').length) {
 }
 
 $(document).ready(function() {
-    // Handle toggle status for folders
-    toggle_status = $.cookie('greedertoggleFolder');
-    if(typeof(toggle_status) !== 'undefined') {
-        try {
-            toggle_status = JSON.parse(toggle_status);
+	// Handle toggle status for folders
+	toggle_status = $.cookie('greedertoggleFolder');
+	if(typeof(toggle_status) !== 'undefined') {
+		try {
+			toggle_status = JSON.parse(toggle_status);
 
-            for(i in toggle_status) {
-                if(toggle_status[i] == 0 || toggle_status[i] == 1) {
-                    var css_status = 'none';
-                    if(toggle_status[i] == 1) {
-                        $('#folder_'+i+' .FoldFolder').html('▼');
-                        css_status = 'block';
-                    }
-                    $('#folder_'+i+' ul').css('display', css_status);
-                }
-            }
-        }
-        catch(e) {
-            $.cookie('greedertoggleFolder', JSON.stringify(Array()), {
-                expire : -31536000, // expires in one year
-            });
-        }
-    }
+			for(i in toggle_status) {
+				if(toggle_status[i] == 0 || toggle_status[i] == 1) {
+					var css_status = 'none';
+					if(toggle_status[i] == 1) {
+						$('#folder_'+i+' .FoldFolder').html('▼');
+						css_status = 'block';
+					}
+					$('#folder_'+i+' ul').css('display', css_status);
+				}
+			}
+		}
+		catch(e) {
+			$.cookie('greedertoggleFolder', JSON.stringify(Array()), {
+				expire : -31536000, // expires in one year
+			});
+		}
+	}
 
-    // Handle hamburger status
-    if(typeof($.cookie('greederhamburgerStatus')) !== 'undefined') {
-        hamburger_status = $.cookie('greederhamburgerStatus');
-        if(parseInt(hamburger_status) == NaN) {
-            hamburger_status = 0;
-            $.cookie('greederhamburgerStatus', 0, {
-                expire : -31536000, // expires in one year
-            });
-        }
-    }
+	// Handle hamburger status
+	if(typeof($.cookie('greederhamburgerStatus')) !== 'undefined') {
+		hamburger_status = $.cookie('greederhamburgerStatus');
+		if(parseInt(hamburger_status) == NaN) {
+			hamburger_status = 0;
+			$.cookie('greederhamburgerStatus', 0, {
+				expire : -31536000, // expires in one year
+			});
+		}
+	}
 
-    if(hamburger_status == 1 && window.innerWidth < 850) {
-        $("#feedList").toggle(0);
-    }
+	if(hamburger_status == 1 && window.innerWidth < 850) {
+		$("#feedList").toggle(0);
+	}
 
 	// Pagination enabled
 	if($.cookie('greederprefPagination') == 1) {
@@ -121,12 +121,12 @@ $(document).ready(function() {
 	// Settings page
 	// Handle the blocks display for settings page
 	if($('.settingsPage').length) {
-                // Handling partial or complete articles display block
-                if($("input[name='articleDisplayContent']").length){
-                    $("input[name='articleDisplayContent']").click(function(){
-                        toggleArticleView();
-                    });
-                }
+				// Handling partial or complete articles display block
+				if($("input[name='articleDisplayContent']").length){
+					$("input[name='articleDisplayContent']").click(function(){
+						toggleArticleView();
+					});
+				}
 
 		var hash = window.location.hash;
 		if(hash.length) {
@@ -342,12 +342,12 @@ function toggleFolder(element, folder) {
 	feedBloc.slideToggle(200);
 	$(element).html((!open ? '►' : '▼'));
 
-    var folders_status = $.cookie('greedertoggleFolder');
-    if(typeof(folders_status) !== 'undefined')
-        folders_status = JSON.parse(folders_status);
-    else
-        folders_status = new Array();
-    folders_status[folder] = open;
+	var folders_status = $.cookie('greedertoggleFolder');
+	if(typeof(folders_status) !== 'undefined')
+		folders_status = JSON.parse(folders_status);
+	else
+		folders_status = new Array();
+	folders_status[folder] = open;
 
 	$.cookie('greedertoggleFolder', JSON.stringify(folders_status), {
 		expire : 31536000, // expires in one year
@@ -389,23 +389,23 @@ $("#feedList").addClass("js").before('<div id="menu"><img src="./templates/greed
 
 $("#menu").click(function(){
 	$("#feedList").slideToggle(200);
-    hamburger_status = 1 - hamburger_status;
+	hamburger_status = 1 - hamburger_status;
 	$.cookie('greederhamburgerStatus', window.hamburger_status, {
 		expire : 31536000, // expires in one year
 	});
 });
 
 $(window).resize(function() {
-    if(hamburger_status == 1 && window.innerWidth < 850) {
-        $("#feedList").css("display", "block");
-    }
-    else if(window.innerWidth < 850) {
-        $("#feedList").css("display", "none");
-    }
+	if(hamburger_status == 1 && window.innerWidth < 850) {
+		$("#feedList").css("display", "block");
+	}
+	else if(window.innerWidth < 850) {
+		$("#feedList").css("display", "none");
+	}
 
-    if(window.innerWidth > 850) {
-        $("#feedList").css("display", "block");
-    }
+	if(window.innerWidth > 850) {
+		$("#feedList").css("display", "block");
+	}
 });
 
 // =========
@@ -494,16 +494,16 @@ function readThis(element, id, from, callback) {
 							parent.addClass('eventRead');
 							// We count how many articles have been read to substract them to the infinite scroll query
 							$(window).data('nblus', $(window).data('nblus')+1);
-                            if(callback){
-                                callback();
-                            }
+							if(callback){
+								callback();
+							}
 							break;
 						default:
 							// Any other case : favorites, selectedFeed, ...
 							parent.addClass('eventRead');
-                            if(callback){
-                                callback();
-                            }
+							if(callback){
+								callback();
+							}
 							break;
 					}
 				}
@@ -525,9 +525,9 @@ function readThis(element, id, from, callback) {
 						// Count how many articles have been set to unread
 						if ( (activeScreen=='') || (activeScreen=='selectedFolder') ) $(window).data('nblus', $(window).data('nblus') - 1);
 
-                        if(callback){
-                            callback();
-                        }
+						if(callback){
+							callback();
+						}
 					}
 				}
 			});
@@ -539,77 +539,92 @@ function readThis(element, id, from, callback) {
 // Live display mode modification
 // ==============================
 function toggleArticleDisplayMode(button, target){
-    if ($('#'+target+' > .summary').length>0 && $('#'+target+' > .summary').attr('style')!='display: none;'){
+	if ($('#'+target+' > .summary').length>0 && $('#'+target+' > .summary').attr('style')!='display: none;')
+	{
+		// je suis en mode affichage réduit et je passe en affichage mode complet
+		action = 'content';
+		$('#'+target+' > .summary').hide();
+		// chargement de l'article complet (content)
+		if ($.trim($('#'+target+' > .content').text()).length==0){
+			$.ajax({
+				url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
+				success:function(msg){
+					if(msg.status == 'noconnect') {
+						alert(msg.texte)
+					}
+					else
+					{
+						if( console && console.log && msg!="" ) console.log(msg);
+						$('#'+target+' > .content').html(msg);
+						$('#'+target+' > .content').show()
+						// btn pour passer en mode title
+						button.innerHTML = '|||';
+						button.title = _t('EVENT_DISPLAY_CONTENT');
+						$('#'+target+' > .articleDetails').last().show();
+					}
+				}
+			});
+		}
+		else
+		{
+			$('#'+target+' > .content').show()
+			// btn pour passer en mode title
+			button.innerHTML = '|||';
+			button.title = _t('EVENT_DISPLAY_CONTENT');
+			$('#'+target+' > .articleDetails').last().show();
+		}
 
-        // je suis en mode affichage réduit et je passe en affichage mode complet
-        action = 'content';
-        $('#'+target+' > .summary').hide();
-        // chargement de l'article complet (content)
-        if ($.trim($('#'+target+' > .content').text()).length==0){
-            $.ajax({
-                url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
-                success:function(msg){
-                    if(msg.status == 'noconnect') {
-                        alert(msg.texte)
-                    } else {
-                        if( console && console.log && msg!="" ) console.log(msg);
-                        $('#'+target+' > .content').html(msg);
-                        $('#'+target+' > .content').show()
-                        // btn pour passer en mode title
-                        button.innerHTML = '|||';
-                        button.title = _t('EVENT_DISPLAY_CONTENT');
-                        $('#'+target+' > .articleDetails').last().show();
-                    }
-                }
-            });
-        } else {
-            $('#'+target+' > .content').show()
-            // btn pour passer en mode title
-            button.innerHTML = '|||';
-            button.title = _t('EVENT_DISPLAY_CONTENT');
-            $('#'+target+' > .articleDetails').last().show();
-        }
+	}
+	else
+	{
+		if ($('#'+target+' > .content').length>0 && $('#'+target+' > .content').attr('style')!='display: none;')
+		{
+			// je suis en mode affichage complet et je passe en affichage mode title
+			$('#'+target+' > .content').hide();
+			// btn pour passer en mode reduit
+			button.innerHTML = '|&nbsp;&nbsp;';
+			button.title = _t('EVENT_DISPLAY_TITLE');
+			if ($('#'+target+' > .articleDetails').length > 1)
+			{
+				$('#'+target+' > .articleDetails').last().hide();
+			}
 
-    }else{
-        if ($('#'+target+' > .content').length>0 && $('#'+target+' > .content').attr('style')!='display: none;'){
-            // je suis en mode affichage complet et je passe en affichage mode title
-            $('#'+target+' > .content').hide();
-            // btn pour passer en mode reduit
-            button.innerHTML = '|&nbsp;&nbsp;';
-            button.title = _t('EVENT_DISPLAY_TITLE');
-            if ($('#'+target+' > .articleDetails').length > 1) {
-                $('#'+target+' > .articleDetails').last().hide();
-            }
-
-        }  else {
-
-            // je suis en mode affichage titre et je passe en affichage mode réduit
-            action = 'summary';
-            // chargement de l'article réduit (description)
-            if ($.trim($('#'+target+' > .summary').text()).length==0){
-                $.ajax({
-                    url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
-                    success:function(msg){
-                        if(msg.status == 'noconnect') {
-                            alert(msg.texte)
-                        } else {
-                            if( console && console.log && msg!="" ) console.log(msg);
-                            $('#'+target+' > .summary').html(msg);
-                            $('#'+target+' > .summary').show();
-                            // btn pour passer en mode complet
-                            button.innerHTML = '||&nbsp;';
-                            button.title = _t('EVENT_DISPLAY_SUMMARY');
-                        }
-                    }
-                });
-            } else {
-                $('#'+target+' > .summary').show();
-                // btn pour passer en mode complet
-                button.innerHTML = '||&nbsp;';
-                button.title = _t('EVENT_DISPLAY_SUMMARY');
-            }
-        }
-    }
+		} 
+		else
+		{
+			// je suis en mode affichage titre et je passe en affichage mode réduit
+			action = 'summary';
+			// chargement de l'article réduit (description)
+			if ($.trim($('#'+target+' > .summary').text()).length==0)
+			{
+				$.ajax({
+					url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
+					success:function(msg){
+						if(msg.status == 'noconnect')
+						{
+							alert(msg.texte)
+						}
+						else
+						{
+							if( console && console.log && msg!="" ) console.log(msg);
+							$('#'+target+' > .summary').html(msg);
+							$('#'+target+' > .summary').show();
+							// btn pour passer en mode complet
+							button.innerHTML = '||&nbsp;';
+							button.title = _t('EVENT_DISPLAY_SUMMARY');
+						}
+					}
+				});
+			}
+			else
+			{
+				$('#'+target+' > .summary').show();
+				// btn pour passer en mode complet
+				button.innerHTML = '||&nbsp;';
+				button.title = _t('EVENT_DISPLAY_SUMMARY');
+			}
+		}
+	}
 }
 
 // =============
@@ -679,8 +694,8 @@ function synchronize(code, callback) {
 // Settings page functions
 // =======================
 function toggleArticleView(){
-    var element = $("input[name=articleView]");
-    element.prop("disabled",!element.prop("disabled"));
+	var element = $("input[name=articleView]");
+	element.prop("disabled",!element.prop("disabled"));
 }
 
 function toggleBlocks(target) {
@@ -701,41 +716,41 @@ function toggleBlocks(target) {
 // =======================
 // affiche ou cache les feeds n'ayant pas d'article non lus.
 function toggleFeedVerbose(button,action,idFeed){
-    $.ajax({
-        url: "./action.php?action=displayFeedIsVerbose&displayFeedIsVerbose="+action+"&idFeed="+idFeed,
-        success:function(msg){
-            if(msg.status == 'noconnect') {
-                alert(msg.texte);
-            } else {
-                if( console && console.log && msg!="" ) console.log(msg);
-                //changement de l'évènement onclick pour faire l'inverse lors du prochain clic
-                var reverseaction = 0;
-                if (action==0) { reverseaction = 1; }
-                $(button).attr('onclick','toggleFeedVerbose(this,'+reverseaction+', '+idFeed+');');
-            }
-        }
-    });
+	$.ajax({
+		url: "./action.php?action=displayFeedIsVerbose&displayFeedIsVerbose="+action+"&idFeed="+idFeed,
+		success:function(msg){
+			if(msg.status == 'noconnect') {
+				alert(msg.texte);
+			} else {
+				if( console && console.log && msg!="" ) console.log(msg);
+				//changement de l'évènement onclick pour faire l'inverse lors du prochain clic
+				var reverseaction = 0;
+				if (action==0) { reverseaction = 1; }
+				$(button).attr('onclick','toggleFeedVerbose(this,'+reverseaction+', '+idFeed+');');
+			}
+		}
+	});
 }
 // Bouton permettant l'affichage des options d'affichage et de non affichage des flux souhaités en page d'accueil
 function toggleOptionFeedVerbose(button,action){
-    $.ajax({
-        url: "./action.php?action=optionFeedIsVerbose&optionFeedIsVerbose="+action,
-        success:function(msg){
-            if(msg.status == 'noconnect') {
-                alert(msg.texte);
-            } else {
-                if( console && console.log && msg!="" ) console.log(msg);
-                //changement de l'évènement onclick pour faire l'inverse lors du prochain clic
-                var reverseaction = 0;
-                if (action==0) { reverseaction = 1; }
-                $(button).attr('onclick','toggleOptionFeedVerbose(this,'+reverseaction+');');
-                //Changement du statut des cases à cocher sur les feed (afficher ou cacher)
-                if (action==1){
-                    $('.feedVerbose').hide();
-                }else{
-                    $('.feedVerbose').show();
-                }
-            }
-        }
-    });
+	$.ajax({
+		url: "./action.php?action=optionFeedIsVerbose&optionFeedIsVerbose="+action,
+		success:function(msg){
+			if(msg.status == 'noconnect') {
+				alert(msg.texte);
+			} else {
+				if( console && console.log && msg!="" ) console.log(msg);
+				//changement de l'évènement onclick pour faire l'inverse lors du prochain clic
+				var reverseaction = 0;
+				if (action==0) { reverseaction = 1; }
+				$(button).attr('onclick','toggleOptionFeedVerbose(this,'+reverseaction+');');
+				//Changement du statut des cases à cocher sur les feed (afficher ou cacher)
+				if (action==1){
+					$('.feedVerbose').hide();
+				}else{
+					$('.feedVerbose').show();
+				}
+			}
+		}
+	});
 }
