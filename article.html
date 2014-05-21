@@ -32,16 +32,16 @@
 				{$value->getPubdateWithInstant($time)} 
 			{/if}
 
-		<!--Change the display mode for one shot -->
-		{if="$articleDisplayMode=='title'"}
-			<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_TITLE')"}">|&nbsp;&nbsp;</a>
-		{/if}
-		{if="$articleDisplayMode=='summary'"}
-			<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_SUMMARY')"}">||&nbsp;</a>
-		{/if}
-		{if="$articleDisplayMode=='content'"}
-			<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_CONTENT')"}">|||</a>
-		{/if}
+			<!--Change the display mode for one shot -->
+			{if="$articleDisplayMode=='title'"}
+				<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_TITLE')"}">|&nbsp;&nbsp;</a>
+			{/if}
+			{if="$articleDisplayMode=='summary'"}
+				<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_SUMMARY')"}">||&nbsp;</a>
+			{/if}
+			{if="$articleDisplayMode=='content'"}
+				<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_CONTENT')"}">|||</a>
+			{/if}
 
 			{function="Plugin::callHook("event_post_top_options", array(&$value))"}
 		</h2>

@@ -13,7 +13,7 @@
 // hamburger icon Feed List
 // Favorites
 // Read / Unread
-// Changing the display in live
+// Live display mode modification
 // Feed settings
 // Synchronization
 // Settings page functions
@@ -535,9 +535,9 @@ function readThis(element, id, from, callback) {
 	}
 }
 
-// ============================
-// Changing the display in live
-// ============================
+// ==============================
+// Live display mode modification
+// ==============================
 function toggleArticleDisplayMode(button, target){
     if ($('#'+target+' > .summary').length>0 && $('#'+target+' > .summary').attr('style')!='display: none;'){
 
