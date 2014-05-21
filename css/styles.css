@@ -69,6 +69,10 @@
 		i{
 			font-style: italic;
 		}
+		hr {
+			height: 2px;
+			background-color: #F1F1F1;
+		}
 		blockquote{
 			margin-left: 4px;
 			padding-left: 4px;
