@@ -64,7 +64,7 @@ $(document).ready(function() {
 		}
 		catch(e) {
 			$.cookie('greedertoggleFolder', JSON.stringify(Array()), {
-				expire : -31536000, // expires in one year
+				expire : -31536000 // expires in one year
 			});
 		}
 	}
@@ -72,10 +72,10 @@ $(document).ready(function() {
 	// Handle hamburger status
 	if(typeof($.cookie('greederhamburgerStatus')) !== 'undefined') {
 		hamburger_status = $.cookie('greederhamburgerStatus');
-		if(parseInt(hamburger_status) == NaN) {
+		if(isNaN(parseInt(hamburger_status))) {
 			hamburger_status = 0;
 			$.cookie('greederhamburgerStatus', 0, {
-				expire : -31536000, // expires in one year
+				expire : -31536000 // expires in one year
 			});
 		}
 	}
@@ -214,7 +214,7 @@ function togglePagination(element) {
 
 	// Store configuration in a cookie
 	$.cookie('greederprefPagination', state, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 
 	if(state == 1) {
@@ -234,7 +234,7 @@ function toggleFixSidebar(element) {
 
 	// Store configuration in a cookie
 	$.cookie('greederprefFixSidebar', state, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 
 	if(state == 1) {
@@ -350,7 +350,7 @@ function toggleFolder(element, folder) {
 	folders_status[folder] = open;
 
 	$.cookie('greedertoggleFolder', JSON.stringify(folders_status), {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 }
 
@@ -391,7 +391,7 @@ $("#menu").click(function(){
 	$("#feedList").slideToggle(200);
 	hamburger_status = 1 - hamburger_status;
 	$.cookie('greederhamburgerStatus', window.hamburger_status, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 });
 
@@ -539,24 +539,24 @@ function readThis(element, id, from, callback) {
 // Live display mode modification
 // ==============================
 function toggleArticleDisplayMode(button, target){
-	if ($('#'+target+' > .summary').length>0 && $('#'+target+' > .summary').attr('style')!='display: none;')
-	{
+	if ($('#'+target+' > .summary').length > 0 && $('#'+target+' > .summary').attr('style') != 'display: none;') {
 		// je suis en mode affichage réduit et je passe en affichage mode complet
 		action = 'content';
 		$('#'+target+' > .summary').hide();
 		// chargement de l'article complet (content)
-		if ($.trim($('#'+target+' > .content').text()).length==0){
+		if ($.trim($('#'+target+' > .content').text()).length == 0) {
 			$.ajax({
 				url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
 				success:function(msg){
 					if(msg.status == 'noconnect') {
-						alert(msg.texte)
+						alert(msg.texte);
 					}
-					else
-					{
-						if( console && console.log && msg!="" ) console.log(msg);
+					else {
+						if(console && console.log && msg != "") {
+                            console.log(msg);
+                        }
 						$('#'+target+' > .content').html(msg);
-						$('#'+target+' > .content').show()
+						$('#'+target+' > .content').show();
 						// btn pour passer en mode title
 						button.innerHTML = '|||';
 						button.title = _t('EVENT_DISPLAY_CONTENT');
@@ -565,9 +565,8 @@ function toggleArticleDisplayMode(button, target){
 				}
 			});
 		}
-		else
-		{
-			$('#'+target+' > .content').show()
+		else {
+			$('#'+target+' > .content').show();
 			// btn pour passer en mode title
 			button.innerHTML = '|||';
 			button.title = _t('EVENT_DISPLAY_CONTENT');
@@ -575,38 +574,33 @@ function toggleArticleDisplayMode(button, target){
 		}
 
 	}
-	else
-	{
-		if ($('#'+target+' > .content').length>0 && $('#'+target+' > .content').attr('style')!='display: none;')
-		{
+	else {
+		if ($('#'+target+' > .content').length > 0 && $('#'+target+' > .content').attr('style') != 'display: none;') {
 			// je suis en mode affichage complet et je passe en affichage mode title
 			$('#'+target+' > .content').hide();
 			// btn pour passer en mode reduit
 			button.innerHTML = '|&nbsp;&nbsp;';
 			button.title = _t('EVENT_DISPLAY_TITLE');
-			if ($('#'+target+' > .articleDetails').length > 1)
-			{
+			if ($('#'+target+' > .articleDetails').length > 1) {
 				$('#'+target+' > .articleDetails').last().hide();
 			}
 
 		} 
-		else
-		{
+		else {
 			// je suis en mode affichage titre et je passe en affichage mode réduit
 			action = 'summary';
 			// chargement de l'article réduit (description)
-			if ($.trim($('#'+target+' > .summary').text()).length==0)
-			{
+			if ($.trim($('#'+target+' > .summary').text()).length==0) {
 				$.ajax({
 					url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
 					success:function(msg){
-						if(msg.status == 'noconnect')
-						{
-							alert(msg.texte)
+						if(msg.status == 'noconnect') {
+							alert(msg.texte);
 						}
-						else
-						{
-							if( console && console.log && msg!="" ) console.log(msg);
+						else {
+							if( console && console.log && msg!="" ) {
+                                console.log(msg);
+                            }
 							$('#'+target+' > .summary').html(msg);
 							$('#'+target+' > .summary').show();
 							// btn pour passer en mode complet
@@ -616,8 +610,7 @@ function toggleArticleDisplayMode(button, target){
 					}
 				});
 			}
-			else
-			{
+			else {
 				$('#'+target+' > .summary').show();
 				// btn pour passer en mode complet
 				button.innerHTML = '||&nbsp;';
