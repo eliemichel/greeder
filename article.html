@@ -3,9 +3,9 @@
 
     {function="Plugin::callHook("event_pre_section", array(&$value))"}
     <article class="feedArticle
-    	{if="!$value->getUnread()"} eventRead {/if} <!-- Already read -->
-    	{if="$articleDisplayContent==false"} digest {/if} <!-- just the title -->
-    	{if="$value->getFavorite() == 1"} favorised {/if} <!-- this is a favorite -->
+        {if="!$value->getUnread()"} eventRead {/if} {* Already read *}
+        {if="isset($articleDisplayContent) && $articleDisplayContent === false"} digest {/if} {* just the title *}
+        {if="$value->getFavorite() == 1"} favorised {/if} {* this is a favorite *}
     	{if="$scroll"} scroll{/if}"
     	>
 		<a class="anchor" id="{$value->getId()}"></a>
@@ -65,6 +65,7 @@
 		{/if}
 
 		<!-- Display more/less -->
+        <p>
 			{if="$articleDisplayMode=='title'"}
 				<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_TITLE')"}">|&nbsp;&nbsp;</a>
 			{/if}
@@ -74,6 +75,7 @@
 			{if="$articleDisplayMode=='content'"}
 				<a id="btnDisplayMode_{$value->getId()}" onclick="toggleArticleDisplayMode(this,{$value->getId()})" title="{function="_t('EVENT_DISPLAY_CONTENT')"}">|||</a>
 			{/if}
+        </p>
 
 		<!-- Complete view : repeat buttons -->
 		{if="$articleDisplayMode=='content'"}

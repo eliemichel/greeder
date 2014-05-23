@@ -64,7 +64,7 @@ $(document).ready(function() {
 		}
 		catch(e) {
 			$.cookie('greedertoggleFolder', JSON.stringify(Array()), {
-				expire : -31536000, // expires in one year
+				expire : -31536000 // expires in one year
 			});
 		}
 	}
@@ -72,10 +72,10 @@ $(document).ready(function() {
 	// Handle hamburger status
 	if(typeof($.cookie('greederhamburgerStatus')) !== 'undefined') {
 		hamburger_status = $.cookie('greederhamburgerStatus');
-		if(parseInt(hamburger_status) == NaN) {
+		if(isNaN(parseInt(hamburger_status))) {
 			hamburger_status = 0;
 			$.cookie('greederhamburgerStatus', 0, {
-				expire : -31536000, // expires in one year
+				expire : -31536000 // expires in one year
 			});
 		}
 	}
@@ -214,7 +214,7 @@ function togglePagination(element) {
 
 	// Store configuration in a cookie
 	$.cookie('greederprefPagination', state, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 
 	if(state == 1) {
@@ -234,7 +234,7 @@ function toggleFixSidebar(element) {
 
 	// Store configuration in a cookie
 	$.cookie('greederprefFixSidebar', state, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 
 	if(state == 1) {
@@ -350,7 +350,7 @@ function toggleFolder(element, folder) {
 	folders_status[folder] = open;
 
 	$.cookie('greedertoggleFolder', JSON.stringify(folders_status), {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 }
 
@@ -391,7 +391,7 @@ $("#menu").click(function(){
 	$("#feedList").slideToggle(200);
 	hamburger_status = 1 - hamburger_status;
 	$.cookie('greederhamburgerStatus', window.hamburger_status, {
-		expire : 31536000, // expires in one year
+		expire : 31536000 // expires in one year
 	});
 });
 
@@ -539,87 +539,83 @@ function readThis(element, id, from, callback) {
 // Live display mode modification
 // ==============================
 function toggleArticleDisplayMode(button, target){
-	if ($('#'+target+' > .summary').length>0 && $('#'+target+' > .summary').attr('style')!='display: none;')
-	{
-		// je suis en mode affichage réduit et je passe en affichage mode complet
+    var summary = $('.summary', $('#'+target).parent());
+    var content = $('.content', $('#'+target).parent());
+    var articleDetails = $('.articleDetails', $('#'+target).parent());
+	if(summary.length > 0 && summary.attr('style') != 'display: none;') {
+		// Summary mode and passing to full content mode
 		action = 'content';
-		$('#'+target+' > .summary').hide();
-		// chargement de l'article complet (content)
-		if ($.trim($('#'+target+' > .content').text()).length==0){
+		summary.hide();
+		// Loading the full content of the article
+		if ($.trim(content.text()).length == 0) {
 			$.ajax({
 				url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
 				success:function(msg){
 					if(msg.status == 'noconnect') {
-						alert(msg.texte)
+						alert(msg.texte);
 					}
-					else
-					{
-						if( console && console.log && msg!="" ) console.log(msg);
-						$('#'+target+' > .content').html(msg);
-						$('#'+target+' > .content').show()
-						// btn pour passer en mode title
+					else {
+						if(console && console.log && msg != "") {
+                            console.log(msg);
+                        }
+						content.html(msg);
+						content.show();
+						// Button to pass to title mode
 						button.innerHTML = '|||';
 						button.title = _t('EVENT_DISPLAY_CONTENT');
-						$('#'+target+' > .articleDetails').last().show();
+						articleDetails.last().show();
 					}
 				}
 			});
 		}
-		else
-		{
-			$('#'+target+' > .content').show()
-			// btn pour passer en mode title
+		else {
+			content.show();
+			// Button to pass to title mode
 			button.innerHTML = '|||';
 			button.title = _t('EVENT_DISPLAY_CONTENT');
-			$('#'+target+' > .articleDetails').last().show();
+			articleDetails.last().show();
 		}
 
 	}
-	else
-	{
-		if ($('#'+target+' > .content').length>0 && $('#'+target+' > .content').attr('style')!='display: none;')
-		{
-			// je suis en mode affichage complet et je passe en affichage mode title
-			$('#'+target+' > .content').hide();
-			// btn pour passer en mode reduit
+	else {
+		if(content.length > 0 && content.attr('style') != 'display: none;') {
+			// Full content mode and passing to title mode
+			content.hide();
+			// Button to pass to summary mode
 			button.innerHTML = '|&nbsp;&nbsp;';
 			button.title = _t('EVENT_DISPLAY_TITLE');
-			if ($('#'+target+' > .articleDetails').length > 1)
-			{
-				$('#'+target+' > .articleDetails').last().hide();
+			if(articleDetails.length > 1) {
+                articleDetails.last().hide();
 			}
 
 		} 
-		else
-		{
-			// je suis en mode affichage titre et je passe en affichage mode réduit
+		else {
+			// Title mode and passing to summary mode
 			action = 'summary';
-			// chargement de l'article réduit (description)
-			if ($.trim($('#'+target+' > .summary').text()).length==0)
-			{
+            // Loading the summary (description)
+			if ($.trim(summary.text()).length==0) {
 				$.ajax({
 					url: "./action.php?action=articleDisplayMode&articleDisplayMode="+action+'&event_id='+target,
 					success:function(msg){
-						if(msg.status == 'noconnect')
-						{
-							alert(msg.texte)
+						if(msg.status == 'noconnect') {
+							alert(msg.texte);
 						}
-						else
-						{
-							if( console && console.log && msg!="" ) console.log(msg);
-							$('#'+target+' > .summary').html(msg);
-							$('#'+target+' > .summary').show();
-							// btn pour passer en mode complet
+						else {
+							if( console && console.log && msg!="" ) {
+                                console.log(msg);
+                            }
+							summary.html(msg);
+							summary.show();
+                            // Button to pass to full content mode
 							button.innerHTML = '||&nbsp;';
 							button.title = _t('EVENT_DISPLAY_SUMMARY');
 						}
 					}
 				});
 			}
-			else
-			{
-				$('#'+target+' > .summary').show();
-				// btn pour passer en mode complet
+			else {
+				summary.show();
+                // Button to pass to full content mode
 				button.innerHTML = '||&nbsp;';
 				button.title = _t('EVENT_DISPLAY_SUMMARY');
 			}
