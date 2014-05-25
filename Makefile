@@ -4,10 +4,10 @@ CLOSURE ?= closure
 
 all: css/css.min.css js/js.min.js
 
-css/css.min.css: css/styles.css css/knacss.css
+css/css.min.css:
 	@echo "================================"
 	@echo "[CSS] Starting minification"
-	cat css/knacss.css css/styles.css > css/css.tmp.css
+	cat `find css/ -type f -name '*.css' -not -name 'css.tmp.css' -not -name 'css.min.css'` > css/css.tmp.css
 	$(YUICOMPRESSOR) -o css/css.min.css css/css.tmp.css
 	rm css/css.tmp.css
 	@echo "[CSS] Minification successful"
@@ -19,5 +19,6 @@ js/js.min.js: js/script.js js/jquery.cookie.js js/jquery-2.1.1.js
 	# $(YUICOMPRESSOR) -o js/js.min.js js/js.tmp.js
 	$(CLOSURE) --js js/jquery-2.1.1.js --js js/jquery.cookie.js --js js/script.js --create_source_map js/js.min.js.map --source_map_format=V3 --js_output_file js/js.min.js
 	echo "//# sourceMappingURL=templates/greeder/js/js.min.js.map" >> js/js.min.js
+	sed -i 's/js\//templates\/greeder\/js\//g' js/js.min.js.map
 	@echo "[JS] Minification successful"
 	@echo "================================"
