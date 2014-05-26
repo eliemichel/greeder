@@ -2,12 +2,13 @@
 YUICOMPRESSOR ?= yuicompressor
 CLOSURE ?= closure
 
-all: css/css.min.css js/js.min.js
+all_css := $(wildcard css/*.css)
+src_css := $(filter-out css/css.min.css css/css.tmp.css, $(all_css))
 
-css/css.min.css:
+css/css.min.css: $(src_css)
 	@echo "================================"
 	@echo "[CSS] Starting minification"
-	cat `find css/ -type f -name '*.css' -not -name 'css.tmp.css' -not -name 'css.min.css'` > css/css.tmp.css
+	cat $(src_css) > css/css.tmp.css
 	$(YUICOMPRESSOR) -o css/css.min.css css/css.tmp.css
 	rm css/css.tmp.css
 	@echo "[CSS] Minification successful"
