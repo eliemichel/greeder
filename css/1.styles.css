@@ -1,6 +1,6 @@
 /* -----------------------------*/
 /* ==Minification :
-/* When you edit this file, you must run the pre-commit hook in .hook dir to regenerate a minified version of the script.
+/* When you edit this file, you must run `make` to regenerate a minified version of the script.
 /* -----------------------------*/
 
 /* -----------------------------*/
@@ -230,6 +230,7 @@
 		#connect label {
 			width:100%;
 			margin:.5rem 0;
+			display:inline;
 		}
 		#connect [type="checkbox"] {
 			margin-right:1rem;
