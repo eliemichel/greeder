@@ -7,6 +7,10 @@ L’interface de Greeder est inspirée de feu Google Reader, le but de ce thème
 
 Le thème est responsive, vous pourrez donc l’utiliser pour lire sur votre ordinateur, tablette, smartphone sans problème : l’interface fluide s’adaptera à vos différents formats d’écran.
 
+![Version ordinateur](https://github.com/tmos/greeder/master/doc/screenshot_desktop)
+
+![Version téléphone](https://github.com/tmos/greeder/master/doc/screenshot_phone)
+
 Un aperçu du thème est disponible sur <a href="http://projets.tomcanac.com/demo/greeder/">cette instance de démonstration</a>.
 
 ## Fonctionnalités
