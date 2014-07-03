@@ -63,6 +63,9 @@
 			-ms-hyphens:auto;
 			-o-hyphens:auto;
 		}
+		pre code {
+			line-height: 1.5em; /* Hardcoded value is a bad practice, but I couldn't find where the actual value come from… */
+		}
 		b{
 			font-weight: bold;
 		}
